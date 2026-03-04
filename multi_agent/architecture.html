@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3-Agent Framework Architecture Visulization</title>
+    <!-- Load MermaidJS -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#f9f9f9', lineColor: '#333' } });
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #1a202c;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Multi-Agent Architecture</h1>
+        <div class="description">
+            A visualization of the inputs, outputs, and interactions between the agents as defined in the Python code.
+        </div>
+
+        <div class="mermaid">
+            graph TD
+            %% Inputs Section
+            subgraph File System Inputs
+            Config[config.yaml]
+            Instructions[artifacts/metamodel.txt]
+            Problem[artifacts/problem_description.txt]
+            Suggested[artifacts/suggested_diagram.txt]
+            Student[artifacts/student_diagram.txt]
+            end
+
+            %% Orchestrator
+            main[main.py]
+            Config -.->|Loads API Key & Paths| main
+            Student -.->|Loads context| main
+
+            %% Agents Definition and Instantiation
+            subgraph 3-Agent Evaluation Framework
+
+            main == Initializes ==> A1["Agent 1<br>(Instruction Expert)"]
+            main == Initializes ==> A2["Agent 2<br>(Domain Expert)"]
+            main == Initializes ==> A3["Agent 3<br>(Evaluator & Grader)"]
+
+            Instructions -.->|Provides formatting rules| A1
+            Problem -.->|Provides domain logic| A2
+            Suggested -.->|Provides reference answer| A2
+
+            main == "Calls process_task(student_diagram)" ==> A3
+
+            A3 -- "JSON: {action: 'ask_agent_1', content: '...'}" --> A1
+            A1 -- "Text: Syntax & formatting reply" --> A3
+
+            A3 -- "JSON: {action: 'ask_agent_2', content: '...'}" --> A2
+            A2 -- "Text: Domain logic reply" --> A3
+
+            A3 -. "Appends every interaction" .-> LogFile[interactions.txt]
+            end
+
+            %% Outputs Section
+            subgraph File System Outputs
+            A3 == "JSON: {action: 'finalize'} (Up to 30 Iters)" ===> SaveFn[_save_outputs]
+            SaveFn --> HTMLOut[summary.html<br>Red formatted evaluation]
+            SaveFn --> TXTOut[error_log.txt<br>Detailed technical log]
+            end
+
+            %% Styling
+            classDef agent fill:#ebf8ff,stroke:#3182ce,stroke-width:2px,color:#2b6cb0,font-weight:bold;
+            classDef mainApp fill:#f0fff4,stroke:#38a169,stroke-width:2px,color:#22543d,font-weight:bold;
+            classDef inputDoc fill:#fff5f5,stroke:#e53e3e,stroke-width:1px,color:#742a2a;
+            classDef outputDoc fill:#faf5ff,stroke:#805ad5,stroke-width:2px,color:#44337a,font-weight:bold;
+
+            class A1,A2,A3 agent;
+            class main,SaveFn mainApp;
+            class Config,Instructions,Problem,Suggested,Student inputDoc;
+            class HTMLOut,TXTOut,LogFile outputDoc;
+        </div>
+    </div>
+
+</body>
+
+</html>

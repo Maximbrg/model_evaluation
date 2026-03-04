@@ -1,0 +1,21 @@
+<div>
+  <p style='color:red;'><strong>Grammar</strong>: multi-word attribute names (Phone Number, Office Address, Employment Start Date, Delivery Address, Date of First Contact, Order Type, Current Status, Shipment Date) need quoting or camelCase</p>
+  <p style='color:red;'><strong>Grammar</strong>: missing colon/type on an attribute (Recipes line) -> should be "recipes : Recipes"</p>
+  <p style='color:red;'><strong>Grammar</strong>: generics with a space in the type parameter (HashMap<Storage Serial, List<WineStorage>>) -> remove spaces or rename types (StorageSerial)</p>
+  <p style='color:red;'><strong>Grammar</strong>: inconsistent colon usage and missing/ambiguous labels (e.g., FoodPairings recipes relationship)</p>
+  <p style='color:red;'><strong>Grammar</strong>: role labels with spaces (Manufacturer ID) and inconsistent multiplicity notation</p>
+  <p style='color:red;'><strong>Naming</strong>: Storages vs WineStorage naming ambiguity</p>
+  <p style='color:red;'><strong>Naming</strong>: WineBottleComposite as a value object vs a real entity</p>
+  <p style='color:red;'><strong>Naming</strong>: WineType has both a "WineType Serial" and a "Serial Number" attribute -> redundant identifiers</p>
+  <p style='color:red;'><strong>Modeling</strong>: RegularOrder and UrgentOrder show no explicit inheritance; child classes duplicate order attributes</p>
+  <p style='color:red;'><strong>Itemization</strong>: RegularOrderItem and UrgentOrderItem duplicate concepts; better to unify as OrderLine with per-participant linkage</p>
+  <p style='color:red;'><strong>Delivery</strong>: missing Delivery entity; domain requires grouping of orders and min/max constraints</p>
+  <p style='color:red;'><strong>Delivery</strong>: no explicit min/max constraint enforcement shown in diagram</p>
+  <p style='color:red;'><strong>Wine</strong>: replace WineBottleComposite with a Wine entity keyed by surrogate wineId or by natural key (Manufacturer+CatalogNumber) to simplify references</p>
+  <p style='color:red;'><strong>Stock</strong>: Storages/WineStock coupling is confusing; prefer a dedicated WineStock or Stock table</p>
+  <p style='color:red;'><strong>FoodPairings</strong>: Recipes linkage syntax (Recipes recipes) is ill-formed; ensure colon/type syntax and multiplicity</p>
+  <p style='color:red;'><strong>Occasions</strong>: Many-to-many with WineType is acceptable but may need clearer representation</p>
+  <p style='color:red;'><strong>Notes</strong>: Notes are not attached to relevant elements; move guidance closer to involved classes</p>
+  <p style='color:red;'><strong>Consistency</strong>: enforce camelCase for attributes and PascalCase for classes; unify naming</p>
+  <p style='color:red;'><strong>Grader readiness</strong>: provide a minimal corrected fragment with explicit inheritance, a Delivery class, OrderLine + OrderParticipation, and a simplified Wine/WineStock model</p>
+</div>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Diagrams Visualizations</title>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'base' });
+    </script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+        h1, h2 { text-align: center; color: #333; }
+        .diagram-container { margin-bottom: 50px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow-x: auto; }
+        .mermaid { display: flex; justify-content: center; }
+    </style>
+</head>
+<body>
+    <h1>Evaluation Visualizations</h1>
+    
+    <div class="diagram-container">
+        <h2>1. Original Student Diagram</h2>
+        <div class="mermaid">
+classDiagram
+classDiagram
+class Employee {
+  - "ID": String
+  - "Name": String
+  - "Phone Number": String
+  - "Email": String
+  - "Office Address": String
+  - "Employment Start Date": Date
+}
+
+class Customer {
+  - "ID": String
+  - "Name": String
+  - "Phone Number": String
+  - "Email": String
+  - "Delivery Address": String
+  - "Date of First Contact": Date
+}
+
+class Order {
+  - "Order Number": String
+  - "Order Type": String
+  - "Order Date": Date
+  - "Current Status": String
+  - "Shipment Date": Date
+}
+
+class RegularOrder {
+  - "CustomerOrder Serial": String
+  - "Order Number": String
+  - "Customer ID": String
+}
+
+class UrgentOrder {
+  - "Order Number": String
+  - "Priority Level": Integer
+  - "Specific Delivery Date": Date
+}
+
+class RegularOrderItem {
+  - "Order Item Number": String
+  - "CustomerOrder Serial": String
+  - "Quantity": Integer
+}
+
+class UrgentOrderItem {
+  - "Order Item Number": String
+  - "Order Number": String
+  - "Quantity": Integer
+}
+
+class Manufacturer {
+  - "ID": String
+  - "Full Name": String
+  - "Contact Phone Number": String
+  - "Address": String
+  - "Email": String
+}
+
+class WineBottleComposite {
+  - "Manufacturer ID": String
+  - "Catalog Number": String
+}
+
+class WineBottle {
+  - "WineBottleComposite": WineBottleComposite
+  - "Wine Name": String
+  - "Description": String
+  - "Production Year": Integer
+  - "Price Per Bottle": Float
+  - "Sweetness Level": String
+  - "Product Image": String
+  - "WineType": WineType
+}
+
+class WineStorage {
+  - "Storage Serial": String
+  - "Quantity": Integer
+}
+
+class Storages {
+  - "HashMap<Storage Serial, List<WineStorage>> storageMap"
+}
+
+class WineType {
+  - "WineType Serial": String
+  - "Name": String
+  - "Serial Number": String
+}
+
+class Occasions {
+  - "Occasion ID": String
+  - "Name": String
+  - "Season": String
+  - "Location": String
+}
+
+class FoodPairings {
+  - "Pairing ID": String
+  - "Dish Name": String
+  - "Recipes recipes": Recipes
+}
+
+class Recipes {
+  - "Recipes ID": String
+  - "Recipe1 URL": String
+  - "Recipe2 URL": String
+  - "Recipe3 URL": String
+  - "Recipe4 URL": String
+  - "Recipe5 URL": String
+}
+
+class System {
+  {static} - instance : System
+  {static} + getInstance() : System
+  + GenerateUnproductiveEmployeesReport(startDate: Date, endDate: Date) : List<Employee>
+  + GenerateCurrentInventoryReport() : HashMap<WineBottle, Integer>
+  + GenerateWineRecommendationReport(fp: FoodPairings, oc: Occasions, wt: WineType) : List<WineBottle>
+}
+
+' Core Relationships with Multiplicities
+System --> "0..*" Employee : retrieves
+System --> "0..*" Order : retrieves
+System --> "1" Storages : retrieves
+System --> "0..*" Customer : retrieves
+System --> "0..*" WineType : retrieves
+
+Order "1" --> "1" Customer : Main Customer ID
+Order "1" --> "1" Employee : Employee ID
+RegularOrder "1" --> "1" Order : Order Number
+RegularOrder "1" --> "1" Customer : Customer ID
+UrgentOrder "1" --> "1" Order : Order Number
+
+RegularOrderItem "1" --> "1" RegularOrder : CustomerOrder Serial
+UrgentOrderItem "1" --> "1" UrgentOrder : Order Number
+
+RegularOrderItem "1" --> "1" WineBottle : refers to
+UrgentOrderItem "1" --> "1" WineBottle : refers to
+WineBottle "1" --> "1" WineBottleComposite : identified by
+WineBottle "1" --> "1" WineType : categorized as
+
+WineStorage "1" --> "1" WineBottle : stores
+Storages "1" --> "0..*" WineStorage : manages
+
+WineType "0..*" --> "0..*" Occasions : linked to
+WineType "0..*" --> "0..*" FoodPairings : linked to
+FoodPairings "1" --> "1" Recipes : contains
+
+WineBottleComposite "1" --> "1" Manufacturer : Manufacturer ID
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>2. Gold Standard (Suggested Diagram)</h2>
+        <div class="mermaid">
+classDiagram
+enum OrderStatus {
+  InProcess
+  Dispatched
+  Delivered
+  Paid
+  Suspended
+  Canceled
+}
+
+enum Location {
+  indoor
+  outdoor
+}
+
+enum SweetnessLevel {
+  Dry
+  SemiDry
+  SemiSweet
+  Sweet
+}
+
+class Person {
+  - personID: String
+  - name: String
+  - phoneNumber: String
+  - email: String
+}
+note bottom of Person : {Total, Overlaping}
+
+class Employee extends Person {
+  - officeAddress: String
+  - employmentStartDate: Date
+}
+
+class Order {
+  - orderID: Long
+  - orderDate: Date
+  - currentStatus: OrderStatus
+  - shipmentDate: Date
+}
+note bottom of Order : {Total, Disjoint}
+
+class UrgentOrder extends Order {
+  - priority: int {1..5}
+  - expectedDelivery: Date
+}
+
+class RegularOrder extends Order {
+  + addCustomerToOrder(c: Customer)
+}
+
+class Wine {
+  - catalogNumber: int
+  - name: String
+  - description: String
+  - productionYear: int
+  - pricePerBottle: float
+  - sweetnessLevel: SweetnessLevel
+  - productImage: Image
+}
+
+class UrgentOrderWine {
+  - quantity: int
+}
+
+class Customer extends Person {
+  - deliveryAddress: String
+  - dateOfFirstContact: Date
+}
+
+class RegularOrderCustomer {
+  - isMainCustomer: boolean
+}
+
+class RegularOrderWine {
+  - quantity: int
+}
+
+class WineType {
+  - wineTypeID: int
+  - name: String
+}
+
+class Food {
+  - name: String
+  - urls: String[5]
+}
+
+class Occasion {
+  - description: String
+  - season: String
+  - location: Location
+}
+
+class Manufacturer {
+  - manufacturerID: String
+  - manufacturerName: String
+  - contactPhoneNumber: String
+  - address: String
+  - email: String
+}
+
+class StorageLocation {
+  - storageNumber: int
+  - name: String
+}
+
+class StockedWine {
+  - quantity: int
+  + exportCurrentInventoryReport(): File
+}
+
+class System {
+  + importXMLofWineAndManufacturer(f: File)
+  + generateUnproductiveEmployeesReport(from: Date, to: Date)
+  + generateCurrentInventoryReportAndExport(): File
+  + generateWineRecommendationReport(f: Food, o: Occasion, t: WineType)
+}
+
+' Associations
+Order "*" -- "1" Employee : "assigned"
+UrgentOrder "*" o-- "*" Wine
+RegularOrder "*" -- "*" Customer
+RegularOrderCustomer "*" o-- "*" Wine
+Wine "*" -- "*" WineType
+Occasion "*" -- "*" WineType
+Food "*" -- "*" WineType : "assigned"
+Manufacturer "1"--"*" Wine
+Wine "*" -- "*" StorageLocation : "stored"
+UrgentOrder "*" -- "1" Customer
+
+' Dependencies
+Order ..> OrderStatus
+Occasion ..> Location
+Wine ..> SweetnessLevel
+
+' Association Classes
+(Wine, StorageLocation) .. StockedWine
+(UrgentOrder, Wine) .. UrgentOrderWine
+(RegularOrder, Customer) .. RegularOrderCustomer
+(Wine, RegularOrderCustomer) .. RegularOrderWine
+
+' System Associations
+System *--"*" Wine
+System *--"*" Person
+System *--"*" Order
+System *--"*" Food
+System *--"*" Occasion
+System *--"*" StorageLocation
+System *--"*" Manufacturer
+        </div>
+    </div>
+
+    <div class="diagram-container">
+        <h2>3. Improved Student Diagram</h2>
+        <div class="mermaid">
+classDiagram
+classDiagram
+class Employee {
+  - ID: String
+  - Name: String
+  - PhoneNumber: String
+  - Email: String
+  - OfficeAddress: String
+  - EmploymentStartDate: Date
+}
+
+class Customer {
+  - ID: String
+  - Name: String
+  - PhoneNumber: String
+  - Email: String
+  - DeliveryAddress: String
+  - DateOfFirstContact: Date
+}
+
+class Order {
+  - orderID: String
+  - orderDate: Date
+  - status: String
+  - shipmentDate: Date
+  - isUrgent: Boolean
+  - priority: Integer
+}
+
+class OrderLine {
+  - orderLineID: String
+  - quantity: Integer
+  - wine: Wine
+  - customer: Customer
+}
+
+class Wine {
+  - catalogNumber: String
+  - name: String
+  - description: String
+  - productionYear: Integer
+  - pricePerBottle: Float
+  - sweetnessLevel: String
+  - productImage: String
+  - manufacturer: Manufacturer
+  - wineType: WineType
+}
+
+class StockEntry {
+  - stockEntryID: String
+  - wine: Wine
+  - storageLocation: StorageLocation
+  - quantity: Integer
+}
+
+class StorageLocation {
+  - storageNumber: String
+  - name: String
+}
+
+class Manufacturer {
+  - manufacturerID: String
+  - manufacturerName: String
+  - contactPhoneNumber: String
+  - address: String
+  - email: String
+}
+
+class WineType {
+  - wineTypeID: String
+  - name: String
+}
+
+class FoodPairings {
+  - pairingID: String
+  - dishName: String
+  - recipes: Recipes
+}
+
+class Recipes {
+  - recipesID: String
+  - recipe1URL: String
+  - recipe2URL: String
+  - recipe3URL: String
+  - recipe4URL: String
+  - recipe5URL: String
+}
+
+class Occasions {
+  - occasionID: String
+  - name: String
+  - season: String
+  - location: String
+}
+
+class Delivery {
+  - deliveryID: String
+  - city: String
+  - scheduledDate: Date
+  - status: String
+  - minBottleLimit: Integer
+  - maxBottleLimit: Integer
+}
+
+' Relationships
+Customer "1" -- "0..*" Order : places
+Order "1" -- "0..*" OrderLine : contains
+OrderLine "1" -- "1" Wine : references
+Wine "1" -- "1" Manufacturer : producedBy
+Wine "1" -- "1..*" WineType : categorizedAs
+StockEntry "*" -- "1" Wine : stockOf
+StockEntry "*" -- "1" StorageLocation : storedIn
+WineType "0..*" --> "0..*" Occasions : relatedTo
+WineType "0..*" --> "0..*" FoodPairings : supports
+FoodPairings "1" --> "1" Recipes : uses
+Occasions "0..*" --> "0..*" WineType : relatesTo
+
+' Optional: system/service layer (omitted in-domain), but you can model domain services externally
+        </div>
+    </div>
+</body>
+</html>

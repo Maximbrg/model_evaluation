@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlantUML Visualizations</title>
+    <!-- Include plantuml-encoder to convert raw text to PlantUML server URLs -->
+    <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background: #f0f2f5; color: #333; }
+        h1, h2 { text-align: center; color: #2c3e50; }
+        .section { margin-bottom: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .img-container { display: flex; justify-content: center; overflow-x: auto; padding: 20px 0; min-height: 200px; }
+        img { max-width: 100%; height: auto; border: 1px solid #e1e4e8; border-radius: 4px; padding: 10px; background: #fff; }
+        .loading { color: #6c757d; font-style: italic; text-align: center; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Class Diagrams & Agent Feedback (PlantUML)</h1>
+    
+    <div class="section">
+        <h2>1. Student Diagram</h2>
+        <!-- Store raw text securely without browser re-formatting -->
+        <script type="text/plain" id="student_raw">@startuml
+skinparam linetype ortho
+
+class Employee {
+    - ID: String
+    - Name: String
+    - Phone Number: String
+    - Email: String
+    - Office Address: String
+    - Employment Start Date: Date
+}
+
+class Customer {
+    - ID: String
+    - Name: String
+    - Phone Number: String
+    - Email: String
+    - Delivery Address: String
+    - Date of First Contact: Date
+}
+
+class Order {
+    - Order Number: String
+    - Order Type: String
+    - Order Date: Date
+    - Current Status: String
+    - Shipment Date: Date
+}
+
+class RegularOrder {
+    - CustomerOrder Serial: String
+    - Order Number: String
+    - Customer ID: String
+}
+
+class UrgentOrder {
+    - Order Number: String
+    - Priority Level: Integer
+    - Specific Delivery Date: Date
+}
+
+class RegularOrderItem {
+    - Order Item Number: String
+    - CustomerOrder Serial: String
+    - Quantity: Integer
+}
+
+class UrgentOrderItem {
+    - Order Item Number: String
+    - Order Number: String
+    - Quantity: Integer
+}
+
+class Manufacturer {
+    - ID: String
+    - Full Name: String
+    - Contact Phone Number: String
+    - Address: String
+    - Email: String
+}
+
+class WineBottleComposite {
+    - Manufacturer ID: String
+    - Catalog Number: String
+}
+
+class WineBottle {
+    - WineBottleComposite: WineBottleComposite
+    - Wine Name: String
+    - Description: String
+    - Production Year: Integer
+    - Price Per Bottle: Float
+    - Sweetness Level: String
+    - Product Image: String
+    - WineType: WineType
+}
+
+class WineStorage {
+    - Storage Serial: String
+    - Quantity: Integer
+}
+
+class Storages {
+    - HashMap<Storage Serial, List<WineStorage>> storageMap
+}
+
+class WineType {
+    - WineType Serial: String
+    - Name: String
+    - Serial Number: String
+}
+
+class Occasions {
+    - Occasion ID: String
+    - Name: String
+    - Season: String
+    - Location: String
+}
+
+class FoodPairings {
+    - Pairing ID: String
+    - Dish Name: String
+    - Recipes recipes
+}
+
+class Recipes {
+    - Recipes ID: String
+    - Recipe1 URL: String
+    - Recipe2 URL: String
+    - Recipe3 URL: String
+    - Recipe4 URL: String
+    - Recipe5 URL: String
+}
+
+class System {
+    {static} - instance : System
+    {static} + getInstance() : System
+    + GenerateUnproductiveEmployeesReport(startDate: Date, endDate: Date) : List<Employee>
+    + GenerateCurrentInventoryReport() : HashMap<WineBottle, Integer>
+    + GenerateWineRecommendationReport(fp: FoodPairings, oc: Occasions, wt: WineType) : List<WineBottle>
+}
+
+' Core Relationships with Multiplicities
+System --> "0..*" Employee : retrieves
+System --> "0..*" Order : retrieves
+System --> "1" Storages : retrieves
+System --> "0..*" Customer : retrieves
+System --> "0..*" WineType : retrieves
+
+Order "1" --> "1" Customer : Main Customer ID
+Order "1" --> "1" Employee : Employee ID
+RegularOrder "1" --> "1" Order : Order Number
+RegularOrder "1" --> "1" Customer : Customer ID
+UrgentOrder "1" --> "1" Order : Order Number
+
+RegularOrderItem "1" --> "1" RegularOrder : CustomerOrder Serial
+UrgentOrderItem "1" --> "1" UrgentOrder : Order Number
+
+RegularOrderItem "1" --> "1" WineBottle : refers to
+UrgentOrderItem "1" --> "1" WineBottle : refers to
+WineBottle "1" --> "1" WineBottleComposite : identified by
+WineBottle "1" --> "1" WineType : categorized as
+
+WineStorage "1" --> "1" WineBottle : stores
+Storages "1" --> "0..*" WineStorage : manages
+
+WineType "0..*" --> "0..*" Occasions : linked to
+WineType "0..*" --> "0..*" FoodPairings : linked to
+FoodPairings "1" --> "1" Recipes : contains
+
+WineBottleComposite "1" --> "1" Manufacturer : Manufacturer ID
+
+' Notes for Clarity
+note right of System
+    System generates various reports:
+    - Unproductive employees
+    - Current inventory
+    - Wine recommendations
+end note
+
+note right of WineBottle
+    WineBottle connects to WineBottleComposite and WineType.
+end note
+
+note right of RegularOrderItem
+    Links RegularOrder and WineBottle with Quantity.
+end note
+
+note right of UrgentOrderItem
+    Links UrgentOrder and WineBottle with Quantity.
+end note
+
+note right of WineStorage
+    WineStorage links WineBottle to storage locations with quantities.
+end note
+
+note right of WineBottleComposite
+    WineBottleComposite references Manufacturer using Manufacturer ID.
+end note
+
+@enduml
+</script>
+        <div class="img-container" id="student_container">
+            <div class="loading">Rendering Student Diagram...</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. Gold Standard (Suggested Diagram)</h2>
+        <script type="text/plain" id="suggested_raw">@startuml
+skinparam classAttributeIconSize 0
+' Enums
+enum OrderStatus {
+    InProcess
+    Dispatched
+    Delivered
+    Paid
+    Suspended
+    Canceled
+}
+enum Location {
+    indoor
+    outdoor
+}
+enum SweetnessLevel {
+    Dry
+    SemiDry
+    SemiSweet
+    Sweet
+}
+
+' Classes
+class Person {
+    - personID: String
+    - name: String
+    - phoneNumber: String
+    - email: String
+}
+note bottom of Person : {Total, Overlaping}
+
+class Employee extends Person {
+    - officeAddress: String
+    - employmentStartDate: Date
+}
+
+
+class Order {
+    - orderID: Long
+    - orderDate: Date
+    - currentStatus: OrderStatus
+    - shipmentDate: Date
+}
+note bottom of Order : {Total, Disjoint}
+
+
+class UrgentOrder extends Order {
+    - priority: int {1..5}
+    - expectedDelivery: Date
+}
+
+class RegularOrder extends Order {
+    + addCustomerToOrder(c: Customer)
+}
+
+class Wine {
+    - catalogNumber: int
+    - name: String
+    - description: String
+    - productionYear: int
+    - pricePerBottle: float
+    - sweetnessLevel: SweetnessLevel
+    - productImage: Image
+}
+
+class UrgentOrderWine {
+    - quantity: int
+}
+
+
+class Customer extends Person {
+    - deliveryAddress: String
+    - dateOfFirstContact: Date
+}
+
+class RegularOrderCustomer {
+    - isMainCustomer: boolean
+}
+
+class RegularOrderWine {
+    - quantity: int
+}
+
+class WineType {
+    - wineTypeID: int
+    - name: String
+}
+
+class Food {
+    - name: String
+    - urls: String[5]
+}
+
+class Occasion {
+    - description: String
+    - season: String
+    - location: Location
+}
+
+class Manufacturer {
+    - manufacturerID: String
+    - manufacturerName: String
+    - contactPhoneNumber: String
+    - address: String
+    - email: String
+}
+
+class StorageLocation {
+    - storageNumber: int
+    - name: String
+}
+
+class StockedWine {
+    - quantity: int
+    + exportCurrentInventoryReport(): File
+}
+
+class System {
+    + importXMLofWineAndManufacturer(f: File)
+    + generateUnproductiveEmployeesReport(from: Date, to: Date)
+    + generateCurrentInventoryReportAndExport(): File
+    + generateWineRecommendationReport(f: Food, o: Occasion, t: WineType)
+}
+note left of System::generateWineRecommendationReport 
+      The parameters of generateWineRecommendationReport (f, o, t) can be null.
+end note
+
+
+' Associations
+Order "*"--"1" Employee : "assigned employee's"
+UrgentOrder "*" o-- "*" Wine
+RegularOrder "*" -- "*" Customer
+RegularOrderCustomer "*" o-- "*" Wine
+Wine "*" -- "*" WineType
+Occasion "*" -- "*" WineType
+Food "*" -- "*" WineType : "assigned"
+Manufacturer "1"--"*" Wine
+Wine "*" -- "*" StorageLocation : "stored"
+UrgentOrder "*" -- "1" Customer
+
+
+' **Dependencies**
+Order ..> OrderStatus
+Occasion ..> Location
+Wine ..> SweetnessLevel
+
+' Association Classes
+(Wine, StorageLocation) .. StockedWine
+(UrgentOrder, Wine) .. UrgentOrderWine
+(RegularOrder, Customer) .. RegularOrderCustomer
+(Wine, RegularOrderCustomer) .. RegularOrderWine
+
+' System Associations
+System *--"*" Wine
+System *--"*" Person
+System *--"*" Order
+System *--"*" Food
+System *--"*" Occasion
+System *--"*" StorageLocation
+System *--"*" Manufacturer
+@enduml</script>
+        <div class="img-container" id="suggested_container">
+            <div class="loading">Rendering Suggested Diagram...</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. Agent Actionable Feedback & Suggestions</h2>
+        <p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>Summary of errors and domain/instruction issues found in the student diagram:</strong></p>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>1) Grammar / PlantUML syntax problems</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Multi-word attribute names:</strong> Several attributes contain spaces (Phone Number, Office Address, Employment Start Date, Delivery Address, Date of First Contact, Order Type, Current Status, Shipment Date). In PlantUML, these should be single tokens or quoted, otherwise parsing issues occur. Recommend converting to camelCase (phoneNumber, officeAddress, employmentStartDate, etc.) or quoting the entire name.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Missing colon/type on an attribute:</strong> The line 'class FoodPairings { - Recipes recipes }' lacks the name: Type pattern; should be 'recipes : Recipes'.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Generics with spaces in type parameter:</strong> 'HashMap<Storage Serial, List<WineStorage>> storageMap' uses 'Storage Serial' (space in type). This is invalid; rename to StorageSerial or remove the space, e.g., HashMap<StorageSerial, List<WineStorage>>.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Inconsistent colon usage:</strong> Several attributes lack the ': Type' pattern; some lines show 'Recipes recipes' without colon, etc. All attributes should follow 'name : Type' convention to be parseable.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Role names with spaces and multiplicity labeling:</strong> Using 'Manufacturer ID' as a role name introduces spaces; either remove spaces or enclose as a label after a colon (e.g., ... --> Manufacturer : manufacturerId).</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Multiplicity formatting inconsistency:</strong> Mixing quoted multiplicities ("1", "0..*") with unquoted (1..*) is allowed by PlantUML but should be chosen consistently to avoid confusion.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>2) Naming and organization inconsistencies (readability and graders)</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Storages vs WineStorage:</strong> Storages is a container class name; WineStorage is a content class. The naming implies ownership/aggregation but is ambiguous. Consider renaming Storages to StorageCatalog/StorageRepository or model a direct 1..* relationship without a separate container.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>WineBottleComposite as a value object:</strong> It is unclear why a separate value object is needed. Most models would either make Wine have a surrogate key (WineId) with a Manufacturer relationship and CatalogNumber, or keep a composite key directly on the Wine entity. The extra composite class adds complexity without clear benefits.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>WineType identifiers duplication:</strong> 'WineType Serial' and 'Serial Number' both exist; this is confusing. Decide on a single canonical identifier for WineType (e.g., typeId or serial) and drop the redundant field.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Inconsistent naming conventions:</strong> Attribute names mixed camelCase and spaces; class names use PascalCase but attributes use various styles. Enforce a single convention for clarity and grading.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>FoodPairings/Recipes linkage syntax:</strong> 'FoodPairings { - Pairing ID: String - Dish Name: String - Recipes recipes }' uses a camel-like plural 'recipes' but without colon/type; plus 'Recipes' class appears later with a multi-Recipe URL set. This is ambiguous and syntactically off. Decide on a clear 0..5 collection or 1..5 recipes relationship and encode it consistently.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>3) Inheritance vs composition (modeling issue)</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">RegularOrder and UrgentOrder lack explicit inheritance in the diagram. If they are meant to be specialized orders, include generalization lines RegularOrder --|> Order and UrgentOrder --|> Order. Currently, child classes duplicate Order attributes (e.g., Order Number) which is a domain modeling issue and a potential formatting issue if explicit inheritance is intended.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">If you keep two separate subclasses, you should remove duplicated attributes and rely on inherited attributes from Order; otherwise, justify semantic separation with domain-specific fields only in each subclass.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>4) Order items: duplication vs unified model</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">RegularOrderItem and UrgentOrderItem reference their parent orders via CustomerOrder Serial or Order Number, leading to two parallel line-item concepts. This is duplication and complicates querying and integrity constraints.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>A unified OrderLine concept is recommended:</strong> OrderLine references an Order (or a specific Order subclass), a WineBottle, and a quantity, optionally linked to an OrderParticipation (customer within a regular order). This would unify itemization across regular and urgent orders.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>5) Delivery entity missing; min/max constraints not modeled</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">The domain notes describe a Delivery concept that groups orders and enforces min/max bottle constraints. The current diagram lacks a Delivery entity and any enforcement logic. Add Delivery with attributes like deliveryId, minBottles, maxBottles, deliveryDate, status, etc., and connect it to Order (1..* per Delivery). Include constraints to enforce min/max quantities per delivery and to reflect urgent vs regular handling.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>6) Wine model and stock tracking</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>WineBottleComposite as identity object vs a real Wine entity:</strong> Replace with a Wine entity keyed by a surrogate wineId (or a natural key (manufacturerId, catalogNumber) with a unique constraint). This simplifies foreign keys and stock tracking.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Stock modeling:</strong> Replace the Storages container approach with a dedicated WineStock (wineId, storageLocationId, quantity) to capture per-location inventory cleanly. This avoids nested or opaque storage structures and aligns with common inventory patterns.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>7) FoodPairings/Recipes and Occasions correctness</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>FoodPairings/Recipes:</strong> Ensure a clear 1..1 from FoodPairings to Recipes or a 0..5 collection of URLs in FoodPairings/Recipes. The current model shows a potential misalignment (Recipes class with 5 URL fields) and an ill-formed linkage; align with a consistent 0..5 URLs approach or a proper one-to-many from FoodPairings to Recipes.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Occasions linkage:</strong> Linking WineType to Occasions is reasonable, but ensure the association cardinalities and semantic intent are clear (many-to-many vs one-to-many) and consistently represented in the diagram.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>8) Notes and grader clarity</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Notes are scattered and not always attached to the relevant elements. Move notes to be near the elements they describe to aid graders and readers.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Provide a compact corrected fragment as a template to show intended structure (inheritance, OrderLine, OrderParticipation, Delivery, Wine, WineStock) for graders.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>9) Overall recommendation and next steps</strong></p>
+<ul style="line-height: 1.6; font-size: 16px; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Agree with refactor directions:</strong> introduce Delivery; unify itemization with OrderLine and OrderParticipation; replace WineBottleComposite with Wine and use WineStock for inventory; retain FoodPairings/Recipes and Occasions.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><strong style='color: #2b6cb0;'>Implement minimal next changes:</strong> add Delivery class, create OrderLine and OrderParticipation, replace WineBottleComposite with Wine and a WineStock table, and explicitly show RegularOrder --|> Order and UrgentOrder --|> Order inheritance.</li>
+<li style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-left: 5px solid #3182ce; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">Ensure attribute names use camelCase, class names PascalCase, and colon-type syntax throughout for grader readability.</li>
+</ul>
+<p style="font-size: 18px; margin-top: 25px; color: #2c3e50;"><strong>If you want, I can provide a compact corrected PlantUML fragment that implements these changes end-to-end as a reference.</strong></p>
+    </div>
+
+    <script>
+        function renderPlantUML(rawId, containerId) {
+            const rawElement = document.getElementById(rawId);
+            const container = document.getElementById(containerId);
+            
+            if (rawElement && rawElement.textContent.trim().length > 0) {
+                // Encode the plantuml text
+                const encoded = plantumlEncoder.encode(rawElement.textContent);
+                // Use the official PlantUML SVG generation server
+                const url = 'https://www.plantuml.com/plantuml/svg/' + encoded;
+                
+                // Create and insert image
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = "PlantUML Diagram";
+                
+                // Handle graphic loading event
+                img.onload = function() {
+                    container.innerHTML = '';
+                    container.appendChild(img);
+                };
+                img.onerror = function() {
+                    container.innerHTML = '<div style="color:red;">Error loading diagram from PlantUML server. The syntax might be too large or invalid.</div>';
+                };
+            } else {
+                container.innerHTML = '<div style="color:red;">No diagram text found.</div>';
+            }
+        }
+
+        // Render both diagrams immediately upon load
+        window.onload = function() {
+            renderPlantUML('student_raw', 'student_container');
+            renderPlantUML('suggested_raw', 'suggested_container');
+        };
+    </script>
+</body>
+</html>

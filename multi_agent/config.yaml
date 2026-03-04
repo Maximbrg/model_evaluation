@@ -1,0 +1,14 @@
+openai:
+  api_key: "your-openai-api-key-here"
+  model: "o4-mini"
+
+paths:
+  instructions: "artifacts/metamodel.txt"
+  problem_description: "artifacts/problem_description.txt"
+  suggested_diagram: "artifacts/suggested_diagram.txt"
+  student_diagram: "artifacts/student_diagram.txt"
+
+evaluation:
+  domain_name: "cheers"
+  use_optional_inputs: false
+  model_type: "class diagram"

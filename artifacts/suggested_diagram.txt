@@ -1,0 +1,161 @@
+@startuml
+skinparam classAttributeIconSize 0
+' Enums
+enum OrderStatus {
+    InProcess
+    Dispatched
+    Delivered
+    Paid
+    Suspended
+    Canceled
+}
+enum Location {
+    indoor
+    outdoor
+}
+enum SweetnessLevel {
+    Dry
+    SemiDry
+    SemiSweet
+    Sweet
+}
+
+' Classes
+class Person {
+    - personID: String
+    - name: String
+    - phoneNumber: String
+    - email: String
+}
+note bottom of Person : {Total, Overlaping}
+
+class Employee extends Person {
+    - officeAddress: String
+    - employmentStartDate: Date
+}
+
+
+class Order {
+    - orderID: Long
+    - orderDate: Date
+    - currentStatus: OrderStatus
+    - shipmentDate: Date
+}
+note bottom of Order : {Total, Disjoint}
+
+
+class UrgentOrder extends Order {
+    - priority: int {1..5}
+    - expectedDelivery: Date
+}
+
+class RegularOrder extends Order {
+    + addCustomerToOrder(c: Customer)
+}
+
+class Wine {
+    - catalogNumber: int
+    - name: String
+    - description: String
+    - productionYear: int
+    - pricePerBottle: float
+    - sweetnessLevel: SweetnessLevel
+    - productImage: Image
+}
+
+class UrgentOrderWine {
+    - quantity: int
+}
+
+
+class Customer extends Person {
+    - deliveryAddress: String
+    - dateOfFirstContact: Date
+}
+
+class RegularOrderCustomer {
+    - isMainCustomer: boolean
+}
+
+class RegularOrderWine {
+    - quantity: int
+}
+
+class WineType {
+    - wineTypeID: int
+    - name: String
+}
+
+class Food {
+    - name: String
+    - urls: String[5]
+}
+
+class Occasion {
+    - description: String
+    - season: String
+    - location: Location
+}
+
+class Manufacturer {
+    - manufacturerID: String
+    - manufacturerName: String
+    - contactPhoneNumber: String
+    - address: String
+    - email: String
+}
+
+class StorageLocation {
+    - storageNumber: int
+    - name: String
+}
+
+class StockedWine {
+    - quantity: int
+    + exportCurrentInventoryReport(): File
+}
+
+class System {
+    + importXMLofWineAndManufacturer(f: File)
+    + generateUnproductiveEmployeesReport(from: Date, to: Date)
+    + generateCurrentInventoryReportAndExport(): File
+    + generateWineRecommendationReport(f: Food, o: Occasion, t: WineType)
+}
+note left of System::generateWineRecommendationReport 
+      The parameters of generateWineRecommendationReport (f, o, t) can be null.
+end note
+
+
+' Associations
+Order "*"--"1" Employee : "assigned employee's"
+UrgentOrder "*" o-- "*" Wine
+RegularOrder "*" -- "*" Customer
+RegularOrderCustomer "*" o-- "*" Wine
+Wine "*" -- "*" WineType
+Occasion "*" -- "*" WineType
+Food "*" -- "*" WineType : "assigned"
+Manufacturer "1"--"*" Wine
+Wine "*" -- "*" StorageLocation : "stored"
+UrgentOrder "*" -- "1" Customer
+
+
+' **Dependencies**
+Order ..> OrderStatus
+Occasion ..> Location
+Wine ..> SweetnessLevel
+
+' Association Classes
+(Wine, StorageLocation) .. StockedWine
+(UrgentOrder, Wine) .. UrgentOrderWine
+(RegularOrder, Customer) .. RegularOrderCustomer
+(Wine, RegularOrderCustomer) .. RegularOrderWine
+
+' System Associations
+System *--"*" Wine
+System *--"*" Person
+System *--"*" Order
+System *--"*" Food
+System *--"*" Occasion
+System *--"*" StorageLocation
+System *--"*" Manufacturer
+@enduml

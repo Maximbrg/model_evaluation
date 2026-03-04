@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Diagram</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+            background-color: #f8f9fa;
+        }
+        #header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <h3>Class Diagram</h3>
+    <p>You can drag and move the nodes around.</p>
+</div>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    var nodes = new vis.DataSet([{"id": "OrderStatus", "label": "&lt;&lt;enumeration&gt;&gt;\n<b>OrderStatus</b>\n---------------\nInProcess\nDispatched\nDelivered\nPaid\nSuspended\nCanceled", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Location", "label": "&lt;&lt;enumeration&gt;&gt;\n<b>Location</b>\n---------------\nindoor\noutdoor", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "SweetnessLevel", "label": "&lt;&lt;enumeration&gt;&gt;\n<b>SweetnessLevel</b>\n---------------\nDry\nSemiDry\nSemiSweet\nSweet", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Person", "label": "<b>Person</b>\n---------------\n- personID: String\n- name: String\n- phoneNumber: String\n- email: String", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Employee", "label": "<b>Employee</b>\n---------------\n- officeAddress: String\n- employmentStartDate: Date", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Order", "label": "<b>Order</b>\n---------------\n- orderID: Long\n- orderDate: Date\n- currentStatus: OrderStatus\n- shipmentDate: Date", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "UrgentOrder", "label": "<b>UrgentOrder</b>\n---------------\n- priority: int {1..5", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "RegularOrder", "label": "<b>RegularOrder</b>\n---------------\n+ addCustomerToOrder(c: Customer)", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Wine", "label": "<b>Wine</b>\n---------------\n- catalogNumber: int\n- name: String\n- description: String\n- productionYear: int\n- pricePerBottle: float\n- sweetnessLevel: SweetnessLevel\n- productImage: Image", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "UrgentOrderWine", "label": "<b>UrgentOrderWine</b>\n---------------\n- quantity: int", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Customer", "label": "<b>Customer</b>\n---------------\n- deliveryAddress: String\n- dateOfFirstContact: Date", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "RegularOrderCustomer", "label": "<b>RegularOrderCustomer</b>\n---------------\n- isMainCustomer: boolean", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "RegularOrderWine", "label": "<b>RegularOrderWine</b>\n---------------\n- quantity: int", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "WineType", "label": "<b>WineType</b>\n---------------\n- wineTypeID: int\n- name: String", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Food", "label": "<b>Food</b>\n---------------\n- name: String\n- urls: String[5]", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Occasion", "label": "<b>Occasion</b>\n---------------\n- description: String\n- season: String\n- location: Location", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "Manufacturer", "label": "<b>Manufacturer</b>\n---------------\n- manufacturerID: String\n- manufacturerName: String\n- contactPhoneNumber: String\n- address: String\n- email: String", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "StorageLocation", "label": "<b>StorageLocation</b>\n---------------\n- storageNumber: int\n- name: String", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "StockedWine", "label": "<b>StockedWine</b>\n---------------\n- quantity: int\n+ exportCurrentInventoryReport(): File", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "System", "label": "<b>System</b>\n---------------\n+ importXMLofWineAndManufacturer(f: File)\n+ generateUnproductiveEmployeesReport(from: Date, to: Date)\n+ generateCurrentInventoryReportAndExport(): File\n+ generateWineRecommendationReport(f: Food, o: Occasion, t: WineType)", "shape": "box", "font": {"multi": "html", "face": "monospace", "align": "left"}}, {"id": "expectedDeliver", "label": "<b>expectedDeliver</b>", "shape": "box", "font": {"multi": "html", "face": "monospace"}}, {"id": "y", "label": "<b>y</b>", "shape": "box", "font": {"multi": "html", "face": "monospace"}}]);
+    var edges = new vis.DataSet([{"from": "Employee", "to": "Person", "arrows": "to", "dashes": false, "color": {"color": "gray"}}, {"from": "UrgentOrder", "to": "Order", "arrows": "to", "dashes": false, "color": {"color": "gray"}}, {"from": "RegularOrder", "to": "Order", "arrows": "to", "dashes": false, "color": {"color": "gray"}}, {"from": "Customer", "to": "Person", "arrows": "to", "dashes": false, "color": {"color": "gray"}}, {"from": "expectedDeliver", "to": "y", "dashes": false, "label": "Date", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Order", "to": "Employee", "dashes": false, "label": "assigned employee's\n ... *--1", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "UrgentOrder", "to": "Wine", "dashes": false, "label": " ... * o-- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "RegularOrder", "to": "Customer", "dashes": false, "label": " ... * -- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "RegularOrderCustomer", "to": "Wine", "dashes": false, "label": " ... * o-- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Wine", "to": "WineType", "dashes": false, "label": " ... * -- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Occasion", "to": "WineType", "dashes": false, "label": " ... * -- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Food", "to": "WineType", "dashes": false, "label": "assigned\n ... * -- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Manufacturer", "to": "Wine", "dashes": false, "label": " ... 1--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Wine", "to": "StorageLocation", "dashes": false, "label": "stored\n ... * -- *", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "UrgentOrder", "to": "Customer", "dashes": false, "label": " ... * -- 1", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Order", "to": "OrderStatus", "dashes": true, "label": "", "arrows": "to", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Occasion", "to": "Location", "dashes": true, "label": "", "arrows": "to", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Wine", "to": "SweetnessLevel", "dashes": true, "label": "", "arrows": "to", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "Wine", "to": "StockedWine", "dashes": true, "color": {"color": "gray"}}, {"from": "StorageLocation", "to": "StockedWine", "dashes": true, "color": {"color": "gray"}}, {"from": "UrgentOrder", "to": "UrgentOrderWine", "dashes": true, "color": {"color": "gray"}}, {"from": "Wine", "to": "UrgentOrderWine", "dashes": true, "color": {"color": "gray"}}, {"from": "RegularOrder", "to": "RegularOrderCustomer", "dashes": true, "color": {"color": "gray"}}, {"from": "Customer", "to": "RegularOrderCustomer", "dashes": true, "color": {"color": "gray"}}, {"from": "Wine", "to": "RegularOrderWine", "dashes": true, "color": {"color": "gray"}}, {"from": "RegularOrderCustomer", "to": "RegularOrderWine", "dashes": true, "color": {"color": "gray"}}, {"from": "System", "to": "Wine", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "Person", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "Order", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "Food", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "Occasion", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "StorageLocation", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}, {"from": "System", "to": "Manufacturer", "dashes": false, "label": " ... *--*", "arrows": "", "font": {"size": 12, "align": "middle", "multi": "html"}, "color": {"color": "#666666"}}]);
+
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        physics: {
+            enabled: true,
+            barnesHut: {
+                gravitationalConstant: -15000,
+                centralGravity: 0.3,
+                springLength: 200,
+                springConstant: 0.04,
+                damping: 0.09,
+                avoidOverlap: 0.2
+            }
+        },
+        layout: {
+            randomSeed: 42
+        },
+        nodes: {
+            color: {
+                background: '#ffffff',
+                border: '#0056b3',
+                highlight: {
+                    background: '#e6f2ff',
+                    border: '#0056b3'
+                },
+                hover: {
+                    background: '#e6f2ff',
+                    border: '#0056b3'
+                }
+            },
+            borderWidth: 2,
+            shadow: true
+        },
+        edges: {
+            font: {
+                align: 'middle',
+                background: 'white'
+            },
+            smooth: {
+                type: 'dynamic'
+            }
+        },
+        interaction: {
+            hover: true,
+            navigationButtons: true,
+            keyboard: true
+        }
+    };
+    var network = new vis.Network(container, data, options);
+    
+    // Stabilize and then fit the network
+    network.once("stabilizationIterationsDone", function() {
+        network.fit();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+outputs/
+__pycache__/
+*.pyc
+.DS_Store
+api_keys.json
+.env
+

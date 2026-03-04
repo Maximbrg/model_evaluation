@@ -1,0 +1,516 @@
+# UML Class Diagrams, Notation, Relationships, and AI Training Guardrails
+
+## Executive summary
+
+A UML class diagram is a structural view of a system that models classifiers (such as classes, interfaces, data types, and enumerations), their features (properties/attributes and operations), and the semantic relationships that connect them (associations with multiplicities and navigability, aggregation and composition as whole–part variants, generalization, realization, and dependency). The notations used in class diagrams are formalized in the UML specification, including visibility symbols, compartment layouts, stereotype markers, and constraint notations, with OCL providing a side effect free language for invariants and operation contracts. citeturn46view0turn11view0turn20view0turn14view1turn46view4
+
+## Core UML class diagram elements
+
+### Class
+
+A class is a classifier used to specify a classification of objects and their structure and behavior, often shown as a rectangle (classifier symbol) with compartments for name, attributes, and operations. The UML notation allows omitting the keyword `class` because it is the default classifier in this symbol. citeturn46view0turn11view0
+
+Basic syntax (common practice consistent with UML presentation options): citeturn46view0turn15view4
+```text
++----------------------+
+| Customer             |   // class name
++----------------------+
+| -id : String         |   // attributes (properties owned by the class)
+| -name : String       |
++----------------------+
+| +placeOrder() : Order|   // operations
++----------------------+
+```
+
+### Interface
+
+An interface is a classifier representing a set of public features (typically operations) that a realizing classifier must implement. UML commonly shows an interface either as a classifier rectangle with the keyword `«interface»` or with the “lollipop” notation when shown as a provided interface. citeturn5view2turn7view0
+
+Classifier form:
+```text
++----------------------+
+| «interface»          |
+| PaymentMethod        |
++----------------------+
+| +authorize(a:Money): |
+|   Boolean            |
++----------------------+
+```
+
+### Property, attribute, association end
+
+In UML, attributes and association ends are both kinds of Property. A property owned by a classifier (via `ownedAttribute`) represents an attribute of a class or data type, while a property related to an association represents an association end. Properties have type conformance rules, multiplicity bounds, uniqueness/ordering, default values, and may be derived. citeturn11view0turn17view4
+
+Unified property notation (normative BNF in the UML spec): citeturn11view0turn46view2
+```text
+<property> ::= [<visibility>] ['/'] <name> [ ':' <type> ] [ '[' <multiplicity> ']' ]
+               [ '=' <default> ] [ '{' <prop-modifier> (',' <prop-modifier>)* '}' ]
+
+<visibility> ::= '+' | '-' | '#' | '~'
+```
+
+Short examples based on that syntax: citeturn11view0turn46view2
+```text
+-id : String                      // private attribute
++balance : Money = 0 {readOnly}   // public attribute with default + modifier
+/total : Money                    // derived property (leading slash)
+orders : Order[0..*] {ordered}    // multi valued property with multiplicity
+```
+
+Role names: in class diagrams, the name placed near an association end is the name of the association end property (often called the role name in modeling practice). End names are optional and suppressible. citeturn20view0
+
+### Operation (and the “method” notion)
+
+An operation is a behavioral feature that can be invoked on an instance of a classifier, with semantics often specified using preconditions and postconditions. The UML spec describes how preconditions and postconditions constrain correct invocation and completion of operations, and that postconditions must be satisfied by any implementation. citeturn10view5turn10view3
+
+Operation notation (normative form): citeturn10view3
+```text
+[<visibility>] <name> '(' [<parameter-list>] ')' [ ':' <return-type> ['[' <multiplicity> ']'] ]
+
+Example:
++addItem(p:Product, qty:Integer) : LineItem
+```
+
+UML can also model that a behavioral feature is implemented (realized) by a behavior, and that a classifier responds to a request by invoking its implementing method, clarifying the modeling distinction between an operation (specification) and its implementing behavior (method) at the metamodel level. citeturn15view1
+
+### Visibility
+
+Visibility is encoded directly in property and operation strings using a leading symbol: public `+`, private `-`, protected `#`, package `~`. citeturn6view4turn46view2
+
+Example:
+```text
++publicAttr : Integer
+-privateAttr : Integer
+#protectedOp() : Boolean
+~packageOp() : Void
+```
+
+### Abstract vs concrete
+
+An abstract classifier is a classifier that is not intended to be instantiated. UML supports showing an abstract classifier name in italics or using the keyword `{abstract}` after or below the name. citeturn15view4turn15view0
+
+Example:
+```text
++----------------------+
+| Payment              |   // shown in italics in diagrams, or use {abstract}
+| {abstract}           |
++----------------------+
+| +amount : Money      |
+| +pay() : Receipt     |
++----------------------+
+```
+
+### Stereotypes
+
+Stereotypes are defined in profiles as an extension mechanism: stereotypes are used in conjunction with the metaclasses they extend. When displayed, stereotype names are shown within guillemets (for example `«entity»`) above or before the element name. The specification also clarifies that guillemets are used both for keywords and stereotypes, and that multiple labels may be shown. citeturn16view1turn12view4
+
+Example:
+```text
++----------------------+
+| «entity»             |
+| Customer             |
++----------------------+
+| +id : UUID           |
++----------------------+
+```
+
+### Enumeration
+
+An enumeration is a kind of data type whose instances are restricted to a defined set of enumeration literals. UML displays it as a classifier with `«enumeration»`, typically listing literals in a compartment. citeturn6view8turn17view5
+
+Example:
+```text
++----------------------+
+| «enumeration»        |
+| OrderStatus          |
++----------------------+
+| Draft                |
+| Submitted            |
+| Paid                 |
+| Shipped              |
++----------------------+
+```
+
+### Data type and primitive type
+
+A data type is similar to a class but differs in that its instances are identified only by their value (value semantics rather than identity). It can be shown as a rectangle with keyword `«dataType»`. citeturn17view1
+
+A primitive type defines a predefined data type without relevant substructure in UML, with instances as data values and no identity. UML notes include primitive types such as Boolean and String, and the notation uses keyword `«primitive»`. citeturn17view4
+
+Examples:
+```text
++----------------------+
+| «dataType»           |
+| Money                |
++----------------------+
+| amount : Decimal     |
+| currency : String    |
++----------------------+
+
++----------------------+
+| «primitive»          |
+| Boolean              |
++----------------------+
+```
+
+### Package
+
+A package is shown as a large rectangle with a small tab at the top left. Its members may be shown inside the package boundary or connected via membership notation, and packages own their members in the sense that removing the package implies removing owned elements. citeturn18view0turn18view4
+
+Example (ASCII approximation):
+```text
+  +--------------------------+
+  |  [tab] Sales             |
+  |                          |
+  |  Customer                |
+  |  Order                   |
+  |  Invoice                 |
+  +--------------------------+
+```
+
+### Notes and comments
+
+A comment is a textual annotation that can be attached to elements and carries no semantic force. It is shown as a rectangle with the upper right corner bent (a note symbol), connected to annotated elements by dashed lines (which may be suppressed when context is clear). citeturn12view0turn12view2
+
+Example:
+```text
+  +---------------------+
+  | NOTE: totals in USD |
+  +---------------------+
+            ..
+            .. (dashed link)
+            v
+  +---------------------+
+  | Invoice             |
+  +---------------------+
+```
+
+### Constraints (UML constraint element)
+
+A constraint is additional semantic information attached to constrained elements, typically expressed as a boolean condition. Constraint notation can be shown as a text string in braces, optionally named, following a BNF form. Constraints can also be displayed in a note symbol or as a dashed line labeled with the constraint string. citeturn14view1turn14view3
+
+Constraint BNF (UML): citeturn14view1
+```text
+<constraint> ::= '{' [ <name> ':' ] <Boolean-expression> '}'
+```
+
+Example:
+```text
+{uniqueEmail: self.email->isUnique()}
+```
+
+## Relationships and semantics
+
+This section covers each requested relationship type, its meaning, and a simple visual example. For brevity, class boxes are simplified.
+
+### Association
+
+Semantics: An association declares that links can exist between instances of the associated types. A link is a tuple with one value per association end, and multiplicities at ends constrain the size of the collection of instances reachable at that end given fixed instances at the other ends. citeturn20view0turn19view1
+
+Notation: A binary association is normally a solid line connecting two classifiers. End adornments may include end names, multiplicities, property strings, and navigability markers. An open arrowhead on an end indicates that end is navigable, and a small `x` indicates explicitly non navigable. citeturn20view0turn19view0
+
+ASCII example (association with role names and multiplicity):
+```text
+Customer 1 ---------------- 0..* Order
+         places            orderOf
+```
+
+Key associated concepts:
+
+- Multiplicity, shown near an association end, is part of end notation and constrains the reachable collection size as described above. citeturn20view0turn46view2  
+- Role name (association end name), shown near the end, is optional and corresponds to the end property. citeturn20view0turn11view0  
+- Navigability, when modeled, is tied to whether an end is represented as a navigable property owned by an end class or as a navigable owned end of the association, with formal semantics described in UML. citeturn19view1turn20view0
+
+### Directed association (navigable association)
+
+In UML practice, “directed association” usually means an association where navigation is intended only from one end to the other, depicted as an open arrowhead on the navigable end. The UML spec explicitly states that an open arrowhead indicates the end is navigable. citeturn20view0turn19view0
+
+Example:
+```text
+Customer 1 ----------------> 0..* Order
+          (navigable to Order)
+```
+
+Interpretation: instances participating in links can be accessed efficiently from instances at the other end, noting that actual access mechanisms are implementation specific, and tools are not prevented from navigating non navigable ends at the model level. citeturn20view0
+
+### Aggregation
+
+UML defines AggregationKind values including `shared` and `composite`, while noting that the precise semantics of shared aggregation vary by application area and modeler. citeturn9view6turn46view1
+
+Shared aggregation notation: a hollow diamond at the aggregate (whole) end of the association line. citeturn9view1turn20view0
+
+Example:
+```text
+Team 1 o---------------- 0..* Player
+      (shared aggregation, hollow diamond at Team)
+```
+
+Interpretation in modeling practice: the “whole” aggregates parts, but parts may outlive the whole and may be shared among wholes, with semantics intentionally left as a variation point in UML for “shared.” citeturn9view6
+
+### Composition (composite aggregation)
+
+Composite aggregation is a strong form of aggregation requiring that a part instance be included in at most one composite at a time, and if a composite is deleted its parts are normally deleted with it. Composition is represented by the `isComposite` attribute on the part end. citeturn20view0turn9view6
+
+Notation: a filled (black) diamond at the composite (whole) end. citeturn20view0turn9view3
+
+Example:
+```text
+Order 1 ◆---------------- 1..* LineItem
+       (composite aggregation, filled diamond at Order)
+```
+
+### Generalization (inheritance)
+
+A generalization is a taxonomic relationship between a more general classifier and a more specific classifier. Each instance of the specific classifier is also an indirect instance of the general classifier, and the specific classifier inherits the features of the more general classifier. Constraints applying to the general also apply to the specific. citeturn21view0
+
+Notation: a solid line with a hollow triangle arrowhead pointing to the general classifier. citeturn21view0
+
+Example:
+```text
+           +-------------+
+           | Payment     |
+           +-------------+
+                 ^
+                 | (generalization)
+        +--------+--------+
+        |                 |
++---------------+  +---------------+
+| CardPayment   |  | BankTransfer  |
++---------------+  +---------------+
+```
+
+### Realization (implementation)
+
+A realization is a specialized abstraction relationship between a specification (supplier) and an implementation (client). The meaning of “implementation” is context dependent, but the intent is that the client is a more refined or elaborate form relative to the supplier. citeturn11view0turn36view0
+
+Notation: a dashed line with a triangular arrowhead at the realized element. citeturn11view0
+
+Common class diagram usage: a class realizing an interface.
+
+Example:
+```text
+«interface» PaymentMethod
+        ^ 
+        |  (realization, dashed)
+        |
+------..|..------
+| CardProcessor |
+---------------
+```
+
+### Dependency
+
+A dependency is a supplier/client relationship between model elements where modification of the supplier may impact the client, and the semantics of the client are not complete without the supplier. UML notes that dependency relationships do not themselves carry runtime semantics implications, they express model level relationships. citeturn22view0
+
+Notation: a dashed arrow, with the client at the tail and supplier at the arrowhead, optionally labeled with a stereotype and a name. citeturn22view0
+
+Example:
+```text
+InvoiceService .. .. ..> TaxCalculator
+            (depends on)
+```
+
+### Association class
+
+An AssociationClass is a declaration of a semantic relationship between classifiers that also has its own features. This is used when the relationship itself needs attributes or operations. citeturn9view3turn20view0
+
+Common notation (ASCII approximation): show an association with a class attached by a dashed line.
+```text
+Student 0..* -------- 0..* Course
+          |
+          | (dashed link to association class)
+          v
+      Enrollment
+      -enrolledAt : Date
+      -grade : Grade
+```
+
+### Qualified association
+
+A qualifier declares a partition of the set of associated instances with respect to an instance at the qualified end. Given a qualified object and a qualifier instance (one value per qualifier attribute), the multiplicity constrains the number of objects at the other end. In the common case where the qualified multiplicity is `0..1`, a qualifier value designates at most one associated object for the qualified object. citeturn11view0turn46view2
+
+Notation: a small rectangle (qualifier box) attached to the association end, containing qualifier attributes, and multiplicity on the opposite end denotes cardinality selected by the qualifier value. UML provides canonical examples such as Bank to Person qualified by accountNo. citeturn11view0turn46view2
+
+Example:
+```text
+Bank 1 ----[accountNo]---- 0..1 Account
+          (qualifier)
+```
+
+### Constraints and OCL, including examples
+
+#### UML constraint placement and meaning
+
+A Constraint represents an assertion restricting a correct design, attached to constrained elements. The specification requires that a constraint’s value specification evaluate to a Boolean, and that evaluating it must not have side effects. citeturn14view1
+
+Constraint notation in UML: a brace expression `{ ... }`, optionally named `{name: Boolean-expression}`. Constraints can be shown near a symbol, after an element string, between two elements via dashed line, or inside a note symbol. citeturn14view1turn12view0
+
+Example constraint on an attribute:
+```text
+Order
++total : Money {nonNegative: total >= 0}
+```
+
+#### OCL, purpose and syntax essentials
+
+The Object Constraint Language is defined as a formal language used to describe expressions on UML models, typically invariants or queries, and OCL evaluation does not have side effects, meaning evaluation cannot alter system state. citeturn46view4turn13view0
+
+Core syntax cues:
+
+- `context` introduces the context type for an expression.  
+- `inv`, `pre`, `post` correspond to constraint stereotypes `«invariant»`, `«precondition»`, `«postcondition»`, with the expression following `:`. citeturn46view3turn13view0
+
+Short OCL examples aligned with those rules:
+
+Invariant on a class:
+```ocl
+context Order inv NonNegativeTotal:
+  self.total >= 0
+```
+
+Multiplicity consistent check (example intent, using navigation):
+```ocl
+context Customer inv HasAtMostOnePrimaryEmail:
+  self.emails->select(e | e.isPrimary)->size() <= 1
+```
+
+Operation pre and postconditions (illustrative contract style consistent with OCL spec’s pre/post framing): citeturn10view5turn46view3
+```ocl
+context Account::withdraw(amount : Money) : Money
+pre SufficientFunds:
+  self.balance >= amount
+post BalanceDecreased:
+  self.balance = self.balance@pre - amount
+```
+
+## Relationship comparison table
+
+| Relationship | Notation (typical) | Semantics (short) | Multiplicity | Navigability | Micro example |
+|---|---|---|---|---|---|
+| Association | Solid line | Links can exist between instance tuples of associated types. citeturn20view0 | At ends, constrains reachable collection size. citeturn20view0 | Optional, open arrowhead indicates navigable end. citeturn19view0 | `Customer 1 -- 0..* Order` |
+| Directed association | Solid line + open arrowhead | Association with modeled navigation direction. citeturn19view0 | Same as association | Arrowhead to navigable end, `x` can denote non navigable. citeturn19view0 | `Customer 1 --> 0..* Order` |
+| Aggregation (shared) | Hollow diamond at whole end | Whole–part with shared semantics, meaning varies by domain. citeturn9view6turn9view1 | As association | As association | `Team 1 o-- 0..* Player` |
+| Composition | Filled diamond at whole end | Strong whole–part, part in at most one composite, parts normally deleted with whole. citeturn20view0turn9view3 | Often `1..*` at part end, but model specific | As association | `Order 1 ◆-- 1..* LineItem` |
+| Generalization | Solid line, hollow triangle to parent | Specific is also instance of general, inherits features and constraints. citeturn21view0 | N/A | N/A | `CardPayment --|> Payment` |
+| Realization | Dashed line, triangular arrowhead to spec | Client implements supplier specification, often class implements interface. citeturn11view0turn36view0 | N/A | Direction from client to supplier | `CardProcessor ..|> PaymentMethod` |
+| Dependency | Dashed arrow client→supplier | Supplier changes may impact client, model level relation. citeturn22view0 | N/A | Arrow indicates dependent direction | `InvoiceService ..> TaxCalculator` |
+| Association class | Association with attached class by dashed line | Relationship that also has its own features. citeturn9view3 | As association | As association | `Enrollment` between `Student` and `Course` |
+| Qualified association | Association with qualifier box at end | Qualifier partitions associated set, constrains by qualifier instance. citeturn11view0 | Multiplicity often `0..1` per qualifier value, but model specific. citeturn11view0 | As association | `Bank --[accountNo]--> Account` |
+| Constraint (UML) | `{name: Boolean}` near element or note | Additional semantic restriction, boolean, no side effects when evaluated. citeturn14view1 | Can complement multiplicity | Not applicable | `{xor}` between two associations |
+
+## Legal and ethical considerations when training an AI agent to be expert in class diagrams
+
+This section assumes the agent is trained or tuned using documents, examples, and user supplied diagrams, and that it is then used to generate explanations, diagrams, or design suggestions.
+
+### Intellectual property and licensing
+
+Standards and guides are typically copyrighted even when publicly accessible. For example, the OCL specification includes explicit copyright terms and restrictions on reproduction. citeturn13view0  
+Practical implication: training or fine tuning on full text copies of proprietary or copyrighted manuals, books, or paid standards without permission can create infringement risk, even if the agent is only being taught “notation,” because the training corpus itself may be an unauthorized reproduction.
+
+However, facts, ideas, and methods of operation are generally not protected in the same way as the expressive text and figures, so teaching core UML ideas using your own explanations and original examples is typically lower risk than copying large excerpts of the specification verbatim.
+
+EU text and data mining context: Directive (EU) 2019/790 provides an exception or limitation for text and data mining on lawfully accessible works, but it is conditioned on the rightsholder not having expressly reserved those rights in an appropriate manner, such as machine readable means for content made publicly available online. citeturn40view0  
+The EU AI Act also links general purpose model compliance to respecting copyright opt outs by requiring providers to put in place a policy to comply with EU copyright law and to identify and comply with reservations expressed under Article 4(3) of Directive 2019/790. citeturn36view1
+
+What is permitted to teach (examples):
+
+- Teaching UML notation using self written explanations, synthetic diagrams, and small, original examples.  
+- Using openly licensed learning material where the license explicitly permits reuse for training.  
+- Using public domain sources, or sources with explicit permission from the rightsholder.
+
+What is prohibited or high risk to teach (examples):
+
+- Ingesting entire paid UML textbooks or vendor manuals without permission.  
+- Copying large blocks of the UML standard text or figures into a training set beyond what licenses allow. citeturn13view0  
+- Training on private corporate design repositories where diagrams are confidential or contract restricted.
+
+Recommended guardrails:
+
+- Maintain a training data register with license metadata for each source, and block ingestion when rights are unclear.  
+- Use a “derivative content budget” policy, allowing only short quotations, and prefer paraphrase plus original examples.  
+- Enforce opt out compliance for web scale corpora in EU contexts and document how it is implemented, aligning with the AI Act policy requirement on copyright reservations. citeturn36view1turn40view0
+
+### Privacy and personal data
+
+If class diagrams contain names, emails, customer identifiers, or other personal information embedded in notes, example objects, or attribute defaults, then that material can become personal data processing. The European Commission summarizes core GDPR principles as including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, and integrity and confidentiality (security). citeturn41view0
+
+What is permitted to teach (examples):
+
+- Training on anonymized or synthetic diagrams where personal identifiers are removed or replaced.  
+- Training on internal diagrams only when there is a lawful basis and the use is consistent with the specified purpose, with appropriate safeguards. citeturn41view0
+
+What is prohibited or high risk to teach (examples):
+
+- Feeding a model with raw support ticket diagrams that include real customer names, addresses, account numbers, or internal employee data, without a lawful basis and proper controls. citeturn41view0  
+- Retaining training data longer than necessary for the declared purpose, or expanding use to unrelated purposes (purpose limitation). citeturn41view0
+
+Recommended guardrails:
+
+- Data minimisation at ingestion time: strip notes, sample values, and identifiers unless strictly necessary. citeturn41view0  
+- Automated PII detection plus mandatory human review for corpora that likely include personal data.  
+- Strong access controls, encryption at rest, and retention limits aligned to the stated training purpose. citeturn41view0
+
+### Trade secrets and confidential information
+
+Class diagrams are frequently trade secrets because they encode business architecture, data models, and system boundaries. Under Directive (EU) 2016/943, a trade secret is information that is not generally known or readily accessible, has commercial value because it is secret, and has been subject to reasonable steps to keep it secret. citeturn45view3turn45view0  
+The same directive describes unlawful acquisition (for example unauthorized access or copying) and unlawful use or disclosure (including breach of a confidentiality agreement or duty). citeturn45view1
+
+What is permitted to teach (examples):
+
+- Training on internal diagrams only if you have explicit authorization, the training environment is controlled, and outputs are constrained to avoid revealing confidential structure.  
+- Using high level, non sensitive abstractions that do not expose secret architecture decisions.
+
+What is prohibited or high risk to teach (examples):
+
+- Training on a client’s proprietary domain model without consent, even if you remove names, because the structure itself can encode competitive know how. citeturn45view3turn45view1  
+- Using scraped proprietary diagrams from private repositories or leaked documentation.
+
+Recommended guardrails:
+
+- Confidential source tagging and strict separation of corpora: public, licensed, internal confidential.  
+- Output filters for sensitive patterns (database schema names, internal service names, unique domain nouns).  
+- Refusal policy for prompts requesting reconstruction of known proprietary systems.
+
+### Safety, misuse, and dual use design generation
+
+An agent highly competent in class diagrams can be used constructively (documentation, refactoring, model consistency checks) but also for misuse (generating detailed designs for regulated or harmful systems, or recreating a competitor’s proprietary architecture).
+
+The EU AI Act places obligations on providers of general purpose models to produce technical documentation including training data provenance and curation methodologies, and to publish a sufficiently detailed summary about training content, encouraging transparency and accountability in development. citeturn34view0turn36view1
+
+Recommended guardrails:
+
+- Use case policy: disallow requests that attempt to replicate a specific organization’s proprietary designs, and require user supplied original requirements rather than reverse engineering.  
+- Provenance aware prompting: if the user paste a confidential diagram, require explicit confirmation they have rights and propose redaction steps (do not store by default).  
+- “Safe abstraction mode”: provide conceptual patterns and generic templates rather than detailed, deployable architecture when the domain is sensitive.
+
+### Liability and governance
+
+Even when the agent is used for modeling guidance, errors can create downstream failures. The UML spec itself highlights semantic variation points (for example for shared aggregation), meaning that different interpretations exist, and tools or modelers must choose consistent conventions. citeturn9view6turn46view1  
+Therefore, governance should treat diagram generation as advisory, requiring validation by qualified engineers for production decisions.
+
+A broadly used approach to AI governance is to implement structured risk management. The AI Risk Management Framework from the entity["organization","National Institute of Standards and Technology","us standards agency"] is a voluntary framework intended to help manage risks across the AI lifecycle, and it organizes activities at a high level into functions such as Govern, Map, Measure, and Manage. citeturn43search5turn46view6
+
+Guardrails for liability reduction:
+
+- Require review workflows: the agent outputs diagrams plus assumptions, and a human must approve before adoption.  
+- Logging and traceability: retain prompts and outputs for audit, especially where diagrams influence system design.  
+- Clear disclaimers: outputs are not legal advice, and are examples unless verified against requirements.
+
+### Jurisdictional constraints and cross border deployment
+
+Requirements differ significantly by jurisdiction. In the EU, the AI Act introduces concrete obligations for providers of general purpose models, including documentation, copyright reservation compliance policy, and training content summary publication. citeturn36view1turn34view0  
+EU copyright rules on text and data mining include the opt out mechanism described above, and EU trade secret rules define and protect confidential know how. citeturn40view0turn45view3  
+Privacy obligations under the GDPR principles apply when personal data is processed, and these principles are summarized in official Commission guidance. citeturn41view0
+
+For organizations operating globally, guardrails should be designed to meet the strictest applicable regime, then adapted with local legal counsel for specific deployments.
+
+## Primary sources and modeling references
+
+The following are the most load bearing sources for definitions and notations used in this report:
+
+- UML notation, semantics, and BNF for properties, operations, constraints, and relationship notations are taken from ISO/IEC 19505-2:2012 UML specification hosted by entity["organization","Object Management Group","standards consortium"]. citeturn46view0turn46view1turn46view2turn14view1  
+- OCL syntax cues (`context`, `inv`, `pre`, `post`) and the “no side effects” property of OCL evaluation come from the OMG OCL 2.4 specification. citeturn46view3turn46view4  
+- EU AI Act obligations for general purpose AI model providers (documentation, copyright reservation policy, and training content summary) are cited from the AI Act Service Desk maintained by the entity["organization","European Commission","eu executive body"]. citeturn36view1turn34view0  
+- EU text and data mining opt out framing and trade secret definitions are cited from WIPO Lex reproductions of Directive (EU) 2019/790 and Directive (EU) 2016/943 published by the entity["organization","World Intellectual Property Organization","un specialized agency"]. citeturn40view0turn45view3  
+- GDPR principles summary for business and organizations is cited from an official European Commission guidance page. citeturn41view0  
+- Risk governance framing references the AI RMF published by the National Institute of Standards and Technology, including its lifecycle oriented structure. citeturn43search5turn46view6
