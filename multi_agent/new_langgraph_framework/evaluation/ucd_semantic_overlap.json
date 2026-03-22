@@ -1,0 +1,355 @@
+{
+  "metrics": {
+    "total_files_compared": 3,
+    "total_unique_semantic_templates": 12,
+    "semantic_templates_in_all_files": 4,
+    "semantic_templates_in_multiple_but_not_all": 2,
+    "semantic_template_agreement_ratio": 0.5,
+    "average_involved_fragments_jaccard_similarity": 0.9333333333333332
+  },
+  "file_mapping": {
+    "File 1": "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+    "File 2": "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+    "File 3": "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+  },
+  "overlaps": {
+    "present_in_all": [
+      {
+        "canonical_id": "C2",
+        "canonical_name": "Association Connectivity",
+        "canonical_description": "An Association relation must connect exactly one Actor to one Use Case.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association relation must connect exactly one Actor to one Use Case.",
+          "2": "Association relations connect only an Actor classifier to a Use Case classifier.",
+          "3": "Association relations may only link Actor elements to Use Case elements; no other element types are valid endpoints."
+        },
+        "involved_fragments_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "C4",
+        "canonical_name": "Extend Relation Connectivity",
+        "canonical_description": "An \u00abextend\u00bb relationship must originate from an extending Use Case and target a base Use Case.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An \u00abextend\u00bb relationship must originate from an extending Use Case and target a base Use Case.",
+          "2": "Extend relations must originate from an extending Use Case and target a base Use Case for conditional or optional behavior.",
+          "3": "Extend relations must connect an extending Use Case to an extended Use Case, indicating optional or conditional behavior insertion."
+        },
+        "involved_fragments_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "C5",
+        "canonical_name": "Generalization Connectivity",
+        "canonical_description": "A Generalization relation must connect two Actors or two Use Cases and not mix classifier types.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Generalization relation must connect two Actors or two Use Cases and not mix classifier types.",
+          "2": "Generalization relations link classifiers of the same kind, either Actor-to-Actor or Use Case-to-Use Case.",
+          "3": "Generalization relations are permitted only between elements of the same type (Actor\u2192Actor or Use Case\u2192Use Case); cross-type generalization is invalid."
+        },
+        "involved_fragments_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "C6",
+        "canonical_name": "Boundary Enclosure",
+        "canonical_description": "A System Boundary fragment must enclose only Use Case elements and must not contain Actor elements.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A System Boundary fragment must enclose only Use Case elements and must not contain Actor elements.",
+          "2": "Actor classifiers must be located outside any System Boundary fragment.",
+          "3": "System Boundary fragments must enclose Use Case elements to define scope; Actor elements must be depicted outside any System Boundary."
+        },
+        "involved_fragments_similarity_score": 0.6
+      }
+    ],
+    "present_in_multiple": [
+      {
+        "canonical_id": "C1",
+        "canonical_name": "Classifier Restriction",
+        "canonical_description": "A Use Case Diagram may contain only Actor and Use Case classifiers as elements.",
+        "files_present_indices": [
+          1,
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Use Case Diagram may contain only Actor and Use Case classifiers as elements.",
+          "2": "Use Case Diagrams may include only Actor and Use Case classifiers."
+        },
+        "involved_fragments_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "C3",
+        "canonical_name": "Include Relation Connectivity",
+        "canonical_description": "An \u00abinclude\u00bb relationship must originate from a base Use Case and target a distinct Use Case.",
+        "files_present_indices": [
+          1,
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An \u00abinclude\u00bb relationship must originate from a base Use Case and target a distinct Use Case.",
+          "2": "Include relations must originate from a base Use Case and target another Use Case for mandatory shared behavior."
+        },
+        "involved_fragments_similarity_score": 1.0
+      }
+    ]
+  },
+  "disjoints_by_file": {
+    "File 1: language_template.json": [
+      {
+        "canonical_id": "C7",
+        "canonical_name": "Use Case Multiplicity in Boundaries",
+        "canonical_description": "A Use Case may be enclosed by multiple System Boundary fragments when modeling different subjects.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Use Case may be enclosed by multiple System Boundary fragments when modeling different subjects."
+        }
+      }
+    ],
+    "File 2: language_template.json": [
+      {
+        "canonical_id": "C8",
+        "canonical_name": "Use Case enclosure",
+        "canonical_description": "Use Case classifiers must be enclosed within at least one System Boundary fragment.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Use Case classifiers must be enclosed within at least one System Boundary fragment."
+        }
+      },
+      {
+        "canonical_id": "C9",
+        "canonical_name": "System Boundary scope",
+        "canonical_description": "A System Boundary fragment defines a subject and must group only Use Case classifiers relevant to that subject.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "A System Boundary fragment defines a subject and must group only Use Case classifiers relevant to that subject."
+        }
+      }
+    ],
+    "File 3: language_template.json": [
+      {
+        "canonical_id": "C10",
+        "canonical_name": "Actor Connectivity",
+        "canonical_description": "Every Actor element must have at least one Association relation to a Use Case element.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Every Actor element must have at least one Association relation to a Use Case element."
+        }
+      },
+      {
+        "canonical_id": "C11",
+        "canonical_name": "Use Case Participation",
+        "canonical_description": "Every Use Case element must participate in at least one relationship: Association, Include, Extend, or Generalization.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Every Use Case element must participate in at least one relationship: Association, Include, Extend, or Generalization."
+        }
+      },
+      {
+        "canonical_id": "C12",
+        "canonical_name": "Include Constraints",
+        "canonical_description": "Include relations must connect a base Use Case to an included Use Case, indicating mandatory reuse; inclusion cycles are prohibited.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Include relations must connect a base Use Case to an included Use Case, indicating mandatory reuse; inclusion cycles are prohibited."
+        }
+      }
+    ]
+  },
+  "detailed_overlap_metrics": {
+    "C1": {
+      "canonical_id": "C1",
+      "canonical_name": "Classifier Restriction",
+      "canonical_description": "A Use Case Diagram may contain only Actor and Use Case classifiers as elements.",
+      "files_present_indices": [
+        1,
+        2
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Use Case Diagram may contain only Actor and Use Case classifiers as elements.",
+        "2": "Use Case Diagrams may include only Actor and Use Case classifiers."
+      },
+      "involved_fragments_similarity_score": 1.0
+    },
+    "C2": {
+      "canonical_id": "C2",
+      "canonical_name": "Association Connectivity",
+      "canonical_description": "An Association relation must connect exactly one Actor to one Use Case.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association relation must connect exactly one Actor to one Use Case.",
+        "2": "Association relations connect only an Actor classifier to a Use Case classifier.",
+        "3": "Association relations may only link Actor elements to Use Case elements; no other element types are valid endpoints."
+      },
+      "involved_fragments_similarity_score": 1.0
+    },
+    "C3": {
+      "canonical_id": "C3",
+      "canonical_name": "Include Relation Connectivity",
+      "canonical_description": "An \u00abinclude\u00bb relationship must originate from a base Use Case and target a distinct Use Case.",
+      "files_present_indices": [
+        1,
+        2
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An \u00abinclude\u00bb relationship must originate from a base Use Case and target a distinct Use Case.",
+        "2": "Include relations must originate from a base Use Case and target another Use Case for mandatory shared behavior."
+      },
+      "involved_fragments_similarity_score": 1.0
+    },
+    "C4": {
+      "canonical_id": "C4",
+      "canonical_name": "Extend Relation Connectivity",
+      "canonical_description": "An \u00abextend\u00bb relationship must originate from an extending Use Case and target a base Use Case.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An \u00abextend\u00bb relationship must originate from an extending Use Case and target a base Use Case.",
+        "2": "Extend relations must originate from an extending Use Case and target a base Use Case for conditional or optional behavior.",
+        "3": "Extend relations must connect an extending Use Case to an extended Use Case, indicating optional or conditional behavior insertion."
+      },
+      "involved_fragments_similarity_score": 1.0
+    },
+    "C5": {
+      "canonical_id": "C5",
+      "canonical_name": "Generalization Connectivity",
+      "canonical_description": "A Generalization relation must connect two Actors or two Use Cases and not mix classifier types.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Generalization relation must connect two Actors or two Use Cases and not mix classifier types.",
+        "2": "Generalization relations link classifiers of the same kind, either Actor-to-Actor or Use Case-to-Use Case.",
+        "3": "Generalization relations are permitted only between elements of the same type (Actor\u2192Actor or Use Case\u2192Use Case); cross-type generalization is invalid."
+      },
+      "involved_fragments_similarity_score": 1.0
+    },
+    "C6": {
+      "canonical_id": "C6",
+      "canonical_name": "Boundary Enclosure",
+      "canonical_description": "A System Boundary fragment must enclose only Use Case elements and must not contain Actor elements.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-39-03/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-38-02/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-22_10-36-41/stage1_agent1_language/language_template.json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A System Boundary fragment must enclose only Use Case elements and must not contain Actor elements.",
+        "2": "Actor classifiers must be located outside any System Boundary fragment.",
+        "3": "System Boundary fragments must enclose Use Case elements to define scope; Actor elements must be depicted outside any System Boundary."
+      },
+      "involved_fragments_similarity_score": 0.6
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_name": "Class Diagram",
+  "guidelines": [
+    {
+      "id": "T1",
+      "short_name": "Class classifier",
+      "guideline_description": "A Class is a classifier that may own zero or more Property elements as attributes and zero or more Operation elements as structural features.",
+      "involved_fragments": "Class | Property | Operation"
+    },
+    {
+      "id": "T2",
+      "short_name": "Interface classifier",
+      "guideline_description": "An Interface is a classifier whose features consist exclusively of Operation elements and which must be realized by client classifiers implementing all its Operations.",
+      "involved_fragments": "Interface | Operation | Realization"
+    },
+    {
+      "id": "T3",
+      "short_name": "Enumeration classifier",
+      "guideline_description": "An Enumeration is a classifier defining a finite set of EnumerationLiteral elements and does not own additional Properties or Operations beyond its literals.",
+      "involved_fragments": "Enumeration | EnumerationLiteral"
+    },
+    {
+      "id": "T4",
+      "short_name": "DataType classifier",
+      "guideline_description": "A DataType is a value‐semantic classifier that may own Property elements but does not define identity semantics and is distinct from PrimitiveType.",
+      "involved_fragments": "DataType | Property"
+    },
+    {
+      "id": "T5",
+      "short_name": "PrimitiveType classifier",
+      "guideline_description": "A PrimitiveType is a predefined classifier with no owned Property or Operation elements and represents an atomic value.",
+      "involved_fragments": "PrimitiveType"
+    },
+    {
+      "id": "T6",
+      "short_name": "Package ownership",
+      "guideline_description": "A Package defines a namespace and may own any number of ModelElement instances; deletion of the Package removes its owned contents recursively.",
+      "involved_fragments": "Package | ModelElement"
+    },
+    {
+      "id": "T7",
+      "short_name": "Property ownership",
+      "guideline_description": "A Property must be owned either by a Classifier (as an attribute) or by an Association (as an association end) and must reference a Type with defined multiplicity bounds.",
+      "involved_fragments": "Property | Classifier | Association"
+    },
+    {
+      "id": "T8",
+      "short_name": "Attribute fragment",
+      "guideline_description": "A Property owned by a Classifier represents an attribute with a name, Type reference, multiplicity bounds, and optional default or derived designation.",
+      "involved_fragments": "Property | Classifier"
+    },
+    {
+      "id": "T9",
+      "short_name": "Association end fragment",
+      "guideline_description": "A Property owned by an Association represents an association end with a role name, multiplicity, and navigability setting.",
+      "involved_fragments": "Property | Association"
+    },
+    {
+      "id": "T10",
+      "short_name": "Operation fragment",
+      "guideline_description": "An Operation is a behavioral feature of a Classifier with zero or more Parameter elements and an optional return Type.",
+      "involved_fragments": "Operation | Parameter | Classifier"
+    },
+    {
+      "id": "T11",
+      "short_name": "Association relation",
+      "guideline_description": "An Association connects two or more Classifier elements and defines Links across its association ends represented by Property elements.",
+      "involved_fragments": "Association | Property | Classifier"
+    },
+    {
+      "id": "T12",
+      "short_name": "Navigability",
+      "guideline_description": "An association end Property may set its navigability flag to true, indicating a directed navigation from the opposite end.",
+      "involved_fragments": "Property | Association"
+    },
+    {
+      "id": "T13",
+      "short_name": "Aggregation relation",
+      "guideline_description": "An Association end Property may have AggregationKind = shared, indicating a weak whole–part relationship where parts may outlive the whole.",
+      "involved_fragments": "Property | Association | AggregationKind"
+    },
+    {
+      "id": "T14",
+      "short_name": "Composition relation",
+      "guideline_description": "An Association end Property with AggregationKind = composite enforces that each part is contained in at most one composite and is deleted with its composite.",
+      "involved_fragments": "Property | Association | AggregationKind"
+    },
+    {
+      "id": "T15",
+      "short_name": "Generalization relation",
+      "guideline_description": "A Generalization links a specific Classifier to a more general Classifier; the inheritance graph must be acyclic to avoid circular specialization.",
+      "involved_fragments": "Generalization | Classifier"
+    },
+    {
+      "id": "T16",
+      "short_name": "Realization relation",
+      "guideline_description": "A Realization is an abstraction relationship where a client Classifier implements or realizes the specification of a supplier Interface or Classifier.",
+      "involved_fragments": "Realization | Classifier"
+    },
+    {
+      "id": "T17",
+      "short_name": "Dependency relation",
+      "guideline_description": "A Dependency is a relationship from a client ModelElement to a supplier ModelElement, indicating that changes in the supplier may impact the client.",
+      "involved_fragments": "Dependency | ModelElement"
+    },
+    {
+      "id": "T18",
+      "short_name": "AssociationClass fragment",
+      "guideline_description": "An AssociationClass is a construct that simultaneously behaves as an Association and as a Classifier owning its own Property and Operation elements.",
+      "involved_fragments": "AssociationClass | Association | Classifier"
+    },
+    {
+      "id": "T19",
+      "short_name": "QualifiedAssociation relation",
+      "guideline_description": "A QualifiedAssociation uses one or more qualifier Property elements at an association end to partition and index the set of associated instances.",
+      "involved_fragments": "Association | Property"
+    },
+    {
+      "id": "T20",
+      "short_name": "Constraint fragment",
+      "guideline_description": "A Constraint attaches to one or more ModelElement instances and specifies a side‐effect free Boolean condition that must hold in valid models.",
+      "involved_fragments": "Constraint | ModelElement"
+    },
+    {
+      "id": "T21",
+      "short_name": "EnumerationLiteral fragment",
+      "guideline_description": "An EnumerationLiteral is a named instance owned by an Enumeration classifier and denotes one of the discrete allowed values for that Enumeration.",
+      "involved_fragments": "EnumerationLiteral | Enumeration"
+    },
+    {
+      "id": "T22",
+      "short_name": "Parameter fragment",
+      "guideline_description": "A Parameter is owned by an Operation, has a direction (in, out, return) and a Type reference, and defines the signature of the Operation.",
+      "involved_fragments": "Parameter | Operation"
+    }
+  ],
+  "agent1_capabilities": [
+    "How do you differentiate between aggregation and composition in UML Class Diagrams?",
+    "What structural rule defines an AssociationClass in a class diagram?",
+    "How are multiplicities and navigability represented on association ends as Property elements?",
+    "What constraints must a Generalization hierarchy satisfy to avoid cycles?",
+    "When does a Realization relationship apply between a Class and an Interface?",
+    "How does a QualifiedAssociation partition associated instances?",
+    "What defines a valid Constraint on a Class in a class diagram?",
+    "Which classifiers can be contained within a Package?",
+    "What distinguishes a DataType from a PrimitiveType in UML class diagrams?",
+    "How are Operation parameters and return types defined structurally?"
+  ]
+}

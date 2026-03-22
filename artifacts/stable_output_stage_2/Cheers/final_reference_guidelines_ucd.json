@@ -1,0 +1,265 @@
+{
+  "language_name": "Use Case Diagram",
+  "domain_identifier": "Cheers",
+  "templates_in_scope": [
+    {
+      "id": "T1",
+      "short_name": "Classifier Restriction"
+    },
+    {
+      "id": "T2",
+      "short_name": "Actor Relationships"
+    },
+    {
+      "id": "T3",
+      "short_name": "UseCase Relationships"
+    },
+    {
+      "id": "T4",
+      "short_name": "Association Connectivity"
+    },
+    {
+      "id": "T5",
+      "short_name": "Include Relationship"
+    },
+    {
+      "id": "T6",
+      "short_name": "Extend Relationship"
+    },
+    {
+      "id": "T7",
+      "short_name": "Generalization Constraint"
+    },
+    {
+      "id": "T8",
+      "short_name": "System Boundary Enclosure"
+    }
+  ],
+  "reference_guidelines": [
+    {
+      "id": "G1",
+      "fragment_name": "SalesStaff",
+      "fragment_type": "element",
+      "description": "Model the sales staff as an Actor classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "The sales staff are responsible for placing customer orders, with each order being assigned to a specific employee."
+    },
+    {
+      "id": "G2",
+      "fragment_name": "Customer",
+      "fragment_type": "element",
+      "description": "Model the customer as an Actor classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "For each customer in an order, the system records their ID, name, phone number, delivery address, email, and the date of first contact with the company."
+    },
+    {
+      "id": "G3",
+      "fragment_name": "MarketingEmployee",
+      "fragment_type": "element",
+      "description": "Model the marketing department employee as an Actor classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "Only employees in the marketing department are authorized to update wine information and types."
+    },
+    {
+      "id": "G4",
+      "fragment_name": "Gefen",
+      "fragment_type": "element",
+      "description": "Model the external system 'Gefen' as an Actor classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "At the start of each month, the system will receive XML data from another system, called 'Gefen,' regarding wine producers and the wines they produce."
+    },
+    {
+      "id": "G5",
+      "fragment_name": "GalGalim",
+      "fragment_type": "element",
+      "description": "Model the external delivery company 'GalGalim' as an Actor classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "The actual delivery of orders is managed by an external company, called 'GalGalim,' and falls outside the scope of the current system."
+    },
+    {
+      "id": "G6",
+      "fragment_name": "PlaceRegularOrder",
+      "fragment_type": "element",
+      "description": "Model placing a regular order as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "Regular orders, on the other hand, allow multiple customers to combine their wine selections into a single order to minimize delivery costs."
+    },
+    {
+      "id": "G7",
+      "fragment_name": "PlaceUrgentOrder",
+      "fragment_type": "element",
+      "description": "Model placing an urgent order as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "Urgent orders are processed with priority and must be placed by a single customer to ensure prompt delivery."
+    },
+    {
+      "id": "G8",
+      "fragment_name": "UpdateWineInformation",
+      "fragment_type": "element",
+      "description": "Model updating wine information and types as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "Only employees in the marketing department are authorized to update wine information and types."
+    },
+    {
+      "id": "G9",
+      "fragment_name": "InventoryManagement",
+      "fragment_type": "element",
+      "description": "Model inventory management as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "The 'Cheers' system is being developed ... to manage key business operations, including inventory management."
+    },
+    {
+      "id": "G10",
+      "fragment_name": "CustomerManagement",
+      "fragment_type": "element",
+      "description": "Model customer management as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "The 'Cheers' system is being developed ... to manage key business operations, including ... customer management."
+    },
+    {
+      "id": "G11",
+      "fragment_name": "OrderProcessingAndDelivery",
+      "fragment_type": "element",
+      "description": "Model order processing and delivery as a UseCase classifier.",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "The 'Cheers' system is being developed ... to manage key business operations, including ... order processing and delivery."
+    },
+    {
+      "id": "G12",
+      "fragment_name": "SalesStaff-PlaceRegularOrder",
+      "fragment_type": "relation",
+      "description": "An Association between the Actor 'SalesStaff' and the UseCase 'PlaceRegularOrder'.",
+      "related_template_ids": [
+        "T2",
+        "T4"
+      ],
+      "citation": "The sales staff are responsible for placing customer orders ... Regular orders ... allow multiple customers to combine their wine selections."
+    },
+    {
+      "id": "G13",
+      "fragment_name": "SalesStaff-PlaceUrgentOrder",
+      "fragment_type": "relation",
+      "description": "An Association between the Actor 'SalesStaff' and the UseCase 'PlaceUrgentOrder'.",
+      "related_template_ids": [
+        "T2",
+        "T4"
+      ],
+      "citation": "Urgent orders are processed with priority and must be placed by a single customer..."
+    },
+    {
+      "id": "G14",
+      "fragment_name": "Customer-PlaceRegularOrder",
+      "fragment_type": "relation",
+      "description": "An Association between the Actor 'Customer' and the UseCase 'PlaceRegularOrder'.",
+      "related_template_ids": [
+        "T2",
+        "T4"
+      ],
+      "citation": "Regular orders ... allow multiple customers to combine their wine selections."
+    },
+    {
+      "id": "G15",
+      "fragment_name": "Customer-PlaceUrgentOrder",
+      "fragment_type": "relation",
+      "description": "An Association between the Actor 'Customer' and the UseCase 'PlaceUrgentOrder'.",
+      "related_template_ids": [
+        "T2",
+        "T4"
+      ],
+      "citation": "Urgent orders ... must be placed by a single customer..."
+    },
+    {
+      "id": "G16",
+      "fragment_name": "MarketingEmployee-UpdateWineInformation",
+      "fragment_type": "relation",
+      "description": "An Association between the Actor 'MarketingEmployee' and the UseCase 'UpdateWineInformation'.",
+      "related_template_ids": [
+        "T2",
+        "T4"
+      ],
+      "citation": "Only employees in the marketing department are authorized to update wine information and types."
+    },
+    {
+      "id": "G17",
+      "fragment_name": "Employee->SalesStaff_MarketingEmployee",
+      "fragment_type": "relation",
+      "description": "A Generalization where 'Employee' is the parent Actor and 'SalesStaff' and 'MarketingEmployee' are child Actors.",
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "Company employees are allowed to order wines ... Only employees in the marketing department ..."
+    },
+    {
+      "id": "G18",
+      "fragment_name": "PlaceOrder->PlaceRegularOrder_PlaceUrgentOrder",
+      "fragment_type": "relation",
+      "description": "A Generalization where 'PlaceOrder' is the parent UseCase and 'PlaceRegularOrder' and 'PlaceUrgentOrder' are specialized UseCases.",
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "Orders may be categorized as either regular or urgent."
+    },
+    {
+      "id": "G19",
+      "fragment_name": "CheersSystemBoundary",
+      "fragment_type": "combination",
+      "description": "A SystemBoundary enclosing all UseCases of the Cheers system to define their scope.",
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "The 'Cheers' system is being developed ... to manage key business operations..."
+    }
+  ],
+  "unoperationalized_domain_parts": [
+    "Attribute-level requirements for orders and customers (e.g., order number, dates, status, customer contact details).",
+    "Detailed business rules for delivery batching, bottle limits, clarification status, refunds, and suspend/resume order behavior.",
+    "Data model details for wine producers, wine attributes (sweetness level, pairing links, images), storage locations, and inventory counts, and report formatting (JSON export schedule)."
+  ],
+  "questions_to_language_advisor": [
+    {
+      "id": "Q1",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "question": "Should external systems such as 'Gefen' and 'GalGalim' be modeled as Actors in the Use Case Diagram, or is there a different stereotype for external interfaces?"
+    },
+    {
+      "id": "Q2",
+      "related_template_ids": [
+        "T5",
+        "T6",
+        "T7"
+      ],
+      "question": "Should the relationship between 'PlaceOrder', 'PlaceRegularOrder', and 'PlaceUrgentOrder' be modeled as a UseCase generalization (specialization) or using Include/Extend constructs?"
+    }
+  ],
+  "agent1_capabilities": [
+    "How does an Include relationship differ structurally from an Extend relationship in UML Use Case Diagrams?",
+    "What constraints exist on the endpoints of Association links in Use Case Diagrams?",
+    "Can a UseCase directly generalize an Actor in a Use Case Diagram?"
+  ],
+  "agent2_capabilities": []
+}

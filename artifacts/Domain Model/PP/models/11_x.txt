@@ -1,0 +1,17 @@
+@startuml
+
+entity game
+entity round
+entity estimate
+entity item
+entity estimator
+entity card
+
+game -- round
+estimate -- item
+item -- round
+game -- estimator
+estimator -- estimate
+game -- card
+
+@enduml

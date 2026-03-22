@@ -1,0 +1,113 @@
+@startuml
+!define COLOR_CLASS      #66CCCC
+!define COLOR_ABSTRACT   #FFCC66
+!define COLOR_INTERFACE  #CCFFCC
+
+skinparam class {
+  BackgroundColor COLOR_CLASS
+  BorderColor #444444
+  FontColor #222222
+}
+skinparam abstract {
+  BackgroundColor COLOR_ABSTRACT
+  BorderColor #444444
+  FontColor #222222
+}
+skinparam interface {
+  BackgroundColor COLOR_INTERFACE
+  BorderColor #444444
+  FontColor #222222
+}
+
+class Employee {
+  - id: Integer
+  - name: String
+  - phoneNumber: String
+  - officeAddress: String
+  - email: String
+  - employmentStartDate: Date
+  - orderCount: Integer
+  + generateUnproductiveEmployeeReport(startDate: Date, endDate: Date): Report
+}
+
+class MarketingEmployee extends Employee {
+  - wineTypeUpdateCount: Integer
+}
+
+class SalesStaff extends Employee {
+  - orderPlacedCount: Integer
+}
+
+class Customer {
+  - id: Integer
+  - name: String
+  - phoneNumber: String
+  - deliveryAddress: String
+  - email: String
+  - firstContactDate: Date
+}
+
+class Wine {
+  - id: Integer
+  - name: String
+  - description: String
+  - price: Double
+  - productImage: String
+  - type: WineType
+  - manufacturer: Manufacturer
+  - quantity: Integer
+}
+
+class WineType {
+  - id: Integer
+  - name: String
+  - description: String
+}
+
+class Manufacturer {
+  - id: Integer
+  - name: String
+  - contactPhoneNumber: String
+  - address: String
+  - email: String
+}
+
+class Order {
+  - id: Integer
+  - orderDate: Date
+  - status: OrderStatus
+  - customer: Customer
+  - employee: Employee
+  - wines: List<Wine>
+}
+
+class OrderStatus {
+  - id: Integer
+  - name: String
+  - description: String
+}
+
+class Report {
+  - id: Integer
+  - reportDate: Date
+  - unproductiveEmployees: List<Employee>
+}
+
+class GeffenSystemImporter {
+  + importWineData(): void
+}
+
+class GeffenSystemExporter {
+  + exportInventoryReport(): void
+}
+
+Employee --* Order
+Customer --* Order
+Wine --* Order
+Wine --* Manufacturer
+Wine --* WineType
+MarketingEmployee --* Wine
+SalesStaff --* Order
+GeffenSystemImporter --* Wine
+GeffenSystemExporter --* Report
+@enduml

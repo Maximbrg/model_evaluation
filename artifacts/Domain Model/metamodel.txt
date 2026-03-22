@@ -1,0 +1,125 @@
+HOW TO FIND CLASSES AND ASSOCIATIONS IN A DOMAIN MODEL
+
+FINDING CLASSES
+
+Finding classes is the first and most important step in building a domain class model. Classes represent the main concepts of the application domain. They describe the types of objects that exist in the real world system being modeled. The goal is to identify all important entities that store information or participate in relationships within the system.
+
+The process begins by carefully reading the problem statement and identifying possible concepts that appear in the description. Classes often correspond to nouns or noun phrases in the text. For example, in a description such as “a reservation system sells tickets to performances at various theaters”, potential classes might include Reservation, Ticket, Performance, and Theater.
+
+At the beginning, the analyst should not be overly selective. Every possible candidate class should be written down. The first list will usually contain redundant, unnecessary, or incorrect classes, but this is acceptable because the model will be refined later. The purpose of the first step is to capture as many relevant concepts as possible without losing important information.
+
+Classes may represent different kinds of concepts in the domain. These include:
+
+Physical objects  
+Examples: Person, Car, Machine, Building.
+
+Roles played by people or objects  
+Examples: Customer, Employee, Student, Passenger.
+
+Events or transactions  
+Examples: Reservation, Purchase, Payment, Order.
+
+Interactions between entities  
+Examples: Enrollment, Registration, Contract.
+
+Conceptual or abstract entities  
+Examples: Schedule, Policy, Account Balance.
+
+Descriptions or specifications  
+Examples: Product Type, Course Description, Price List.
+
+Containers or collections  
+Examples: Library, Department, Inventory.
+
+Classes should represent meaningful domain concepts. They should make sense to experts in the application domain and should be understandable to non programmers who know the problem area.
+
+Classes that represent computer implementation details should be avoided during domain analysis. For example, data structures such as arrays, linked lists, stacks, buffers, or files should not appear in the domain model unless they are actual concepts in the domain. The domain model should describe the real world problem rather than the software solution.
+
+Some classes appear directly in the written problem description, while others are implied by domain knowledge. The analyst may need to use general knowledge of the application domain or consult experts to discover important concepts that are not explicitly stated.
+
+While identifying classes, it is important not to worry about inheritance or class hierarchy too early. The first goal is simply to identify specific classes correctly. Trying to force classes into a hierarchy too soon can hide important distinctions between concepts.
+
+For example, in a library system it is better to first list classes such as Book, Magazine, Newspaper, Video, and Record separately. Only later should the analyst decide whether they belong to a more general class such as LibraryMaterial.
+
+After the initial list of candidate classes is created, the analyst reviews the list and removes unnecessary entries. Classes may be eliminated if they are:
+
+Outside the scope of the system  
+Examples: objects not relevant to the problem.
+
+Implementation constructs  
+Examples: data structures or programming elements.
+
+Attributes rather than independent objects  
+Examples: Age or Color might be attributes of a class rather than classes themselves.
+
+Synonyms or duplicates  
+Two names may represent the same concept and should be merged.
+
+Vague or overly general concepts  
+Classes that are too broad or meaningless in the domain should be removed.
+
+The result of this process is a refined set of classes that represent the key entities of the domain.
+
+
+FINDING ASSOCIATIONS
+
+Once the main classes have been identified, the next step is to determine the associations between them. Associations represent relationships between classes. They describe how objects of one class are connected to objects of another class.
+
+Associations are important because they show how information flows between objects and how objects cooperate within the system. They form the structural network that connects the classes together.
+
+Associations are usually identified by examining the verbs or relationship phrases in the problem description. Verbs often describe interactions or relationships between nouns, and these interactions frequently correspond to associations.
+
+For example:
+
+A customer places an order  
+Customer and Order are classes  
+“places” suggests an association between them.
+
+A student enrolls in a course  
+Student and Course are classes  
+“enrolls in” indicates an association.
+
+A bank account belongs to a customer  
+Account and Customer are classes  
+“belongs to” describes an association.
+
+Associations represent meaningful relationships in the real world domain. They should capture the way objects interact or are connected in the application context.
+
+When defining associations, the analyst must ensure that each relationship is meaningful and necessary. Associations should represent information that the system needs to remember or maintain. If a relationship is obvious or temporary and does not need to be stored, it may not need to be modeled as an association.
+
+Associations should also be named clearly. The name usually describes the role of the relationship and is often expressed as a verb phrase. Good association names help explain the meaning of the relationship and improve readability of the model.
+
+For example:
+
+Customer places Order  
+Teacher teaches Course  
+Employee works in Department  
+Book is written by Author
+
+Sometimes an association may also include roles that describe how each class participates in the relationship. These role names clarify the meaning of the association from each side.
+
+In addition, the analyst determines multiplicity for associations. Multiplicity specifies how many objects of one class can be related to objects of another class.
+
+Examples:
+
+One customer may place many orders  
+One order belongs to exactly one customer  
+
+One student may enroll in many courses  
+One course may have many students
+
+Associations can also represent structural relationships such as containment or ownership.
+
+Examples:
+
+A library contains books  
+A department contains employees  
+A drawing contains shapes
+
+While identifying associations, the analyst should focus on relationships that are essential for understanding the domain. Too many associations can make the model complex and difficult to understand, so only important relationships should be included.
+
+Associations should also be consistent with the meaning of the classes. If a relationship does not logically make sense in the domain, it should not appear in the model.
+
+Finally, the analyst reviews the associations to ensure that the class model forms a connected structure. The relationships should allow navigation between related classes and support the kinds of queries that users may need to perform.
+
+Through this process, the analyst builds a network of classes and associations that captures the essential structure of the application domain. This structure forms the foundation for the domain model and later stages of system analysis and design.

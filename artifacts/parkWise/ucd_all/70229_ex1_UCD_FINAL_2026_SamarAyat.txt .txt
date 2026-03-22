@@ -1,0 +1,125 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Client" as Client
+actor "Administrator" as Admin
+actor "Gate Sensor\n(GS)" as GS
+actor "Conveyors'\nController (CC)" as CC
+actor "Integrated Rate\nService (IRS)" as IRS
+actor "Payment\nGateway (PG)" as PG
+
+rectangle "ParkWise Lots System" {
+
+  ' --- Parking lots & availability ---
+  usecase "Manage Parking Lot\nDetails" as UC_ManageLots
+  usecase "Monitor & Update\nAvailable Spaces" as UC_UpdateSpaces
+
+  ' --- Gate, identification & registration ---
+  usecase "Identify Vehicle\nat Gate" as UC_Identify
+  usecase "Search Vehicle/\nClient in DB" as UC_Search
+  usecase "Open Barrier" as UC_OpenBarrier
+
+  usecase "Handle Client/\nVehicle Registration" as UC_Register
+  usecase "Upload Vehicle\nPhotos" as UC_UploadPhotos
+  usecase "Extract Vehicle\nDetails from Photos" as UC_Extract
+  usecase "Associate Vehicle\nwith Client" as UC_Associate
+
+  ' --- Parking session & optimization ---
+  usecase "Start Parking Session\n& Store Details" as UC_StartSession
+  usecase "Run Space\nOptimization" as UC_Optimize
+  usecase "Assign Conveyor\nfor Vehicle" as UC_AssignConveyor
+  usecase "Update Vehicle\nLocation" as UC_UpdateLocation
+  usecase "Send SMS with\nParking Details" as UC_SendSMS
+  usecase "View Parking\nDetails via UI" as UC_ViewParking
+
+  ' --- End parking & payment ---
+  usecase "Validate Client &\nEnd Parking Request" as UC_EndParking
+  usecase "Transfer Vehicle\nto Gate" as UC_TransferToGate
+  usecase "Calculate Parking\nFee" as UC_CalcFee
+  usecase "Request Payment\nAuthorization" as UC_RequestPayment
+  usecase "Issue Receipt" as UC_Receipt
+
+  ' --- Price lists & history ---
+  usecase "Import Yearly\nPrice Lists" as UC_ImportRates
+  usecase "Maintain Parking\nPrice History" as UC_PriceHistory
+
+  ' --- Client club & benefits ---
+  usecase "Register to\nClient Club" as UC_RegisterClub
+  usecase "Manage Preferred\nParking Lots" as UC_PreferredLots
+  usecase "Apply Club\nDiscounts & Free Session" as UC_ClubBenefits
+
+  ' --- Reports ---
+  usecase "Generate Annual\nSummary Report\n(PDF & XML)" as UC_AnnualReport
+  usecase "Generate Customer\nClub Growth Report" as UC_ClubReport
+}
+
+' --- Actor to use case associations ---
+
+' Administrator
+Admin --> UC_ManageLots
+Admin --> UC_AnnualReport
+Admin --> UC_ClubReport
+Admin --> UC_PriceHistory
+
+' Gate Sensor
+GS --> UC_Identify
+GS --> UC_UpdateSpaces
+UC_OpenBarrier --> GS
+
+' Client (via system UI)
+Client --> UC_Register
+Client --> UC_ViewParking
+Client --> UC_EndParking
+Client --> UC_RegisterClub
+Client --> UC_PreferredLots
+Client --> UC_Receipt
+
+' Conveyors' Controller
+CC --> UC_AssignConveyor
+CC --> UC_Optimize
+CC --> UC_UpdateLocation
+CC --> UC_TransferToGate
+
+' Integrated Rate Service
+IRS --> UC_ImportRates
+
+' Payment Gateway
+UC_RequestPayment --> PG
+
+' --- Include / extend relations ---
+
+' Identification & gate opening flow
+UC_Identify ..> UC_Search : <<include>>
+UC_Identify ..> UC_OpenBarrier : <<extend>>\n(on known vehicle)
+
+' Registration & photo-based extraction flow
+UC_Register ..> UC_UploadPhotos : <<include>>
+UC_UploadPhotos ..> UC_Extract : <<include>>
+UC_Extract ..> UC_Associate : <<include>>
+UC_Register ..> UC_OpenBarrier : <<extend>>\n(on successful registration)
+
+' Parking session & tracking
+UC_Identify ..> UC_StartSession : <<extend>>
+UC_Register ..> UC_StartSession : <<extend>>
+UC_StartSession ..> UC_SendSMS : <<include>>
+UC_StartSession ..> UC_UpdateLocation : <<include>>
+
+' Optimization & conveyors
+UC_AssignConveyor ..> UC_Optimize : <<include>>
+UC_UpdateLocation ..> UC_UpdateSpaces : <<include>>
+
+' End parking & payment
+UC_EndParking ..> UC_TransferToGate : <<include>>
+UC_EndParking ..> UC_CalcFee : <<include>>
+UC_EndParking ..> UC_RequestPayment : <<include>>
+UC_EndParking ..> UC_Receipt : <<extend>>\n(on client request)
+
+' Gate opening after successful payment
+UC_RequestPayment ..> UC_OpenBarrier : <<extend>>\n(on payment approved)
+
+' Rates & discounts
+UC_ImportRates ..> UC_PriceHistory : <<include>>
+UC_CalcFee ..> UC_ClubBenefits : <<include>>
+
+@enduml

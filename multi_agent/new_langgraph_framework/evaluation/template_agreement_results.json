@@ -1,0 +1,90 @@
+{
+  "metrics": {
+    "total_files_compared": 3,
+    "total_unique_templates": 49,
+    "templates_in_all_files": 0,
+    "templates_in_multiple_but_not_all": 2,
+    "template_agreement_ratio": 0.04081632653061224,
+    "average_involved_fragments_jaccard_similarity": 0.16666666666666666
+  },
+  "overlaps": {
+    "present_in_all": [],
+    "present_in_multiple": [
+      "qualifiedassociation",
+      "composition"
+    ]
+  },
+  "disjoints_by_file": {
+    "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_21-13-08/stage1_agent1_language/language_template.json": [
+      "classfeatureownership",
+      "interfacefeaturedefinition",
+      "propertytypemultiplicity",
+      "operationsignature",
+      "generalizationconnector",
+      "associationbinary",
+      "directedassociation",
+      "sharedaggregation",
+      "compositeaggregation",
+      "associationclassdefinition",
+      "dependencyrelation",
+      "constraintattachment",
+      "enumerationdefinition",
+      "valuetypedefinition",
+      "packagecontainment",
+      "abstractclassifierrule"
+    ],
+    "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_21-36-17/stage1_agent1_language/language_template.json": [
+      "class_structure",
+      "interface_specification",
+      "enumeration_literal_set",
+      "datatype_semantics",
+      "primitivetype_constraints",
+      "package_ownership",
+      "association_basics",
+      "navigable_association",
+      "shared_aggregation",
+      "generalization_inheritance",
+      "realization_relationship",
+      "dependency_usage",
+      "associationclass_construct",
+      "qualified_association",
+      "constraint_element",
+      "operation_contracts"
+    ],
+    "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_23-30-02/stage1_agent1_language/language_template.json": [
+      "class_construct",
+      "interface_construct",
+      "property_construct",
+      "operation_construct",
+      "package_construct",
+      "enumeration_construct",
+      "datatype_and_primitivetype",
+      "association",
+      "aggregation",
+      "generalization",
+      "realization",
+      "dependency",
+      "associationclass",
+      "constraint",
+      "ocl_expression"
+    ]
+  },
+  "detailed_overlap_metrics": {
+    "qualifiedassociation": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_21-13-08/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_23-30-02/stage1_agent1_language/language_template.json"
+      ],
+      "involved_fragments_similarity_score": 0.3333333333333333,
+      "first_description": "A QualifiedAssociation associates two Classifiers with a Qualifier at one end to partition the target end per qualifier key and constrain Multiplicity."
+    },
+    "composition": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_21-36-17/stage1_agent1_language/language_template.json",
+        "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-21_23-30-02/stage1_agent1_language/language_template.json"
+      ],
+      "involved_fragments_similarity_score": 0.0,
+      "first_description": "A Composition is an Association with AggregationKind=composite at the whole end; part instances have exclusive ownership by one composite and lifecycle dependency on it."
+    }
+  }
+}

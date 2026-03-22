@@ -1,0 +1,99 @@
+@startuml
+title ParkWise - Core Parking & Payment
+
+left to right direction
+skinparam actorStyle stickman
+skinparam linetype ortho
+
+' ---- Left side actors ----
+actor Client
+actor "SMS Service" as SMS
+
+rectangle "ParkWise Information System" {
+
+    usecase "Process vehicle arrival" as UC_Arrival
+    usecase "Register vehicle via photos" as UC_RegVehicle
+    usecase "Register client" as UC_RegClient
+    usecase "Associate vehicle\nwith client" as UC_Assoc
+
+    usecase "Start parking session" as UC_Start
+    usecase "Track vehicle location\n(conveyor / space)" as UC_Track
+    usecase "View parking details\nvia system UI" as UC_View
+
+    usecase "Request vehicle return\n(end parking)" as UC_End
+    usecase "Calculate parking fee" as UC_Fee
+    usecase "Apply client club discount" as UC_Discount
+    usecase "Check free first session\nin preferred lots" as UC_FreeFirst
+
+    usecase "Send payment request\nto Payment Gateway" as UC_PayReq
+    usecase "Issue receipt" as UC_Receipt
+
+    usecase "Send SMS with\nparking details" as UC_SMS
+}
+
+' ---- Right side actors ----
+actor "Integrated Rate Service (IRS)" as IRS
+actor "Payment Gateway" as PG
+actor "Conveyors' Controller" as CC
+actor "Gate Sensor" as GS
+
+' -------- CLIENT relations --------
+Client --> UC_Arrival
+Client --> UC_View
+Client --> UC_End
+Client --> UC_Receipt
+
+' Client is also the logical recipient of the SMS
+Client -- UC_SMS
+UC_SMS .> UC_Track : <<include>>
+
+' ----- ARRIVAL includes/extends -----
+UC_Arrival .> UC_RegVehicle : <<extend>>\n(if vehicle not found)
+UC_RegVehicle .> UC_RegClient : <<extend>>\n(if client not found)
+UC_RegVehicle .> UC_Assoc : <<include>>
+
+' ----- START PARKING -----
+GS <-- UC_Start : start session
+UC_Start .> UC_Track : <<include>>
+UC_Start .> UC_SMS : <<include>>
+
+' SMS service used to actually deliver the SMS
+UC_SMS -- SMS
+
+' ----- LOCATION TRACKING -----
+UC_Track --> CC
+
+' ----- PAYMENT FLOW -----
+UC_End .> UC_Fee : <<include>>
+UC_Fee .> UC_Discount : <<include>>
+UC_Fee .> UC_FreeFirst : <<include>>
+UC_Fee .> UC_PayReq : <<include>>
+
+UC_PayReq --> PG : payment request
+PG ---> UC_PayReq : payment status
+UC_PayReq --> GS : open gate
+
+' ----- IRS -----
+UC_Fee --> IRS : price lists\n(JSON yearly)
+
+actor Client
+actor "Club Member" as ClubMember
+
+ClubMember -|> Client
+
+rectangle "ParkWise Information System" {
+  usecase "Register to client club" as UC_ClubReg
+  usecase "Manage preferred\nparking lots" as UC_PrefLots
+  usecase "View parking details\nvia system UI" as UC_View
+}
+
+Client --> UC_View
+Client --> UC_ClubReg
+
+ClubMember --> UC_PrefLots
+ClubMember --> UC_View
+
+UC_ClubReg .> UC_PrefLots : <<include>>\n(optional)
+
+
+@enduml

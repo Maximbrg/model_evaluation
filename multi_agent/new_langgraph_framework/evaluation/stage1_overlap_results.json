@@ -1,0 +1,147 @@
+{
+  "metrics": {
+    "total_files_compared": 4,
+    "total_unique_templates": 64,
+    "templates_in_all_files": 0,
+    "templates_in_multiple_but_not_all": 7,
+    "template_agreement_ratio": 0.109375,
+    "average_involved_fragments_jaccard_similarity": 0.4047619047619047
+  },
+  "overlaps": {
+    "present_in_all": [],
+    "present_in_multiple": [
+      "property_ownership",
+      "dependency_relation",
+      "binary_association",
+      "shared_aggregation",
+      "composite_aggregation",
+      "generalization_hierarchy",
+      "qualified_association"
+    ]
+  },
+  "disjoints_by_file": {
+    "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of Copy of language_template_1.json": [
+      "class_classifier",
+      "interface_classifier",
+      "enumeration_classifier",
+      "datatype_classifier",
+      "primitivetype_classifier",
+      "package_ownership",
+      "attribute_fragment",
+      "association_end_fragment",
+      "operation_fragment",
+      "association_relation",
+      "navigability",
+      "aggregation_relation",
+      "composition_relation",
+      "generalization_relation",
+      "realization_relation",
+      "associationclass_fragment",
+      "qualifiedassociation_relation",
+      "constraint_fragment",
+      "enumerationliteral_fragment",
+      "parameter_fragment"
+    ],
+    "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json": [
+      "classifier_structure",
+      "interface_specification",
+      "operation_declaration",
+      "enumeration_literals",
+      "data_and_primitive_types",
+      "interface_realization",
+      "dependency_link",
+      "association_class_binding",
+      "boolean_constraint"
+    ],
+    "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_3.json": [
+      "classfeatureownership",
+      "interfacefeaturedefinition",
+      "propertytypemultiplicity",
+      "operationsignature",
+      "generalizationconnector",
+      "associationbinary",
+      "directedassociation",
+      "sharedaggregation",
+      "compositeaggregation",
+      "associationclassdefinition",
+      "dependencyrelation",
+      "qualifiedassociation",
+      "constraintattachment",
+      "enumerationdefinition",
+      "valuetypedefinition",
+      "packagecontainment",
+      "abstractclassifierrule"
+    ],
+    "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json": [
+      "class_ownership",
+      "interface_declaration",
+      "property_type_binding",
+      "operation_signature",
+      "directed_association",
+      "realization_link",
+      "association_class_pattern",
+      "enumeration_definition",
+      "datatype_semantics",
+      "constraint_attachment",
+      "package_containment"
+    ]
+  },
+  "detailed_overlap_metrics": {
+    "property_ownership": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of Copy of language_template_1.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json"
+      ],
+      "involved_fragments_similarity_score": 0.3333333333333333,
+      "first_description": "A Property must be owned either by a Classifier (as an attribute) or by an Association (as an association end) and must reference a Type with defined multiplicity bounds."
+    },
+    "dependency_relation": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of Copy of language_template_1.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.3333333333333333,
+      "first_description": "A Dependency is a relationship from a client ModelElement to a supplier ModelElement, indicating that changes in the supplier may impact the client."
+    },
+    "binary_association": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.5,
+      "first_description": "An Association must connect exactly two classifiers and define exactly two association ends each referencing one of the linked classifiers."
+    },
+    "shared_aggregation": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.3333333333333333,
+      "first_description": "A shared aggregation is an association with exactly one end whose aggregationKind is set to shared (hollow diamond at the aggregate end)."
+    },
+    "composite_aggregation": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.3333333333333333,
+      "first_description": "A composite aggregation is an association with one end marked composite (filled diamond) and the part end must have an upper multiplicity bound of 1."
+    },
+    "generalization_hierarchy": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.5,
+      "first_description": "Each Generalization must connect a specific classifier (subclass) to a general classifier (superclass), establishing an inheritance link."
+    },
+    "qualified_association": {
+      "files_present": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_4.json"
+      ],
+      "involved_fragments_similarity_score": 0.5,
+      "first_description": "A QualifiedAssociation must attach one or more qualifier attributes to exactly one end of a binary association, partitioning the linked instances."
+    }
+  }
+}

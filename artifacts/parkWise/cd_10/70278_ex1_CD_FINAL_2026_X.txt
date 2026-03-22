@@ -1,0 +1,152 @@
+@startuml
+' ================= Enumerations =================
+enum ColorEnum {
+    White
+    Black
+    Silver
+    Blue
+    Other
+}
+enum SizeEnum {
+    Small
+    Medium
+    Large
+}
+enum PhotoTypeEnum {
+    Front
+    Rear
+    Side
+}
+enum SessionConveyorActionEnum {
+    PARK
+    RETRIEVE
+}
+' ================= Classes =================
+class Client {
+    + ClientID : Integer <<PK>>
+    + FirstName : String
+    + LastName : String
+    + MobilePhone : String
+    --
+    + registerClubMembership() : void
+    + selectPreferredLot(lotNumber) : void
+    + requestEndParking() : void
+}
+class ClubMember {
+    + MemberID : Integer <<PK>>
+    + ClientID : Integer <<FK>>
+    + RegistrationDate : DateTime
+    + DiscountPercentage : Decimal
+    --
+    + isEligibleForFreeSession() : Boolean
+    + getDiscountAmount(amount) : Decimal
+}
+class Vehicle {
+    + VehicleNumber : String <<PK>>
+    + Type : String
+    + Color : ColorEnum
+    + Size : SizeEnum
+    + Weight : Decimal
+    + ClientID : Integer <<FK>>
+}
+class VehiclePhoto {
+    + PhotoID : Integer <<PK>>
+    + VehicleNumber : String <<FK>>
+    + PhotoType : PhotoTypeEnum
+    + PhotoData : Binary
+}
+class ParkingLot {
+    + LotNumber : Integer <<PK>>
+    + Name : String
+    + Address : String
+    + City : String
+    + AvailableSpaces : Integer
+    --
+    + getTotalAmountByYear(year) : Decimal
+    + getOtherColorVehicleCount(year) : Integer
+    + generateAnnualSummaryReport(year) : Report
+    + getAvailablePriceList(year) : PriceList
+}
+class ParkingSpace {
+    + SpaceID : Integer <<PK>>
+    + LotNumber : Integer <<FK>>
+    + Floor : Integer
+    + PositionX : Decimal
+    + PositionY : Decimal
+    + Size : SizeEnum
+    + IsOccupied : Boolean
+}
+class Conveyor {
+    + ConveyorID : Integer <<PK>>
+    + LotNumber : Integer <<FK>>
+    + Floor : Integer
+    + PositionX : Decimal
+    + PositionY : Decimal
+    + MaxWeight : Decimal
+    + IsAvailable : Boolean
+}
+class PriceList {
+    + PriceListID : Integer <<PK>>
+    + LotNumber : Integer <<FK>>
+    + EffectiveYear : Integer
+    + FirstHourPrice : Decimal
+    + AdditionalHourPrice : Decimal
+    + FullDayPrice : Decimal
+    + EffectiveDate : DateTime
+    --
+    + calculatePrice(hours) : Decimal
+}
+class ParkingSession {
+    + SessionID : Integer <<PK>>
+    + VehicleNumber : String <<FK>>
+    + LotNumber : Integer <<FK>>
+    + CurrentSpaceID : Integer <<FK, nullable>>
+    + CurrentConveyorID : Integer <<FK, nullable>>
+    + StartTime : DateTime
+    + EndTime : DateTime <<nullable>>
+    + AmountPaid : Decimal <<nullable>>
+    + IsPaid : Boolean
+    --
+    + calculateFee() : Decimal
+    + applyClubDiscount(discountPercentage) : Decimal
+    + markCompleted() : void
+}
+class SessionConveyor {
+    + SessionConveyorID : Integer <<PK>>
+    + SessionID : Integer <<FK>>
+    + ConveyorID : Integer <<FK>>
+    + AssignmentTime : DateTime
+    + Action : SessionConveyorActionEnum
+}
+class Receipt {
+    + ReceiptID : Integer <<PK>>
+    + SessionID : Integer <<FK>>
+    + IssueDate : DateTime
+    + TotalHours : Integer
+    + PriceRate : Decimal
+    + FinalAmount : Decimal
+    --
+    + generateReceiptDetails() : String
+}
+class PreferredLotSelection {
+    + SelectionID : Integer <<PK>>
+    + MemberID : Integer <<FK>>
+    + LotNumber : Integer <<FK>>
+    + SelectionDate : DateTime
+}
+' ================= Relationships =================
+Client "1" -- "*" Vehicle : owns
+Client "1" -- "0..1" ClubMember : becomes
+ClubMember "1" -- "*" PreferredLotSelection : selects
+Vehicle "1" -- "*" VehiclePhoto : has
+Vehicle "1" -- "*" ParkingSession : parked in
+ParkingLot "1" -- "*" ParkingSpace : contains
+ParkingLot "1" -- "*" Conveyor : contains
+ParkingLot "1" -- "*" PriceList : maintains
+ParkingLot "1" -- "*" ParkingSession : hosts
+ParkingSpace "0..1" -- "*" ParkingSession : occupies
+Conveyor "0..1" -- "*" SessionConveyor : assigned to
+ParkingSession "1" -- "*" SessionConveyor : handled by
+ParkingSession "1" -- "0..1" Receipt : generates
+PreferredLotSelection -- ParkingLot : references
+@enduml

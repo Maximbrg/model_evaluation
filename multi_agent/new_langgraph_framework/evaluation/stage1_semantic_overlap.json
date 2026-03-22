@@ -1,0 +1,1131 @@
+{
+  "metrics": {
+    "total_files_compared": 4,
+    "total_unique_semantic_guidelines": 49,
+    "semantic_guidelines_in_all_files": 0,
+    "semantic_guidelines_in_multiple_but_not_all": 15,
+    "semantic_guideline_agreement_ratio": 0.30612244897959184,
+    "average_citation_jaccard_similarity": 0.34751300604632507
+  },
+  "file_mapping": {
+    "File 1": "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+    "File 2": "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json",
+    "File 3": "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+    "File 4": "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+  },
+  "overlaps": {
+    "present_in_all": [],
+    "present_in_multiple": [
+      {
+        "canonical_id": "G1",
+        "canonical_name": "Sales Staff",
+        "canonical_type": "element",
+        "canonical_description": "The Actor \"Sales Staff\" must be placed outside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Actor \"Sales Staff\" must be placed outside the System Boundary",
+          "4": "Represent the role of sales staff as an Actor classifier located outside the system boundary."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G2",
+        "canonical_name": "Marketing Department Employee",
+        "canonical_type": "element",
+        "canonical_description": "The Actor \"Marketing Department Employee\" must be placed outside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Actor \"Marketing Department Employee\" must be placed outside the System Boundary",
+          "4": "Represent the marketing department employee as an Actor classifier located outside the system boundary."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G3",
+        "canonical_name": "Customer",
+        "canonical_type": "element",
+        "canonical_description": "The Actor \"Customer\" must be placed outside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Actor \"Customer\" must be placed outside the System Boundary",
+          "4": "Represent the customer as an Actor classifier located outside the system boundary."
+        },
+        "citation_similarity_score": 0.027777777777777776
+      },
+      {
+        "canonical_id": "G4",
+        "canonical_name": "GalGalim",
+        "canonical_type": "element",
+        "canonical_description": "The external Actor \"GalGalim\" must be placed outside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The external Actor \"GalGalim\" must be placed outside the System Boundary",
+          "4": "Represent the external delivery company as an Actor classifier located outside the system boundary."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G5",
+        "canonical_name": "Gefen System",
+        "canonical_type": "element",
+        "canonical_description": "The external Actor \"Gefen\" must be placed outside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The external Actor \"Gefen\" must be placed outside the System Boundary",
+          "4": "Represent the external XML data provider as an Actor classifier located outside the system boundary."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G7",
+        "canonical_name": "Place Urgent Order",
+        "canonical_type": "element",
+        "canonical_description": "The Use Case \"Place Urgent Order\" must be located inside the System Boundary",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Use Case \"Place Urgent Order\" must be located inside the System Boundary",
+          "4": "Model placing a regular order as a Use Case classifier enclosed within the system boundary."
+        },
+        "citation_similarity_score": 0.14705882352941177
+      },
+      {
+        "canonical_id": "G8",
+        "canonical_name": "Sales Staff\u2013Place Regular Order Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Place Regular Order\"",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Place Regular Order\"",
+          "4": "Model placing an urgent order as a Use Case classifier enclosed within the system boundary."
+        },
+        "citation_similarity_score": 0.2
+      },
+      {
+        "canonical_id": "G9",
+        "canonical_name": "Customer\u2013Place Regular Order Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Regular Order\"",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Regular Order\"",
+          "3": "Connect Sales Staff actor to Place Regular Order use case with an Association."
+        },
+        "citation_similarity_score": 0.14705882352941177
+      },
+      {
+        "canonical_id": "G10",
+        "canonical_name": "Customer\u2013Place Urgent Order Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Urgent Order\"",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Urgent Order\"",
+          "3": "Connect Customer actor to Place Regular Order use case with an Association."
+        },
+        "citation_similarity_score": 0.14705882352941177
+      },
+      {
+        "canonical_id": "G11",
+        "canonical_name": "Marketing Employee\u2013Update Wine Information Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Marketing Department Employee\" to the Use Case \"Update Wine Information and Types\"",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Marketing Department Employee\" to the Use Case \"Update Wine Information and Types\"",
+          "3": "Connect Customer actor to Place Urgent Order use case with an Association."
+        },
+        "citation_similarity_score": 0.10344827586206896
+      },
+      {
+        "canonical_id": "G18",
+        "canonical_name": "Manage Order \u00abextend\u00bb Suspend/Resume/Cancel Order",
+        "canonical_type": "relation",
+        "canonical_description": "An \u00abextend\u00bb relationship must originate from the extending Use Cases \"Suspend Order\", \"Resume Order\", \"Cancel Order\" and target the base Use Case \"Manage Order\"",
+        "files_present_indices": [
+          1,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An \u00abextend\u00bb relationship must originate from the extending Use Cases \"Suspend Order\", \"Resume Order\", \"Cancel Order\" and target the base Use Case \"Manage Order\"",
+          "3": "Use an \u00abinclude\u00bb relationship from Place Regular Order to Notify GalGalim.",
+          "4": "Use an \u00abinclude\u00bb relation from the base Use Case \"Place Order\" to a supporting Use Case \"Specify Order Details\" for mandatory shared behavior (e.g., order number, date, status, shipment date, assigned employee)."
+        },
+        "citation_similarity_score": 0.16666666666666666
+      },
+      {
+        "canonical_id": "G19",
+        "canonical_name": "Employee \u2013> Sales Staff, Marketing Employee",
+        "canonical_type": "relation",
+        "canonical_description": "A Generalization must connect the Actor \"Employee\" to its specializations \"Sales Staff\" and \"Marketing Department Employee\"",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Generalization must connect the Actor \"Employee\" to its specializations \"Sales Staff\" and \"Marketing Department Employee\"",
+          "4": "Use an \u00abextend\u00bb relation from the extending Use Case \"Place Urgent Order\" to the base Use Case \"Place Order\" for conditional, priority-handled behavior."
+        },
+        "citation_similarity_score": 0.0851063829787234
+      },
+      {
+        "canonical_id": "G20",
+        "canonical_name": "Place Order \u2013> Place Regular Order, Place Urgent Order",
+        "canonical_type": "relation",
+        "canonical_description": "A Generalization must connect the Use Case \"Place Order\" to its specializations \"Place Regular Order\" and \"Place Urgent Order\"",
+        "files_present_indices": [
+          1,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Generalization must connect the Use Case \"Place Order\" to its specializations \"Place Regular Order\" and \"Place Urgent Order\"",
+          "3": "Use generalization to model Sales Staff and Marketing Employee as specializations of a common Employee actor.",
+          "4": "Use a generalization relation to link the more specific Actor classifiers \"Sales Staff\" and \"Marketing Employee\" to the more general Actor classifier \"Employee\"."
+        },
+        "citation_similarity_score": 0.09433962264150944
+      },
+      {
+        "canonical_id": "G21",
+        "canonical_name": "System Boundary Containment",
+        "canonical_type": "combination",
+        "canonical_description": "The System Boundary may contain Use Cases but must not contain Actors or Relationships",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The System Boundary may contain Use Cases but must not contain Actors or Relationships",
+          "3": "Use generalization to model that Place Regular Order and Place Urgent Order specialize a common Place Order base use case."
+        },
+        "citation_similarity_score": 0.037037037037037035
+      },
+      {
+        "canonical_id": "G22",
+        "canonical_name": "Sales Staff",
+        "canonical_type": "element",
+        "canonical_description": "Represent the Sales Staff role as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+        "files_present_indices": [
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Represent the Sales Staff role as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+          "3": "Enclose all Use Case elements in a single System Boundary named \"Cheers System\"; do not enclose any Actor elements.",
+          "4": "Define a System Boundary named \"Cheers\" that encloses only the Use Case classifiers relevant to inventory management, customer management, and order processing and delivery."
+        },
+        "citation_similarity_score": 0.05714285714285714
+      }
+    ]
+  },
+  "disjoints_by_file": {
+    "File 1: initial_reference_guidelines.json": [
+      {
+        "canonical_id": "G6",
+        "canonical_name": "Place Regular Order",
+        "canonical_type": "element",
+        "canonical_description": "The Use Case \"Place Regular Order\" must be located inside the System Boundary",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Use Case \"Place Regular Order\" must be located inside the System Boundary"
+        }
+      },
+      {
+        "canonical_id": "G12",
+        "canonical_name": "Update Wine Information and Types",
+        "canonical_type": "element",
+        "canonical_description": "The Use Case \"Update Wine Information and Types\" must be located inside the System Boundary",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Use Case \"Update Wine Information and Types\" must be located inside the System Boundary"
+        }
+      },
+      {
+        "canonical_id": "G13",
+        "canonical_name": "Browse Wines",
+        "canonical_type": "element",
+        "canonical_description": "The Use Case \"Browse Wines\" must be located inside the System Boundary",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Use Case \"Browse Wines\" must be located inside the System Boundary"
+        }
+      },
+      {
+        "canonical_id": "G14",
+        "canonical_name": "Sales Staff\u2013Browse Wines Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Browse Wines\"",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Browse Wines\""
+        }
+      },
+      {
+        "canonical_id": "G15",
+        "canonical_name": "Receive Monthly XML Data",
+        "canonical_type": "element",
+        "canonical_description": "The Use Case \"Receive Monthly XML Data\" must be located inside the System Boundary",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "The Use Case \"Receive Monthly XML Data\" must be located inside the System Boundary"
+        }
+      },
+      {
+        "canonical_id": "G16",
+        "canonical_name": "Gefen\u2013Receive Monthly XML Data Association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association must connect the Actor \"Gefen System\" to the Use Case \"Receive Monthly XML Data\"",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association must connect the Actor \"Gefen System\" to the Use Case \"Receive Monthly XML Data\""
+        }
+      },
+      {
+        "canonical_id": "G17",
+        "canonical_name": "Place Regular Order \u00abinclude\u00bb Notify GalGalim",
+        "canonical_type": "relation",
+        "canonical_description": "An \u00abinclude\u00bb relationship must originate from \"Place Regular Order\" and target \"Notify GalGalim\"",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An \u00abinclude\u00bb relationship must originate from \"Place Regular Order\" and target \"Notify GalGalim\""
+        }
+      }
+    ],
+    "File 2: initial_reference_guidelines (3).json": [
+      {
+        "canonical_id": "G23",
+        "canonical_name": "Customer",
+        "canonical_type": "element",
+        "canonical_description": "Represent each Customer as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Represent each Customer as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case."
+        }
+      },
+      {
+        "canonical_id": "G24",
+        "canonical_name": "Marketing Employee",
+        "canonical_type": "element",
+        "canonical_description": "Represent employees in the Marketing department as an Actor in the use case diagram; they must appear outside the system boundary and have at least one association to a use case.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Represent employees in the Marketing department as an Actor in the use case diagram; they must appear outside the system boundary and have at least one association to a use case."
+        }
+      },
+      {
+        "canonical_id": "G25",
+        "canonical_name": "Gefen System",
+        "canonical_type": "element",
+        "canonical_description": "Represent the external Gefen system as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Represent the external Gefen system as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case."
+        }
+      },
+      {
+        "canonical_id": "G26",
+        "canonical_name": "GalGalim Company",
+        "canonical_type": "element",
+        "canonical_description": "Represent the external delivery company GalGalim as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Represent the external delivery company GalGalim as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case."
+        }
+      },
+      {
+        "canonical_id": "G27",
+        "canonical_name": "Place Regular Order",
+        "canonical_type": "element",
+        "canonical_description": "Model the joint\u2010order functionality as a Use Case named \"Place Regular Order\" that must participate in at least one association (e.g., with Sales Staff or Customer).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the joint\u2010order functionality as a Use Case named \"Place Regular Order\" that must participate in at least one association (e.g., with Sales Staff or Customer)."
+        }
+      },
+      {
+        "canonical_id": "G28",
+        "canonical_name": "Place Urgent Order",
+        "canonical_type": "element",
+        "canonical_description": "Model the single\u2010customer priority ordering functionality as a Use Case named \"Place Urgent Order\" that must participate in at least one association (e.g., with Sales Staff or Customer).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the single\u2010customer priority ordering functionality as a Use Case named \"Place Urgent Order\" that must participate in at least one association (e.g., with Sales Staff or Customer)."
+        }
+      },
+      {
+        "canonical_id": "G29",
+        "canonical_name": "Place Regular Order \u2194 Place Urgent Order",
+        "canonical_type": "relation",
+        "canonical_description": "Use a Generalization relation between the use cases \"Place Regular Order\" and \"Place Urgent Order\" to represent that both specialize the common order concept.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Use a Generalization relation between the use cases \"Place Regular Order\" and \"Place Urgent Order\" to represent that both specialize the common order concept."
+        }
+      },
+      {
+        "canonical_id": "G30",
+        "canonical_name": "Browse Wines",
+        "canonical_type": "element",
+        "canonical_description": "Model the ability to view available wines as a Use Case named \"Browse Wines\" that must participate in at least one association (e.g., Sales Staff, Customer).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the ability to view available wines as a Use Case named \"Browse Wines\" that must participate in at least one association (e.g., Sales Staff, Customer)."
+        }
+      },
+      {
+        "canonical_id": "G31",
+        "canonical_name": "Update Wine Information",
+        "canonical_type": "element",
+        "canonical_description": "Model the functionality for modifying wine details as a Use Case named \"Update Wine Information\"; only the Marketing Employee actor may associate to it.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the functionality for modifying wine details as a Use Case named \"Update Wine Information\"; only the Marketing Employee actor may associate to it."
+        }
+      },
+      {
+        "canonical_id": "G32",
+        "canonical_name": "Recommend Occasions",
+        "canonical_type": "element",
+        "canonical_description": "Model the functionality for recommending drinking occasions as a Use Case named \"Recommend Occasions\"; only the Marketing Employee actor may associate to it.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the functionality for recommending drinking occasions as a Use Case named \"Recommend Occasions\"; only the Marketing Employee actor may associate to it."
+        }
+      },
+      {
+        "canonical_id": "G33",
+        "canonical_name": "Generate Unproductive Employees Report",
+        "canonical_type": "element",
+        "canonical_description": "Model the report generation as a Use Case named \"Generate Unproductive Employees Report\" that must participate in at least one association (e.g., Sales Staff).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the report generation as a Use Case named \"Generate Unproductive Employees Report\" that must participate in at least one association (e.g., Sales Staff)."
+        }
+      },
+      {
+        "canonical_id": "G34",
+        "canonical_name": "Generate Current Inventory Report",
+        "canonical_type": "element",
+        "canonical_description": "Model the inventory reporting functionality as a Use Case named \"Generate Current Inventory Report\" that must participate in at least one association (e.g., Gefen System).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the inventory reporting functionality as a Use Case named \"Generate Current Inventory Report\" that must participate in at least one association (e.g., Gefen System)."
+        }
+      },
+      {
+        "canonical_id": "G35",
+        "canonical_name": "Generate Wine Recommendation Report",
+        "canonical_type": "element",
+        "canonical_description": "Model the customer\u2010preference\u2010based recommendation as a Use Case named \"Generate Wine Recommendation Report\" that must participate in at least one association (e.g., Sales Staff).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the customer\u2010preference\u2010based recommendation as a Use Case named \"Generate Wine Recommendation Report\" that must participate in at least one association (e.g., Sales Staff)."
+        }
+      },
+      {
+        "canonical_id": "G36",
+        "canonical_name": "Import Producers Data",
+        "canonical_type": "element",
+        "canonical_description": "Model the monthly data import from Gefen about wine producers as a Use Case named \"Import Producers Data\" that must participate in at least one association (e.g., Gefen System).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the monthly data import from Gefen about wine producers as a Use Case named \"Import Producers Data\" that must participate in at least one association (e.g., Gefen System)."
+        }
+      },
+      {
+        "canonical_id": "G37",
+        "canonical_name": "Update Inventory",
+        "canonical_type": "element",
+        "canonical_description": "Model the stock adjustment after sales as a Use Case named \"Update Inventory\" that must participate in at least one association (e.g., internal system actor).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the stock adjustment after sales as a Use Case named \"Update Inventory\" that must participate in at least one association (e.g., internal system actor)."
+        }
+      },
+      {
+        "canonical_id": "G38",
+        "canonical_name": "Suspend/Resume/Cancel Order",
+        "canonical_type": "combination",
+        "canonical_description": "Model the lifecycle controls for an order as three Use Cases named \"Suspend Order\", \"Resume Order\", and \"Cancel Order\" each participating in at least one association (e.g., Customer).",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Model the lifecycle controls for an order as three Use Cases named \"Suspend Order\", \"Resume Order\", and \"Cancel Order\" each participating in at least one association (e.g., Customer)."
+        }
+      }
+    ],
+    "File 3: initial_reference_guidelines (1).json": [
+      {
+        "canonical_id": "G39",
+        "canonical_name": "Sales Staff",
+        "canonical_type": "element",
+        "canonical_description": "Model Sales Staff as an Actor in the use case diagram.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Sales Staff as an Actor in the use case diagram."
+        }
+      },
+      {
+        "canonical_id": "G40",
+        "canonical_name": "Marketing Employee",
+        "canonical_type": "element",
+        "canonical_description": "Model Marketing Employee as an Actor in the use case diagram.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Marketing Employee as an Actor in the use case diagram."
+        }
+      },
+      {
+        "canonical_id": "G41",
+        "canonical_name": "Customer",
+        "canonical_type": "element",
+        "canonical_description": "Model Customer as an Actor in the use case diagram.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Customer as an Actor in the use case diagram."
+        }
+      },
+      {
+        "canonical_id": "G42",
+        "canonical_name": "Place Regular Order",
+        "canonical_type": "element",
+        "canonical_description": "Model Place Regular Order as a Use Case.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Place Regular Order as a Use Case."
+        }
+      },
+      {
+        "canonical_id": "G43",
+        "canonical_name": "Place Urgent Order",
+        "canonical_type": "element",
+        "canonical_description": "Model Place Urgent Order as a Use Case.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Place Urgent Order as a Use Case."
+        }
+      },
+      {
+        "canonical_id": "G44",
+        "canonical_name": "Association Sales Staff\u2013Place Urgent Order",
+        "canonical_type": "relation",
+        "canonical_description": "Connect Sales Staff actor to Place Urgent Order use case with an Association.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Connect Sales Staff actor to Place Urgent Order use case with an Association."
+        }
+      },
+      {
+        "canonical_id": "G45",
+        "canonical_name": "Notify GalGalim",
+        "canonical_type": "element",
+        "canonical_description": "Model Notify GalGalim as a Use Case for sending delivery notifications.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Notify GalGalim as a Use Case for sending delivery notifications."
+        }
+      },
+      {
+        "canonical_id": "G46",
+        "canonical_name": "Initiate Delivery",
+        "canonical_type": "element",
+        "canonical_description": "Model Initiate Delivery as a Use Case for starting deliveries.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Model Initiate Delivery as a Use Case for starting deliveries."
+        }
+      },
+      {
+        "canonical_id": "G47",
+        "canonical_name": "Include Place Urgent Order\u2192Initiate Delivery",
+        "canonical_type": "relation",
+        "canonical_description": "Use an \u00abinclude\u00bb relationship from Place Urgent Order to Initiate Delivery.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Use an \u00abinclude\u00bb relationship from Place Urgent Order to Initiate Delivery."
+        }
+      },
+      {
+        "canonical_id": "G48",
+        "canonical_name": "Subsystem Boundaries",
+        "canonical_type": "combination",
+        "canonical_description": "Use multiple System Boundary fragments (e.g., Order Management, Inventory Management, Reporting) when modeling different system subjects; a Use Case may appear in more than one boundary.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Use multiple System Boundary fragments (e.g., Order Management, Inventory Management, Reporting) when modeling different system subjects; a Use Case may appear in more than one boundary."
+        }
+      }
+    ],
+    "File 4: initial_reference_guidelines (2).json": [
+      {
+        "canonical_id": "G49",
+        "canonical_name": "Place Order",
+        "canonical_type": "element",
+        "canonical_description": "Model placing any order as a Use Case classifier enclosed within the system boundary \"Cheers\".",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "Model placing any order as a Use Case classifier enclosed within the system boundary \"Cheers\"."
+        }
+      }
+    ]
+  },
+  "detailed_overlap_metrics": {
+    "G1": {
+      "canonical_id": "G1",
+      "canonical_name": "Sales Staff",
+      "canonical_type": "element",
+      "canonical_description": "The Actor \"Sales Staff\" must be placed outside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The Actor \"Sales Staff\" must be placed outside the System Boundary",
+        "4": "Represent the role of sales staff as an Actor classifier located outside the system boundary."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G2": {
+      "canonical_id": "G2",
+      "canonical_name": "Marketing Department Employee",
+      "canonical_type": "element",
+      "canonical_description": "The Actor \"Marketing Department Employee\" must be placed outside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The Actor \"Marketing Department Employee\" must be placed outside the System Boundary",
+        "4": "Represent the marketing department employee as an Actor classifier located outside the system boundary."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G3": {
+      "canonical_id": "G3",
+      "canonical_name": "Customer",
+      "canonical_type": "element",
+      "canonical_description": "The Actor \"Customer\" must be placed outside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The Actor \"Customer\" must be placed outside the System Boundary",
+        "4": "Represent the customer as an Actor classifier located outside the system boundary."
+      },
+      "citation_similarity_score": 0.027777777777777776
+    },
+    "G4": {
+      "canonical_id": "G4",
+      "canonical_name": "GalGalim",
+      "canonical_type": "element",
+      "canonical_description": "The external Actor \"GalGalim\" must be placed outside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The external Actor \"GalGalim\" must be placed outside the System Boundary",
+        "4": "Represent the external delivery company as an Actor classifier located outside the system boundary."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G5": {
+      "canonical_id": "G5",
+      "canonical_name": "Gefen System",
+      "canonical_type": "element",
+      "canonical_description": "The external Actor \"Gefen\" must be placed outside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The external Actor \"Gefen\" must be placed outside the System Boundary",
+        "4": "Represent the external XML data provider as an Actor classifier located outside the system boundary."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G7": {
+      "canonical_id": "G7",
+      "canonical_name": "Place Urgent Order",
+      "canonical_type": "element",
+      "canonical_description": "The Use Case \"Place Urgent Order\" must be located inside the System Boundary",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The Use Case \"Place Urgent Order\" must be located inside the System Boundary",
+        "4": "Model placing a regular order as a Use Case classifier enclosed within the system boundary."
+      },
+      "citation_similarity_score": 0.14705882352941177
+    },
+    "G8": {
+      "canonical_id": "G8",
+      "canonical_name": "Sales Staff\u2013Place Regular Order Association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Place Regular Order\"",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association must connect the Actor \"Sales Staff\" to the Use Case \"Place Regular Order\"",
+        "4": "Model placing an urgent order as a Use Case classifier enclosed within the system boundary."
+      },
+      "citation_similarity_score": 0.2
+    },
+    "G9": {
+      "canonical_id": "G9",
+      "canonical_name": "Customer\u2013Place Regular Order Association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Regular Order\"",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Regular Order\"",
+        "3": "Connect Sales Staff actor to Place Regular Order use case with an Association."
+      },
+      "citation_similarity_score": 0.14705882352941177
+    },
+    "G10": {
+      "canonical_id": "G10",
+      "canonical_name": "Customer\u2013Place Urgent Order Association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Urgent Order\"",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association must connect the Actor \"Customer\" to the Use Case \"Place Urgent Order\"",
+        "3": "Connect Customer actor to Place Regular Order use case with an Association."
+      },
+      "citation_similarity_score": 0.14705882352941177
+    },
+    "G11": {
+      "canonical_id": "G11",
+      "canonical_name": "Marketing Employee\u2013Update Wine Information Association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association must connect the Actor \"Marketing Department Employee\" to the Use Case \"Update Wine Information and Types\"",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association must connect the Actor \"Marketing Department Employee\" to the Use Case \"Update Wine Information and Types\"",
+        "3": "Connect Customer actor to Place Urgent Order use case with an Association."
+      },
+      "citation_similarity_score": 0.10344827586206896
+    },
+    "G18": {
+      "canonical_id": "G18",
+      "canonical_name": "Manage Order \u00abextend\u00bb Suspend/Resume/Cancel Order",
+      "canonical_type": "relation",
+      "canonical_description": "An \u00abextend\u00bb relationship must originate from the extending Use Cases \"Suspend Order\", \"Resume Order\", \"Cancel Order\" and target the base Use Case \"Manage Order\"",
+      "files_present_indices": [
+        1,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An \u00abextend\u00bb relationship must originate from the extending Use Cases \"Suspend Order\", \"Resume Order\", \"Cancel Order\" and target the base Use Case \"Manage Order\"",
+        "3": "Use an \u00abinclude\u00bb relationship from Place Regular Order to Notify GalGalim.",
+        "4": "Use an \u00abinclude\u00bb relation from the base Use Case \"Place Order\" to a supporting Use Case \"Specify Order Details\" for mandatory shared behavior (e.g., order number, date, status, shipment date, assigned employee)."
+      },
+      "citation_similarity_score": 0.16666666666666666
+    },
+    "G19": {
+      "canonical_id": "G19",
+      "canonical_name": "Employee \u2013> Sales Staff, Marketing Employee",
+      "canonical_type": "relation",
+      "canonical_description": "A Generalization must connect the Actor \"Employee\" to its specializations \"Sales Staff\" and \"Marketing Department Employee\"",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Generalization must connect the Actor \"Employee\" to its specializations \"Sales Staff\" and \"Marketing Department Employee\"",
+        "4": "Use an \u00abextend\u00bb relation from the extending Use Case \"Place Urgent Order\" to the base Use Case \"Place Order\" for conditional, priority-handled behavior."
+      },
+      "citation_similarity_score": 0.0851063829787234
+    },
+    "G20": {
+      "canonical_id": "G20",
+      "canonical_name": "Place Order \u2013> Place Regular Order, Place Urgent Order",
+      "canonical_type": "relation",
+      "canonical_description": "A Generalization must connect the Use Case \"Place Order\" to its specializations \"Place Regular Order\" and \"Place Urgent Order\"",
+      "files_present_indices": [
+        1,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Generalization must connect the Use Case \"Place Order\" to its specializations \"Place Regular Order\" and \"Place Urgent Order\"",
+        "3": "Use generalization to model Sales Staff and Marketing Employee as specializations of a common Employee actor.",
+        "4": "Use a generalization relation to link the more specific Actor classifiers \"Sales Staff\" and \"Marketing Employee\" to the more general Actor classifier \"Employee\"."
+      },
+      "citation_similarity_score": 0.09433962264150944
+    },
+    "G21": {
+      "canonical_id": "G21",
+      "canonical_name": "System Boundary Containment",
+      "canonical_type": "combination",
+      "canonical_description": "The System Boundary may contain Use Cases but must not contain Actors or Relationships",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "The System Boundary may contain Use Cases but must not contain Actors or Relationships",
+        "3": "Use generalization to model that Place Regular Order and Place Urgent Order specialize a common Place Order base use case."
+      },
+      "citation_similarity_score": 0.037037037037037035
+    },
+    "G22": {
+      "canonical_id": "G22",
+      "canonical_name": "Sales Staff",
+      "canonical_type": "element",
+      "canonical_description": "Represent the Sales Staff role as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+      "files_present_indices": [
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/stage_2_cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "2": "Represent the Sales Staff role as an Actor in the use case diagram; it must appear outside the system boundary and have at least one association to a use case.",
+        "3": "Enclose all Use Case elements in a single System Boundary named \"Cheers System\"; do not enclose any Actor elements.",
+        "4": "Define a System Boundary named \"Cheers\" that encloses only the Use Case classifiers relevant to inventory management, customer management, and order processing and delivery."
+      },
+      "citation_similarity_score": 0.05714285714285714
+    }
+  }
+}

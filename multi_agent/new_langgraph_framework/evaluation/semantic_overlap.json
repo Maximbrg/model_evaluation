@@ -1,0 +1,1596 @@
+{
+  "metrics": {
+    "total_files_compared": 4,
+    "total_unique_semantic_guidelines": 57,
+    "semantic_guidelines_in_all_files": 7,
+    "semantic_guidelines_in_multiple_but_not_all": 18,
+    "semantic_guideline_agreement_ratio": 0.43859649122807015,
+    "average_citation_jaccard_similarity": 0.6539941962055476
+  },
+  "file_mapping": {
+    "File 1": "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+    "File 2": "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+    "File 3": "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+    "File 4": "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+  },
+  "overlaps": {
+    "present_in_all": [
+      {
+        "canonical_id": "G1",
+        "canonical_name": "Employee",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier representing a company employee owning attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier representing a company employee owning attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+          "2": "Define a Class Employee owning Properties id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+          "3": "Define a Class 'Employee' with attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+          "4": "A Class named Employee with Properties id:String, name:String, phoneNumber:String, officeAddress:String, email:String, employmentStartDate:Date."
+        },
+        "citation_similarity_score": 0.28846153846153844
+      },
+      {
+        "canonical_id": "G2",
+        "canonical_name": "Customer",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier representing a customer owning attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier representing a customer owning attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+          "2": "Define a Class Customer owning Properties id, name, phoneNumber, deliveryAddress, email, and dateOfFirstContact.",
+          "3": "Define a Class 'Customer' with attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+          "4": "A Class named Customer with Properties id:String, name:String, phoneNumber:String, deliveryAddress:String, email:String, firstContactDate:Date."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G4",
+        "canonical_name": "Order",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier representing an order owning attributes orderNumber, orderDate, status, and shipmentDate.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier representing an order owning attributes orderNumber, orderDate, status, and shipmentDate.",
+          "2": "Define a Class Order owning Properties orderNumber, orderDate, status, and shipmentDate.",
+          "3": "Define a Class 'Order' with attributes orderNumber, orderDate, currentStatus, and shipmentDate.",
+          "4": "A Class named Order representing customer orders."
+        },
+        "citation_similarity_score": 0.7105263157894737
+      },
+      {
+        "canonical_id": "G7",
+        "canonical_name": "UrgentOrder",
+        "canonical_type": "element",
+        "canonical_description": "A subclass of Order owning attributes priorityLevel (Integer, 1..5) and expectedDeliveryTime.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A subclass of Order owning attributes priorityLevel (Integer, 1..5) and expectedDeliveryTime.",
+          "2": "Define a Class UrgentOrder specializing Order, owning Properties priorityLevel (Integer 1..5) and expectedDeliveryTime.",
+          "3": "Define a Class 'UrgentOrder' with attributes priorityLevel (1..5) and expectedDeliveryTime.",
+          "4": "A Class UrgentOrder that generalizes Order and owns Properties priorityLevel:Integer[1..5], expectedDeliveryTime:DateTime."
+        },
+        "citation_similarity_score": 0.6451612903225806
+      },
+      {
+        "canonical_id": "G13",
+        "canonical_name": "Manufacturer",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier owning attributes id, fullName, contactPhoneNumber, address, and email.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier owning attributes id, fullName, contactPhoneNumber, address, and email.",
+          "2": "Define a Class Manufacturer owning Properties id, fullName, contactPhoneNumber, address, and email.",
+          "3": "Define a Class 'Manufacturer' with attributes id, fullName, phoneNumber, address, and email.",
+          "4": "A Class named Manufacturer with Properties manufacturerId:ID, fullName:String, phoneNumber:String, address:String, email:String."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G15",
+        "canonical_name": "StorageLocation",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier owning attributes id and name.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier owning attributes id and name.",
+          "2": "Define a Class StorageLocation owning Properties id and name.",
+          "3": "Define a Class 'Location' with attributes id and name.",
+          "4": "An Association between Wine and Manufacturer with multiplicity Wine\u2192Manufacturer[1], Manufacturer\u2192Wine[0..*]."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G16",
+        "canonical_name": "Inventory",
+        "canonical_type": "combination",
+        "canonical_description": "An AssociationClass between Wine and StorageLocation owning attribute bottleCount.",
+        "files_present_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An AssociationClass between Wine and StorageLocation owning attribute bottleCount.",
+          "2": "Define an AssociationClass InventoryEntry linking Wine and StorageLocation with attribute bottleCount.",
+          "3": "Define an AssociationClass 'Inventory' between Wine and Location with attribute bottleCount.",
+          "4": "A Class named StorageLocation with Properties locationId:ID, name:String."
+        },
+        "citation_similarity_score": 1.0
+      }
+    ],
+    "present_in_multiple": [
+      {
+        "canonical_id": "G3",
+        "canonical_name": "Order\u2013Employee association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association linking Order to Employee with an association end on Order named assignedEmployee multiplicity 1 and navigable, and a corresponding back-reference on Employee.",
+        "files_present_indices": [
+          1,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association linking Order to Employee with an association end on Order named assignedEmployee multiplicity 1 and navigable, and a corresponding back-reference on Employee.",
+          "3": "Define an Association between Order and Employee where each Order is assigned to exactly one Employee (multiplicity 1) and an Employee can be assigned to many Orders (0..*).",
+          "4": "An Association between Order and Employee with a navigable end from Order to Employee multiplicity 1."
+        },
+        "citation_similarity_score": 0.5
+      },
+      {
+        "canonical_id": "G5",
+        "canonical_name": "OrderStatus",
+        "canonical_type": "element",
+        "canonical_description": "An Enumeration classifier defining literals in process, dispatched, delivered, paid, suspended, and canceled.",
+        "files_present_indices": [
+          1,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Enumeration classifier defining literals in process, dispatched, delivered, paid, suspended, and canceled.",
+          "4": "An Enumeration named OrderStatus with literals {in process, dispatched, delivered, paid, suspended, canceled}."
+        },
+        "citation_similarity_score": 0.2631578947368421
+      },
+      {
+        "canonical_id": "G6",
+        "canonical_name": "Order generalization",
+        "canonical_type": "relation",
+        "canonical_description": "A Generalization where RegularOrder and UrgentOrder specialize the superclass Order.",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Generalization where RegularOrder and UrgentOrder specialize the superclass Order.",
+          "3": "Define a Generalization where RegularOrder and UrgentOrder specialize the Order class."
+        },
+        "citation_similarity_score": 0.23684210526315788
+      },
+      {
+        "canonical_id": "G10",
+        "canonical_name": "OrderLine",
+        "canonical_type": "combination",
+        "canonical_description": "An AssociationClass between Order and Wine owning the attribute quantity.",
+        "files_present_indices": [
+          1,
+          2,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An AssociationClass between Order and Wine owning the attribute quantity.",
+          "2": "Define an AssociationClass OrderLine linking Order and Wine with an attribute quantity.",
+          "4": "An AssociationClass named OrderLine linking Order and Wine and owning Property quantity:Integer."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G11",
+        "canonical_name": "Wine",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier owning attributes name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage.",
+        "files_present_indices": [
+          1,
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier owning attributes name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage.",
+          "2": "Define a Class Wine owning Properties name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G12",
+        "canonical_name": "SweetnessLevel",
+        "canonical_type": "element",
+        "canonical_description": "An Enumeration classifier defining literals dry, semi-dry, semi-sweet, and sweet.",
+        "files_present_indices": [
+          1,
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Enumeration classifier defining literals dry, semi-dry, semi-sweet, and sweet.",
+          "3": "Define an Enumeration 'SweetnessLevel' with literals dry, semi-dry, semi-sweet, and sweet.",
+          "4": "An Enumeration named SweetnessLevel with literals {dry, semi-dry, semi-sweet, sweet}."
+        },
+        "citation_similarity_score": 0.6666666666666666
+      },
+      {
+        "canonical_id": "G14",
+        "canonical_name": "Manufacturer\u2013Wine association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association linking Manufacturer to Wine with multiplicity on Wine 0..* and on Manufacturer 1.",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association linking Manufacturer to Wine with multiplicity on Wine 0..* and on Manufacturer 1.",
+          "3": "Define an Association between Manufacturer and Wine; each Wine is produced by exactly one Manufacturer (1), and a Manufacturer can produce multiple Wines (*)."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G17",
+        "canonical_name": "WineType",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier owning attributes name and serialNumber.",
+        "files_present_indices": [
+          1,
+          2,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier owning attributes name and serialNumber.",
+          "2": "Define a Class WineType owning Properties name and serialNumber.",
+          "4": "An AssociationClass named Inventory linking Wine and StorageLocation and owning Property bottleCount:Integer."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G18",
+        "canonical_name": "Wine\u2013WineType association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association linking Wine to WineType with multiplicity WineType 1 and Wine 0..*.",
+        "files_present_indices": [
+          1,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association linking Wine to WineType with multiplicity WineType 1 and Wine 0..*.",
+          "3": "Define an Association between Wine and WineType; each Wine is linked to exactly one WineType, and a WineType may apply to multiple Wines."
+        },
+        "citation_similarity_score": 0.5333333333333333
+      },
+      {
+        "canonical_id": "G19",
+        "canonical_name": "FoodPairing",
+        "canonical_type": "element",
+        "canonical_description": "A DataType classifier owning attributes dishName and recipeLinks (URL) with multiplicity 0..5.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A DataType classifier owning attributes dishName and recipeLinks (URL) with multiplicity 0..5.",
+          "2": "Define a Class FoodPairing owning Properties dishName and recipeLink of type URL with multiplicity 0..5.",
+          "3": "Define a Class 'FoodPairing' with attributes dishName and recipeUrls [0..5]."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G20",
+        "canonical_name": "WineType.foodPairings",
+        "canonical_type": "element",
+        "canonical_description": "An attribute on WineType named foodPairings typed FoodPairing with multiplicity 0..* (max 5).",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An attribute on WineType named foodPairings typed FoodPairing with multiplicity 0..* (max 5).",
+          "2": "Define an Association between WineType and FoodPairing with multiplicity 0..* at FoodPairing end.",
+          "3": "Define an Association between WineType and FoodPairing; each WineType may have multiple FoodPairings."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G21",
+        "canonical_name": "Occasion",
+        "canonical_type": "element",
+        "canonical_description": "A DataType classifier owning attributes description, season, and location.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A DataType classifier owning attributes description, season, and location.",
+          "2": "Define a Class OccasionRecommendation owning Properties description, season, and location.",
+          "3": "Define a Class 'OccasionRecommendation' with attributes description, season, and location (indoor/outdoor)."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G22",
+        "canonical_name": "WineType.occasions",
+        "canonical_type": "element",
+        "canonical_description": "An attribute on WineType named occasions typed Occasion with multiplicity 0..*.",
+        "files_present_indices": [
+          1,
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An attribute on WineType named occasions typed Occasion with multiplicity 0..*.",
+          "2": "Define an Association between WineType and OccasionRecommendation with multiplicity 0..* at OccasionRecommendation end.",
+          "3": "Define an Association between WineType and OccasionRecommendation; each WineType may have multiple OccasionRecommendations."
+        },
+        "citation_similarity_score": 1.0
+      },
+      {
+        "canonical_id": "G24",
+        "canonical_name": "Dependency to GefenSystem",
+        "canonical_type": "relation",
+        "canonical_description": "A Dependency from the model to GefenSystem indicating incoming data impacts.",
+        "files_present_indices": [
+          1,
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Dependency from the model to GefenSystem indicating incoming data impacts.",
+          "2": "Define a Dependency from CurrentInventoryReport to GefenSystem."
+        },
+        "citation_similarity_score": 0.1
+      },
+      {
+        "canonical_id": "G29",
+        "canonical_name": "OrderStatus",
+        "canonical_type": "element",
+        "canonical_description": "Define an Enumeration OrderStatus with literals in process, dispatched, delivered, paid, suspended, canceled, clarification.",
+        "files_present_indices": [
+          2,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Enumeration OrderStatus with literals in process, dispatched, delivered, paid, suspended, canceled, clarification.",
+          "4": "An Association between Delivery and Order with multiplicity Delivery\u2192Order[0..*], Order\u2192Delivery[1]."
+        },
+        "citation_similarity_score": 0.18840579710144928
+      },
+      {
+        "canonical_id": "G32",
+        "canonical_name": "RegularOrder\u2013mainCustomer association",
+        "canonical_type": "relation",
+        "canonical_description": "Define an Association end mainCustomer from RegularOrder to Customer with multiplicity 1.",
+        "files_present_indices": [
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Association end mainCustomer from RegularOrder to Customer with multiplicity 1.",
+          "3": "Define an Association between UrgentOrder and Customer where each UrgentOrder is placed by exactly one Customer (multiplicity 1), and a Customer may place multiple UrgentOrders."
+        },
+        "citation_similarity_score": 0.03571428571428571
+      },
+      {
+        "canonical_id": "G34",
+        "canonical_name": "CustomerOrderItem (alternative)",
+        "canonical_type": "combination",
+        "canonical_description": "Alternatively, define an AssociationClass CustomerOrderItem linking Customer, Order, and Wine with an attribute quantity to track wines and quantities per customer.",
+        "files_present_indices": [
+          2,
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Alternatively, define an AssociationClass CustomerOrderItem linking Customer, Order, and Wine with an attribute quantity to track wines and quantities per customer.",
+          "3": "Define an Association between RegularOrder and Customer where a RegularOrder can include multiple Customers and a Customer can participate in multiple RegularOrders."
+        },
+        "citation_similarity_score": 0.029411764705882353
+      },
+      {
+        "canonical_id": "G50",
+        "canonical_name": "Wine",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class 'Wine' with attributes name, description, productionYear, pricePerBottle, sweetnessLevel, productImage, and catalogNumber.",
+        "files_present_indices": [
+          3,
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Define a Class 'Wine' with attributes name, description, productionYear, pricePerBottle, sweetnessLevel, productImage, and catalogNumber.",
+          "4": "An Enumeration named WineType with literals {red, white, sparkling, fortified, ros\u00e9, dessert}."
+        },
+        "citation_similarity_score": 0.15217391304347827
+      }
+    ]
+  },
+  "disjoints_by_file": {
+    "File 1: initial_reference_guidelines.json": [
+      {
+        "canonical_id": "G8",
+        "canonical_name": "RegularOrder",
+        "canonical_type": "element",
+        "canonical_description": "A subclass of Order owning attribute mainCustomer referencing Customer.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A subclass of Order owning attribute mainCustomer referencing Customer."
+        }
+      },
+      {
+        "canonical_id": "G9",
+        "canonical_name": "RegularOrder\u2013Customer association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association linking RegularOrder to Customer with multiplicity on Customer 1..*.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association linking RegularOrder to Customer with multiplicity on Customer 1..*."
+        }
+      },
+      {
+        "canonical_id": "G23",
+        "canonical_name": "GefenSystem",
+        "canonical_type": "element",
+        "canonical_description": "An Interface classifier representing the external system providing monthly XML data for manufacturers and wines.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Interface classifier representing the external system providing monthly XML data for manufacturers and wines."
+        }
+      },
+      {
+        "canonical_id": "G25",
+        "canonical_name": "GalGalimCompany",
+        "canonical_type": "element",
+        "canonical_description": "An Interface classifier representing the external delivery company managing shipments.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Interface classifier representing the external delivery company managing shipments."
+        }
+      },
+      {
+        "canonical_id": "G26",
+        "canonical_name": "notifyGalGalim()",
+        "canonical_type": "element",
+        "canonical_description": "An Operation on RegularOrder to send delivery notifications to GalGalimCompany with address and bottle quantity.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Operation on RegularOrder to send delivery notifications to GalGalimCompany with address and bottle quantity."
+        }
+      },
+      {
+        "canonical_id": "G27",
+        "canonical_name": "Delivery",
+        "canonical_type": "element",
+        "canonical_description": "A Classifier owning attributes city and bottleCount.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "A Classifier owning attributes city and bottleCount."
+        }
+      },
+      {
+        "canonical_id": "G28",
+        "canonical_name": "Delivery\u2013Order association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association linking Delivery to Order with multiplicity Order 0..* and Delivery 1.",
+        "files_present_indices": [
+          1
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json"
+        ],
+        "original_descriptions_by_file_index": {
+          "1": "An Association linking Delivery to Order with multiplicity Order 0..* and Delivery 1."
+        }
+      }
+    ],
+    "File 2: initial_reference_guidelines (3).json": [
+      {
+        "canonical_id": "G30",
+        "canonical_name": "RegularOrder",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class RegularOrder specializing Order.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Class RegularOrder specializing Order."
+        }
+      },
+      {
+        "canonical_id": "G31",
+        "canonical_name": "UrgentOrder\u2013Customer multiplicity constraint",
+        "canonical_type": "element",
+        "canonical_description": "Attach a Constraint on UrgentOrder requiring exactly one associated Customer.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Attach a Constraint on UrgentOrder requiring exactly one associated Customer."
+        }
+      },
+      {
+        "canonical_id": "G33",
+        "canonical_name": "RegularOrder\u2013customers association",
+        "canonical_type": "relation",
+        "canonical_description": "Define an Association end customers from RegularOrder to Customer with multiplicity 0..*.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Association end customers from RegularOrder to Customer with multiplicity 0..*."
+        }
+      },
+      {
+        "canonical_id": "G35",
+        "canonical_name": "Manufacturer\u2013Wine association",
+        "canonical_type": "relation",
+        "canonical_description": "Define an Association between Manufacturer and Wine with multiplicity 1..* at the Wine end.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Association between Manufacturer and Wine with multiplicity 1..* at the Wine end."
+        }
+      },
+      {
+        "canonical_id": "G36",
+        "canonical_name": "Manufacturer\u2013Wine qualified association",
+        "canonical_type": "relation",
+        "canonical_description": "Define a QualifiedAssociation on the Manufacturer\u2013Wine link using qualifier catalogNumber at the Manufacturer end.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a QualifiedAssociation on the Manufacturer\u2013Wine link using qualifier catalogNumber at the Manufacturer end."
+        }
+      },
+      {
+        "canonical_id": "G37",
+        "canonical_name": "Wine\u2013WineType association",
+        "canonical_type": "relation",
+        "canonical_description": "Define an Association between Wine and WineType with multiplicity 0..* at WineType end.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Association between Wine and WineType with multiplicity 0..* at WineType end."
+        }
+      },
+      {
+        "canonical_id": "G38",
+        "canonical_name": "Delivery",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class Delivery owning Properties deliveryAddress and totalQuantity.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Class Delivery owning Properties deliveryAddress and totalQuantity."
+        }
+      },
+      {
+        "canonical_id": "G39",
+        "canonical_name": "Delivery\u2013Order composition",
+        "canonical_type": "relation",
+        "canonical_description": "Define a Composition between Delivery and Order with multiplicity 1..* at the Order end.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Composition between Delivery and Order with multiplicity 1..* at the Order end."
+        }
+      },
+      {
+        "canonical_id": "G40",
+        "canonical_name": "Delivery bottle limits constraint",
+        "canonical_type": "element",
+        "canonical_description": "Attach a Constraint on Delivery requiring totalQuantity between minimum and maximum limits.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Attach a Constraint on Delivery requiring totalQuantity between minimum and maximum limits."
+        }
+      },
+      {
+        "canonical_id": "G41",
+        "canonical_name": "notifyGalGalim",
+        "canonical_type": "element",
+        "canonical_description": "Define an Operation notifyGalGalim(deliveryAddress: String, bottleCount: Integer) on Delivery.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Operation notifyGalGalim(deliveryAddress: String, bottleCount: Integer) on Delivery."
+        }
+      },
+      {
+        "canonical_id": "G42",
+        "canonical_name": "dispatch",
+        "canonical_type": "element",
+        "canonical_description": "Define an Operation dispatch() on Delivery.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define an Operation dispatch() on Delivery."
+        }
+      },
+      {
+        "canonical_id": "G43",
+        "canonical_name": "Urgent dispatch constraint",
+        "canonical_type": "element",
+        "canonical_description": "Attach a Constraint: For UrgentOrder deliveries, dispatch is initiated immediately without delay.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Attach a Constraint: For UrgentOrder deliveries, dispatch is initiated immediately without delay."
+        }
+      },
+      {
+        "canonical_id": "G44",
+        "canonical_name": "clarification status constraint",
+        "canonical_type": "element",
+        "canonical_description": "Attach a Constraint on Order: if not delivered within five days, status = clarification.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Attach a Constraint on Order: if not delivered within five days, status = clarification."
+        }
+      },
+      {
+        "canonical_id": "G45",
+        "canonical_name": "UnproductiveEmployeesReport",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class UnproductiveEmployeesReport with Operation generate(startDate: Date, endDate: Date): List<Employee>.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Class UnproductiveEmployeesReport with Operation generate(startDate: Date, endDate: Date): List<Employee>."
+        }
+      },
+      {
+        "canonical_id": "G46",
+        "canonical_name": "CurrentInventoryReport",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class CurrentInventoryReport with Operation generate(): InventoryLevels and Operation exportToJSON(): JSON.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Class CurrentInventoryReport with Operation generate(): InventoryLevels and Operation exportToJSON(): JSON."
+        }
+      },
+      {
+        "canonical_id": "G47",
+        "canonical_name": "WineRecommendationReport",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class WineRecommendationReport with Operation generate(customerPreferences: Preferences): List<Wine>.",
+        "files_present_indices": [
+          2
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "2": "Define a Class WineRecommendationReport with Operation generate(customerPreferences: Preferences): List<Wine>."
+        }
+      }
+    ],
+    "File 3: initial_reference_guidelines (1).json": [
+      {
+        "canonical_id": "G48",
+        "canonical_name": "RegularOrder",
+        "canonical_type": "element",
+        "canonical_description": "Define a Class 'RegularOrder' which allows associations with multiple customers for joint orders.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Define a Class 'RegularOrder' which allows associations with multiple customers for joint orders."
+        }
+      },
+      {
+        "canonical_id": "G49",
+        "canonical_name": "WineType",
+        "canonical_type": "element",
+        "canonical_description": "Define an Enumeration 'WineType' with literals red, white, sparkling, fortified, ros\u00e9, and dessert.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Define an Enumeration 'WineType' with literals red, white, sparkling, fortified, ros\u00e9, and dessert."
+        }
+      },
+      {
+        "canonical_id": "G51",
+        "canonical_name": "OrderItem",
+        "canonical_type": "combination",
+        "canonical_description": "Define an AssociationClass 'OrderItem' between Order and Wine with attribute quantity.",
+        "files_present_indices": [
+          3
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "3": "Define an AssociationClass 'OrderItem' between Order and Wine with attribute quantity."
+        }
+      }
+    ],
+    "File 4: initial_reference_guidelines (2).json": [
+      {
+        "canonical_id": "G52",
+        "canonical_name": "OrderType",
+        "canonical_type": "element",
+        "canonical_description": "An Enumeration named OrderType with literals {Regular, Urgent}.",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "An Enumeration named OrderType with literals {Regular, Urgent}."
+        }
+      },
+      {
+        "canonical_id": "G53",
+        "canonical_name": "Order\u2013Customer association",
+        "canonical_type": "relation",
+        "canonical_description": "An Association between Order and Customer with multiplicity Order\u2192Customer [1..*] (regular orders) or [1..1] (urgent orders).",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "An Association between Order and Customer with multiplicity Order\u2192Customer [1..*] (regular orders) or [1..1] (urgent orders)."
+        }
+      },
+      {
+        "canonical_id": "G54",
+        "canonical_name": "OrderParticipation",
+        "canonical_type": "combination",
+        "canonical_description": "An AssociationClass named OrderParticipation linking Order and Customer and owning Property isMain:Boolean.",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "An AssociationClass named OrderParticipation linking Order and Customer and owning Property isMain:Boolean."
+        }
+      },
+      {
+        "canonical_id": "G55",
+        "canonical_name": "Wine",
+        "canonical_type": "element",
+        "canonical_description": "A Class named Wine with Properties name:String, description:String, productionYear:Integer, pricePerBottle:Decimal, productImage:Image, identified by composite key(manufacturerId,catalogNumber).",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "A Class named Wine with Properties name:String, description:String, productionYear:Integer, pricePerBottle:Decimal, productImage:Image, identified by composite key(manufacturerId,catalogNumber)."
+        }
+      },
+      {
+        "canonical_id": "G56",
+        "canonical_name": "updateInventory",
+        "canonical_type": "element",
+        "canonical_description": "An Operation named updateInventory() defined on Inventory or Wine to decrement bottleCount after sale.",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "An Operation named updateInventory() defined on Inventory or Wine to decrement bottleCount after sale."
+        }
+      },
+      {
+        "canonical_id": "G57",
+        "canonical_name": "Delivery",
+        "canonical_type": "element",
+        "canonical_description": "A Class named Delivery with Properties deliveryId:ID, city:String, minBottleLimit:Integer, maxBottleLimit:Integer, bottleCount:Integer.",
+        "files_present_indices": [
+          4
+        ],
+        "files_present_paths": [
+          "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+        ],
+        "original_descriptions_by_file_index": {
+          "4": "A Class named Delivery with Properties deliveryId:ID, city:String, minBottleLimit:Integer, maxBottleLimit:Integer, bottleCount:Integer."
+        }
+      }
+    ]
+  },
+  "detailed_overlap_metrics": {
+    "G1": {
+      "canonical_id": "G1",
+      "canonical_name": "Employee",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier representing a company employee owning attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier representing a company employee owning attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+        "2": "Define a Class Employee owning Properties id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+        "3": "Define a Class 'Employee' with attributes id, name, phoneNumber, officeAddress, email, and employmentStartDate.",
+        "4": "A Class named Employee with Properties id:String, name:String, phoneNumber:String, officeAddress:String, email:String, employmentStartDate:Date."
+      },
+      "citation_similarity_score": 0.28846153846153844
+    },
+    "G2": {
+      "canonical_id": "G2",
+      "canonical_name": "Customer",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier representing a customer owning attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier representing a customer owning attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+        "2": "Define a Class Customer owning Properties id, name, phoneNumber, deliveryAddress, email, and dateOfFirstContact.",
+        "3": "Define a Class 'Customer' with attributes id, name, phoneNumber, deliveryAddress, email, and firstContactDate.",
+        "4": "A Class named Customer with Properties id:String, name:String, phoneNumber:String, deliveryAddress:String, email:String, firstContactDate:Date."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G3": {
+      "canonical_id": "G3",
+      "canonical_name": "Order\u2013Employee association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association linking Order to Employee with an association end on Order named assignedEmployee multiplicity 1 and navigable, and a corresponding back-reference on Employee.",
+      "files_present_indices": [
+        1,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association linking Order to Employee with an association end on Order named assignedEmployee multiplicity 1 and navigable, and a corresponding back-reference on Employee.",
+        "3": "Define an Association between Order and Employee where each Order is assigned to exactly one Employee (multiplicity 1) and an Employee can be assigned to many Orders (0..*).",
+        "4": "An Association between Order and Employee with a navigable end from Order to Employee multiplicity 1."
+      },
+      "citation_similarity_score": 0.5
+    },
+    "G4": {
+      "canonical_id": "G4",
+      "canonical_name": "Order",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier representing an order owning attributes orderNumber, orderDate, status, and shipmentDate.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier representing an order owning attributes orderNumber, orderDate, status, and shipmentDate.",
+        "2": "Define a Class Order owning Properties orderNumber, orderDate, status, and shipmentDate.",
+        "3": "Define a Class 'Order' with attributes orderNumber, orderDate, currentStatus, and shipmentDate.",
+        "4": "A Class named Order representing customer orders."
+      },
+      "citation_similarity_score": 0.7105263157894737
+    },
+    "G5": {
+      "canonical_id": "G5",
+      "canonical_name": "OrderStatus",
+      "canonical_type": "element",
+      "canonical_description": "An Enumeration classifier defining literals in process, dispatched, delivered, paid, suspended, and canceled.",
+      "files_present_indices": [
+        1,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Enumeration classifier defining literals in process, dispatched, delivered, paid, suspended, and canceled.",
+        "4": "An Enumeration named OrderStatus with literals {in process, dispatched, delivered, paid, suspended, canceled}."
+      },
+      "citation_similarity_score": 0.2631578947368421
+    },
+    "G6": {
+      "canonical_id": "G6",
+      "canonical_name": "Order generalization",
+      "canonical_type": "relation",
+      "canonical_description": "A Generalization where RegularOrder and UrgentOrder specialize the superclass Order.",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Generalization where RegularOrder and UrgentOrder specialize the superclass Order.",
+        "3": "Define a Generalization where RegularOrder and UrgentOrder specialize the Order class."
+      },
+      "citation_similarity_score": 0.23684210526315788
+    },
+    "G7": {
+      "canonical_id": "G7",
+      "canonical_name": "UrgentOrder",
+      "canonical_type": "element",
+      "canonical_description": "A subclass of Order owning attributes priorityLevel (Integer, 1..5) and expectedDeliveryTime.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A subclass of Order owning attributes priorityLevel (Integer, 1..5) and expectedDeliveryTime.",
+        "2": "Define a Class UrgentOrder specializing Order, owning Properties priorityLevel (Integer 1..5) and expectedDeliveryTime.",
+        "3": "Define a Class 'UrgentOrder' with attributes priorityLevel (1..5) and expectedDeliveryTime.",
+        "4": "A Class UrgentOrder that generalizes Order and owns Properties priorityLevel:Integer[1..5], expectedDeliveryTime:DateTime."
+      },
+      "citation_similarity_score": 0.6451612903225806
+    },
+    "G10": {
+      "canonical_id": "G10",
+      "canonical_name": "OrderLine",
+      "canonical_type": "combination",
+      "canonical_description": "An AssociationClass between Order and Wine owning the attribute quantity.",
+      "files_present_indices": [
+        1,
+        2,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An AssociationClass between Order and Wine owning the attribute quantity.",
+        "2": "Define an AssociationClass OrderLine linking Order and Wine with an attribute quantity.",
+        "4": "An AssociationClass named OrderLine linking Order and Wine and owning Property quantity:Integer."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G11": {
+      "canonical_id": "G11",
+      "canonical_name": "Wine",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier owning attributes name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage.",
+      "files_present_indices": [
+        1,
+        2
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier owning attributes name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage.",
+        "2": "Define a Class Wine owning Properties name, description, productionYear, pricePerBottle, sweetnessLevel, and productImage."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G12": {
+      "canonical_id": "G12",
+      "canonical_name": "SweetnessLevel",
+      "canonical_type": "element",
+      "canonical_description": "An Enumeration classifier defining literals dry, semi-dry, semi-sweet, and sweet.",
+      "files_present_indices": [
+        1,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Enumeration classifier defining literals dry, semi-dry, semi-sweet, and sweet.",
+        "3": "Define an Enumeration 'SweetnessLevel' with literals dry, semi-dry, semi-sweet, and sweet.",
+        "4": "An Enumeration named SweetnessLevel with literals {dry, semi-dry, semi-sweet, sweet}."
+      },
+      "citation_similarity_score": 0.6666666666666666
+    },
+    "G13": {
+      "canonical_id": "G13",
+      "canonical_name": "Manufacturer",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier owning attributes id, fullName, contactPhoneNumber, address, and email.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier owning attributes id, fullName, contactPhoneNumber, address, and email.",
+        "2": "Define a Class Manufacturer owning Properties id, fullName, contactPhoneNumber, address, and email.",
+        "3": "Define a Class 'Manufacturer' with attributes id, fullName, phoneNumber, address, and email.",
+        "4": "A Class named Manufacturer with Properties manufacturerId:ID, fullName:String, phoneNumber:String, address:String, email:String."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G14": {
+      "canonical_id": "G14",
+      "canonical_name": "Manufacturer\u2013Wine association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association linking Manufacturer to Wine with multiplicity on Wine 0..* and on Manufacturer 1.",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association linking Manufacturer to Wine with multiplicity on Wine 0..* and on Manufacturer 1.",
+        "3": "Define an Association between Manufacturer and Wine; each Wine is produced by exactly one Manufacturer (1), and a Manufacturer can produce multiple Wines (*)."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G15": {
+      "canonical_id": "G15",
+      "canonical_name": "StorageLocation",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier owning attributes id and name.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier owning attributes id and name.",
+        "2": "Define a Class StorageLocation owning Properties id and name.",
+        "3": "Define a Class 'Location' with attributes id and name.",
+        "4": "An Association between Wine and Manufacturer with multiplicity Wine\u2192Manufacturer[1], Manufacturer\u2192Wine[0..*]."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G16": {
+      "canonical_id": "G16",
+      "canonical_name": "Inventory",
+      "canonical_type": "combination",
+      "canonical_description": "An AssociationClass between Wine and StorageLocation owning attribute bottleCount.",
+      "files_present_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An AssociationClass between Wine and StorageLocation owning attribute bottleCount.",
+        "2": "Define an AssociationClass InventoryEntry linking Wine and StorageLocation with attribute bottleCount.",
+        "3": "Define an AssociationClass 'Inventory' between Wine and Location with attribute bottleCount.",
+        "4": "A Class named StorageLocation with Properties locationId:ID, name:String."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G17": {
+      "canonical_id": "G17",
+      "canonical_name": "WineType",
+      "canonical_type": "element",
+      "canonical_description": "A Classifier owning attributes name and serialNumber.",
+      "files_present_indices": [
+        1,
+        2,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Classifier owning attributes name and serialNumber.",
+        "2": "Define a Class WineType owning Properties name and serialNumber.",
+        "4": "An AssociationClass named Inventory linking Wine and StorageLocation and owning Property bottleCount:Integer."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G18": {
+      "canonical_id": "G18",
+      "canonical_name": "Wine\u2013WineType association",
+      "canonical_type": "relation",
+      "canonical_description": "An Association linking Wine to WineType with multiplicity WineType 1 and Wine 0..*.",
+      "files_present_indices": [
+        1,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An Association linking Wine to WineType with multiplicity WineType 1 and Wine 0..*.",
+        "3": "Define an Association between Wine and WineType; each Wine is linked to exactly one WineType, and a WineType may apply to multiple Wines."
+      },
+      "citation_similarity_score": 0.5333333333333333
+    },
+    "G19": {
+      "canonical_id": "G19",
+      "canonical_name": "FoodPairing",
+      "canonical_type": "element",
+      "canonical_description": "A DataType classifier owning attributes dishName and recipeLinks (URL) with multiplicity 0..5.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A DataType classifier owning attributes dishName and recipeLinks (URL) with multiplicity 0..5.",
+        "2": "Define a Class FoodPairing owning Properties dishName and recipeLink of type URL with multiplicity 0..5.",
+        "3": "Define a Class 'FoodPairing' with attributes dishName and recipeUrls [0..5]."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G20": {
+      "canonical_id": "G20",
+      "canonical_name": "WineType.foodPairings",
+      "canonical_type": "element",
+      "canonical_description": "An attribute on WineType named foodPairings typed FoodPairing with multiplicity 0..* (max 5).",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An attribute on WineType named foodPairings typed FoodPairing with multiplicity 0..* (max 5).",
+        "2": "Define an Association between WineType and FoodPairing with multiplicity 0..* at FoodPairing end.",
+        "3": "Define an Association between WineType and FoodPairing; each WineType may have multiple FoodPairings."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G21": {
+      "canonical_id": "G21",
+      "canonical_name": "Occasion",
+      "canonical_type": "element",
+      "canonical_description": "A DataType classifier owning attributes description, season, and location.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A DataType classifier owning attributes description, season, and location.",
+        "2": "Define a Class OccasionRecommendation owning Properties description, season, and location.",
+        "3": "Define a Class 'OccasionRecommendation' with attributes description, season, and location (indoor/outdoor)."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G22": {
+      "canonical_id": "G22",
+      "canonical_name": "WineType.occasions",
+      "canonical_type": "element",
+      "canonical_description": "An attribute on WineType named occasions typed Occasion with multiplicity 0..*.",
+      "files_present_indices": [
+        1,
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "An attribute on WineType named occasions typed Occasion with multiplicity 0..*.",
+        "2": "Define an Association between WineType and OccasionRecommendation with multiplicity 0..* at OccasionRecommendation end.",
+        "3": "Define an Association between WineType and OccasionRecommendation; each WineType may have multiple OccasionRecommendations."
+      },
+      "citation_similarity_score": 1.0
+    },
+    "G24": {
+      "canonical_id": "G24",
+      "canonical_name": "Dependency to GefenSystem",
+      "canonical_type": "relation",
+      "canonical_description": "A Dependency from the model to GefenSystem indicating incoming data impacts.",
+      "files_present_indices": [
+        1,
+        2
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines.json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "1": "A Dependency from the model to GefenSystem indicating incoming data impacts.",
+        "2": "Define a Dependency from CurrentInventoryReport to GefenSystem."
+      },
+      "citation_similarity_score": 0.1
+    },
+    "G29": {
+      "canonical_id": "G29",
+      "canonical_name": "OrderStatus",
+      "canonical_type": "element",
+      "canonical_description": "Define an Enumeration OrderStatus with literals in process, dispatched, delivered, paid, suspended, canceled, clarification.",
+      "files_present_indices": [
+        2,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "2": "Define an Enumeration OrderStatus with literals in process, dispatched, delivered, paid, suspended, canceled, clarification.",
+        "4": "An Association between Delivery and Order with multiplicity Delivery\u2192Order[0..*], Order\u2192Delivery[1]."
+      },
+      "citation_similarity_score": 0.18840579710144928
+    },
+    "G32": {
+      "canonical_id": "G32",
+      "canonical_name": "RegularOrder\u2013mainCustomer association",
+      "canonical_type": "relation",
+      "canonical_description": "Define an Association end mainCustomer from RegularOrder to Customer with multiplicity 1.",
+      "files_present_indices": [
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "2": "Define an Association end mainCustomer from RegularOrder to Customer with multiplicity 1.",
+        "3": "Define an Association between UrgentOrder and Customer where each UrgentOrder is placed by exactly one Customer (multiplicity 1), and a Customer may place multiple UrgentOrders."
+      },
+      "citation_similarity_score": 0.03571428571428571
+    },
+    "G34": {
+      "canonical_id": "G34",
+      "canonical_name": "CustomerOrderItem (alternative)",
+      "canonical_type": "combination",
+      "canonical_description": "Alternatively, define an AssociationClass CustomerOrderItem linking Customer, Order, and Wine with an attribute quantity to track wines and quantities per customer.",
+      "files_present_indices": [
+        2,
+        3
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (3).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "2": "Alternatively, define an AssociationClass CustomerOrderItem linking Customer, Order, and Wine with an attribute quantity to track wines and quantities per customer.",
+        "3": "Define an Association between RegularOrder and Customer where a RegularOrder can include multiple Customers and a Customer can participate in multiple RegularOrders."
+      },
+      "citation_similarity_score": 0.029411764705882353
+    },
+    "G50": {
+      "canonical_id": "G50",
+      "canonical_name": "Wine",
+      "canonical_type": "element",
+      "canonical_description": "Define a Class 'Wine' with attributes name, description, productionYear, pricePerBottle, sweetnessLevel, productImage, and catalogNumber.",
+      "files_present_indices": [
+        3,
+        4
+      ],
+      "files_present_paths": [
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (1).json",
+        "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers/initial_reference_guidelines (2).json"
+      ],
+      "original_descriptions_by_file_index": {
+        "3": "Define a Class 'Wine' with attributes name, description, productionYear, pricePerBottle, sweetnessLevel, productImage, and catalogNumber.",
+        "4": "An Enumeration named WineType with literals {red, white, sparkling, fortified, ros\u00e9, dessert}."
+      },
+      "citation_similarity_score": 0.15217391304347827
+    }
+  }
+}

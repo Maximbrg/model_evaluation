@@ -1,0 +1,445 @@
+# Use Case Diagrams in UML: Writing Grammar, Notation, Templates, and Worked Examples
+
+## Executive Summary
+
+Use Case diagrams are a UML technique for summarizing what a system offers to its external users and other external systems, focusing on user goals rather than internal design. In UML terms, they show Actors and Use Cases and the key relationships among them, optionally framed by a subject or system boundary that clarifies scope. A Use Case is formally an offered behavior that yields an observable, valuable result for one or more actors or stakeholders, and it can include variants, error handling, and exceptional behavior. citeturn2view0turn19view0 The diagram is most useful as a context map and index of capabilities, while the primary requirements value typically comes from well written textual use cases that describe main success scenarios and extensions. citeturn25view0 This report provides a practical English “grammar” for naming and writing use cases, two copy ready templates, and three complete examples (online shopping, ATM, library) suitable for practitioners and students. The content aligns with authoritative definitions and notation from the UML standard sources and with well known use case writing guidance from Cockburn and Larman. citeturn24view0turn25view0
+
+## Definition and Purpose
+
+Concise definition (diagram):
+A Use Case Diagram is a UML diagram whose classifiers are restricted to Actors and Use Cases, used to depict the system context and the externally visible services (use cases) in which actors participate. citeturn1view0
+
+Concise definition (use case, the core concept):
+A UseCase specifies a set of actions performed by its subject(s) that yields an observable result of value to one or more actors or other stakeholders. citeturn19view0turn2view0
+
+Purpose:
+1) Scope and context: show who is outside the subject, what capabilities are offered, and where the system boundary (subject) lies. citeturn20view4turn6view2  
+2) Requirements discovery and communication: capture offered behavior without reference to internal structure, supporting discussion with stakeholders with minimal design commitment. citeturn2view0turn25view0  
+3) Structuring and reuse (when modeling relationships): factor common mandatory behavior with «include» and add optional or conditional behavior with «extend». citeturn2view3turn3view3
+
+Primary sources used in this report:
+The entity["organization","Object Management Group","standards body"] (OMG) UML specification and the entity["organization","ISO","standards body"]/entity["organization","IEC","standards body"] UML standard provide formal definitions, constraints, semantics, and notation for UseCases, Actors, and relationships. citeturn17view0turn1view0
+
+## UML Elements and Relationships
+
+The elements below are the core vocabulary of Use Case diagrams. For each entry: formal meaning (from UML standard sources), notation, when to use, and one naming grammar rule are provided.
+
+ELEMENT: Actor  
+Formal meaning: An actor specifies a role played by a user or any other system that interacts with the subject, and is external to that subject. citeturn2view2turn19view0  
+Notation: Stick figure with the actor name near it (typically above or below), optionally a rectangle with the keyword «actor». citeturn7view0  
+When to use: Use an Actor for each distinct external role that interacts with the subject to achieve goals, including human roles and external systems. The same physical entity may play multiple roles, so multiple Actors can be appropriate when responsibilities differ. citeturn7view0  
+Naming grammar rule (Actor): Use a singular noun or noun phrase that names a role, not a person, for example “Customer”, “ATM Customer”, “Payment Service”. citeturn2view2
+
+ELEMENT: Use Case  
+Formal meaning: A use case is a declaration of offered behavior, specifying actions performed by a system (subject) yielding an observable result, typically valuable to actors or stakeholders, and it can include variants, exceptional behavior, and error handling. citeturn2view0turn19view0  
+Notation: Ellipse containing the use case name, or name placed below the ellipse. citeturn7view2turn6view0  
+When to use: Use a Use Case to represent a user goal or externally observable service of the subject (black box viewpoint). Prefer “units of useful functionality” over tiny UI steps. citeturn19view0turn25view0  
+Naming grammar rule (Use Case): Use a short active verb phrase that expresses a goal, for example “Place Order”, “Withdraw Cash”, “Borrow Book”. citeturn24view0turn25view0
+
+ELEMENT: Association (Actor to Use Case)  
+Formal meaning: An Association specifies a semantic relationship between typed instances (links as tuples), in diagrams shown as a solid line, and in the UseCases context Actors and UseCases are constrained to binary associations. citeturn21view3turn21view0turn4view0  
+Notation: Solid line connecting Actor and Use Case (optionally with multiplicities and adornments, but commonly elided for clarity in use case diagrams). citeturn21view0turn4view0  
+When to use: Use an association to indicate that the Actor participates in or communicates with the subject through that Use Case (initiates it, is involved in it, or receives value from it). citeturn7view0turn19view0  
+Naming grammar rule (Association): Usually omit association names in Use Case diagrams; if naming is needed, use a simple present tense verb phrase describing participation, and keep it consistent.
+
+ELEMENT: «include» (Include relationship)  
+Formal meaning: An include relationship is intended for factoring common parts of behavior into a separate use case that is reused, with the base use case typically dependent on the included behavior to be fully meaningful; execution is analogous to a subroutine call, and the full included behavior executes at a single location before returning. citeturn2view3turn20view2  
+Notation: Dashed arrow with open arrowhead from the base use case to the included use case, labeled «include». citeturn2view3  
+When to use: Use «include» when multiple use cases share the same mandatory behavior and you want to avoid duplication, for example “Checkout” includes “Process Payment”, “Borrow Book” includes “Authenticate Member”. citeturn2view3turn20view2  
+Naming grammar rule («include» target use case): Name the included use case as a goal like any other use case, typically a reusable sub goal such as “Authenticate User” or “Process Payment”. citeturn24view0turn2view3
+
+ELEMENT: «extend» (Extend relationship)  
+Formal meaning: Extend is a relationship from an extending use case to an extended use case that specifies how and when the extending behavior can be inserted into the extended use case, typically at one or more extension points and possibly under a condition; the extended use case should be meaningful independently of the extension. citeturn22view0turn3view3  
+Notation: Dashed arrow with open arrowhead from the extending use case to the base (extended) use case, labeled «extend», optionally with a note showing the condition and referenced extension points. citeturn3view0turn3view3  
+When to use: Use «extend» when there is additional behavior that is optional or conditional and would otherwise clutter the base use case, for example “Apply Coupon” extends “Checkout” when a coupon is provided, “Print Receipt” extends “Withdraw Cash” when a receipt is requested. citeturn3view3turn20view3  
+Naming grammar rule (extending use case): Use a goal oriented verb phrase that reads as a meaningful optional add on, for example “Provide Help”, “Apply Discount”, “Print Receipt”. citeturn22view0turn24view0
+
+ELEMENT: Generalization  
+Formal meaning: A generalization is a taxonomic relationship between a more general classifier and a more specific classifier, where each instance of the specific classifier is also an indirect instance of the general classifier, inheriting features; notation is a line with a hollow triangle arrowhead pointing to the general classifier. citeturn5view1turn5view3  
+Notation: Solid line with hollow triangle pointing to the parent (general) Actor or Use Case. citeturn5view0turn5view3  
+When to use: Use Actor generalization to model role hierarchies, for example “Customer” generalized into “Guest Customer” and “Registered Customer”. Use Use Case generalization sparingly, only when there is a clear shared general goal with specialized variants that truly inherit and refine behavior. citeturn5view1turn25view0  
+Naming grammar rule (Generalization participants): Parent names should be more general, child names more specific, keep the part of speech consistent, nouns for Actors, verb phrases for Use Cases. citeturn5view1turn24view0
+
+ELEMENT: System Boundary (Subject)  
+Formal meaning: A subject for a set of use cases (sometimes called a system boundary) may be shown as a rectangle with its name, with use case ellipses visually located inside; this indicates the use case applies to that subject, not necessarily ownership, and a use case may be depicted within multiple subject rectangles. citeturn20view4turn6view2  
+Notation: Rectangle enclosing use cases, labeled with the subject name (often in the top left). citeturn20view4turn6view0  
+When to use: Use a system boundary whenever scope might be ambiguous, or when multiple systems and external actors appear, to make “inside vs outside” explicit. citeturn20view4turn25view0  
+Naming grammar rule (System boundary): Use a noun phrase naming the system or subsystem under discussion, for example “Online Store”, “ATM System”, “Library System”. citeturn20view4turn19view0
+
+TABLE: Relationship type comparison (for Use Case diagrams)
+
+Relationship        | Between                         | Semantics (short)                                                                 | Optional or Required | Notation (short)                                              | Typical use case example
+-------------------|----------------------------------|----------------------------------------------------------------------------------|----------------------|----------------------------------------------------------------|-------------------------
+Association         | Actor, Use Case                   | Actor participates in the use case interaction with the subject                  | Depends              | solid line                                                     | Customer, Place Order
+«include»           | Use Case, Use Case                | Factor mandatory common behavior into included use case, base depends on it      | Required when used   | dashed arrow, open head, base -> included, label «include»     | Checkout «include» Process Payment
+«extend»            | Use Case, Use Case                | Optional or conditional additional behavior inserted at extension points         | Optional by nature   | dashed arrow, open head, extender -> base, label «extend»      | Provide Help «extend» Perform Transaction if help selected
+Generalization      | Actor, Actor or Use Case, Use Case | Specific inherits from general, specialization taxonomy                          | N/A                  | solid line with hollow triangle pointing to general            | Registered Customer generalizes Customer
+System Boundary     | Subject frame containing use cases | Scope box showing which use cases apply to a subject (not necessarily ownership) | Optional but useful  | rectangle labeled with subject name, use cases inside          | ATM System frame around Withdraw Cash
+
+The notations and semantics above follow the UML standard definitions and notation descriptions. citeturn21view0turn2view3turn3view0turn5view3turn20view4
+
+## Writing Grammar and Templates
+
+Short English grammar rules for use case names (the “title grammar”):
+1) Use a short active verb phrase expressing a goal, not a UI action, for example “Place Order”, not “Click Checkout”. citeturn24view0turn25view0  
+2) Keep the name at user goal level, avoid micro steps and internal functions unless they are reusable sub goals in an «include». citeturn2view3turn25view0  
+3) Avoid implementation or architecture terms in names (database, API, microservice), unless the external system is an Actor. citeturn7view0turn25view0  
+4) Use consistent verb vocabulary across the model, for example always “Authenticate”, not sometimes “Verify” and sometimes “Validate”, unless there is a real semantic difference.
+
+Short English grammar rules for use case descriptions (the “scenario grammar”):
+1) Write use cases primarily as text, the diagram is secondary and should remain simple. citeturn25view0  
+2) Use present tense, active voice, and explicit subjects: “Customer selects”, “System verifies”, “System records”. citeturn24view0turn25view0  
+3) Write in an essential, UI free style: focus on intent and externally observable responsibilities, not screens, buttons, or field names. citeturn25view0  
+4) Make each main flow step advance the goal and be testable, avoid design level detail and avoid combining multiple decisions in one step. citeturn25view0turn2view0  
+5) Keep the main flow a “happy path” (main success scenario), put variations and failures in alternative flows that reference the step they branch from. citeturn24view0  
+6) Use “success guarantee” and “minimal guarantee” as postconditions, to state what must be true after success, and what is still guaranteed after failure. citeturn24view0turn2view0  
+7) Avoid describing internal data structures or algorithms; UML explicitly allows describing use case behavior using natural language text and preconditions and postconditions, without reference to internal structure. citeturn2view0turn19view0
+
+TEMPLATE: Compact textual use case (copy ready)
+
+ID:
+Name:
+Scope (Subject):
+Level:
+Primary Actor:
+Stakeholders and Interests:
+Trigger:
+Preconditions:
+Main Flow:
+1.
+2.
+3.
+Alternative Flows (refer to main steps):
+A1 (from step __):
+A2 (from step __):
+Postconditions:
+Success Guarantee:
+Minimal Guarantee:
+Extensions or Notes:
+
+TEMPLATE: Fully dressed textual use case (copy ready)
+
+ID:
+Name (goal as a short active verb phrase):
+Scope (Subject):
+Level (Summary, User goal, Subfunction):
+Primary Actor:
+Secondary Actors (supporting systems, if any):
+Stakeholders and Interests:
+Trigger:
+Preconditions:
+Postconditions:
+  Success Guarantee:
+  Minimal Guarantee:
+Main Flow (numbered):
+1.
+2.
+3.
+Alternative Flows (branch from a numbered step):
+A1 (from step __, condition):
+  A1.1
+  A1.2
+A2 (from step __, condition):
+  A2.1
+  A2.2
+Extensions or Notes (optional):
+  - related included use cases
+  - related extending use cases
+  - business rules, open issues, constraints
+
+These templates align with Cockburn’s core fields (name as goal, scope, level, trigger, preconditions, success and failure end conditions, main success scenario, extensions). citeturn24view0
+
+TABLE: Compact vs Fully dressed template, when to use
+
+Aspect                    | Compact template                                     | Fully dressed template
+--------------------------|------------------------------------------------------|------------------------
+Best for                  | early discovery, workshops, backlog shaping          | higher risk use cases, hand off to dev and test, formal requirements
+Typical length            | 0.5 to 2 pages                                       | 1 to 6 pages depending on complexity
+Key emphasis              | speed and shared understanding                       | completeness, testability, explicit alternatives and guarantees
+Common omission risk      | missed edge cases, ambiguous guarantees              | over specification, drifting into design
+Recommended workflow      | start compact, then promote selected ones to full    | iterate, validate with stakeholders, keep UI free
+
+## Worked Examples
+
+Note: These examples are written in a black box, essential style, focused on externally observable responsibilities and user goals, consistent with guidance that use cases are primarily text documents and should avoid UI level detail. citeturn25view0turn2view0
+
+EXAMPLE: Online shopping, Place Order
+
+ID: UC-ONLINE-001  
+Name (goal as a short active verb phrase): Place Order  
+Scope (Subject): Online Store System  
+Level (Summary, User goal, Subfunction): User goal  
+Primary Actor: Customer  
+Secondary Actors (supporting systems, if any): Payment Service, Inventory System, Email Service  
+Stakeholders and Interests:
+Customer, wants to purchase items reliably and receive confirmation  
+Merchant, wants correct payment authorization and accurate order records  
+Payment Service, wants valid payment requests and idempotent handling  
+Inventory, wants accurate reservations to avoid overselling
+
+Trigger:
+Customer requests to check out an existing shopping cart.
+
+Preconditions:
+Customer has a cart with at least one item.  
+Product prices and availability information are accessible.  
+System can reach Payment Service, or has a defined failure handling path.
+
+Postconditions:
+Success Guarantee:
+An order is created with a unique order identifier.  
+Payment is authorized or otherwise accepted per policy, and the order reflects the payment status.  
+Inventory is reserved or allocated according to policy.  
+Customer receives an order confirmation.
+
+Minimal Guarantee:
+No completed order exists without a recorded outcome for payment attempt (authorized, pending, failed).  
+No inventory is permanently reduced unless the order status and reservation policy allow it.  
+The system records enough audit information to investigate failures.
+
+Main Flow (numbered):
+1. Customer initiates checkout for the current cart.  
+2. System presents an order summary (items, quantities, totals, taxes, delivery options).  
+3. Customer provides or confirms delivery details required for fulfillment.  
+4. System validates delivery details and recalculates totals if needed.  
+5. Customer selects a delivery option.  
+6. Customer selects a payment method and provides required payment details.  
+7. System submits a payment authorization request to Payment Service.  
+8. Payment Service returns an authorization result.  
+9. System creates the order, storing order lines, totals, delivery selection, and payment result.  
+10. System reserves inventory for the order items according to policy.  
+11. System confirms the order to the customer and issues a confirmation message.
+
+Alternative Flows (branch from a numbered step):
+A1 (from step 4, delivery details invalid):
+  A1.1 System informs Customer that delivery details are invalid and indicates what must be corrected.  
+  A1.2 Customer corrects delivery details.  
+  A1.3 Resume at step 4.
+
+A2 (from step 7, Payment Service unreachable):
+  A2.1 System informs Customer of a temporary payment processing issue.  
+  A2.2 System offers to retry or to choose a different payment method.  
+  A2.3 If Customer retries, resume at step 7.  
+  A2.4 If Customer cancels, end use case with Minimal Guarantee.
+
+A3 (from step 8, payment authorization declined):
+  A3.1 System informs Customer that payment was declined.  
+  A3.2 Customer selects a different payment method or corrects payment details.  
+  A3.3 Resume at step 6.  
+  A3.4 If Customer abandons, end use case with Minimal Guarantee.
+
+A4 (from step 10, inventory cannot be reserved for one or more items):
+  A4.1 System informs Customer that an item became unavailable.  
+  A4.2 Customer chooses to remove the unavailable items, substitute items, or cancel.  
+  A4.3 If Customer removes or substitutes, system recalculates totals and resume at step 2.  
+  A4.4 If Customer cancels, system releases any reservations and ends with Minimal Guarantee.
+
+Extensions or Notes (optional):
+Common sub goals are often modeled as «include», for example “Authenticate Customer” for logged in checkout, and “Process Payment” for payment authorization. Optional behavior is often modeled as «extend», for example “Apply Coupon” when a coupon is provided. citeturn2view3turn3view3
+
+EXAMPLE: ATM, Withdraw Cash
+
+ID: UC-ATM-001  
+Name (goal as a short active verb phrase): Withdraw Cash  
+Scope (Subject): ATM System  
+Level (Summary, User goal, Subfunction): User goal  
+Primary Actor: Cardholder  
+Secondary Actors (supporting systems, if any): Bank Authorization System, Cash Dispenser Module, Receipt Printer  
+Stakeholders and Interests:
+Cardholder, wants to receive the requested cash and keep account accurate  
+Bank, wants correct authorization, fraud controls, and auditability  
+ATM Operator, wants reliable operation and minimal disputes
+
+Trigger:
+Cardholder requests a cash withdrawal.
+
+Preconditions:
+ATM is operational and has cash available.  
+Card is readable and not blocked by the ATM’s local rules.  
+ATM can reach the Bank Authorization System or has a defined offline policy.
+
+Postconditions:
+Success Guarantee:
+Cash is dispensed to Cardholder for the authorized amount.  
+The withdrawal is recorded and the account is debited or a hold is created per policy.  
+A transaction record with an identifier exists for dispute handling.
+
+Minimal Guarantee:
+If cash is not dispensed, the account is not finally debited for that amount.  
+A transaction attempt is logged with a reason for failure when available.  
+Card is returned unless a security policy requires retention.
+
+Main Flow (numbered):
+1. Cardholder inserts card.  
+2. System requests personal identification verification.  
+3. Cardholder provides verification information (for example PIN).  
+4. System verifies cardholder credentials with Bank Authorization System.  
+5. System offers transaction options.  
+6. Cardholder selects “Withdraw Cash”.  
+7. System requests account selection and withdrawal amount.  
+8. Cardholder selects account and enters amount.  
+9. System requests authorization for the withdrawal amount from Bank Authorization System.  
+10. Bank Authorization System approves the withdrawal request.  
+11. System dispenses cash.  
+12. System returns the card.  
+13. System optionally provides a receipt, if requested, and ends the session.
+
+Alternative Flows (branch from a numbered step):
+A1 (from step 4, credential verification fails):
+  A1.1 System informs Cardholder that verification failed.  
+  A1.2 System allows a limited number of retries per policy.  
+  A1.3 If retries are exhausted, system ends session, returns or retains card per policy, and applies Minimal Guarantee.
+
+A2 (from step 9, authorization system unreachable):
+  A2.1 System informs Cardholder of a temporary service issue.  
+  A2.2 If offline withdrawals are not allowed, system ends session with Minimal Guarantee.  
+  A2.3 If offline withdrawals are allowed, system applies offline limits, records an offline transaction, then resume at step 11 if permitted.
+
+A3 (from step 10, authorization declined):
+  A3.1 System informs Cardholder that the request was declined.  
+  A3.2 System allows Cardholder to enter a different amount or cancel.  
+  A3.3 If different amount, resume at step 8.  
+  A3.4 If cancel, end use case with Minimal Guarantee.
+
+A4 (from step 11, cash dispenser malfunction):
+  A4.1 System records the failure and marks transaction for reconciliation.  
+  A4.2 System informs Cardholder that cash could not be dispensed.  
+  A4.3 System returns card and ends session with Minimal Guarantee.
+
+Extensions or Notes (optional):
+A “Help” or “Print Receipt” behavior is often modeled as «extend», while credential verification is often modeled as an «include» like “Authenticate Cardholder”. citeturn3view3turn2view3
+
+EXAMPLE: Library system, Borrow Book
+
+ID: UC-LIB-001  
+Name (goal as a short active verb phrase): Borrow Book  
+Scope (Subject): Library Management System  
+Level (Summary, User goal, Subfunction): User goal  
+Primary Actor: Member  
+Secondary Actors (supporting systems, if any): Catalog System (if separate), Fine Payment Service (if separate), Notification Service  
+Stakeholders and Interests:
+Member, wants to borrow an available copy quickly and know the due date  
+Library, wants policy compliance, accurate inventory status, and borrower accountability  
+Librarians, want clear exceptions and reliable audit trail
+
+Trigger:
+Member requests to borrow an item (book copy) from the library.
+
+Preconditions:
+Member account exists and is eligible for borrowing.  
+The item copy is in the library catalog and can be uniquely identified.  
+Borrowing policies are configured (loan periods, limits, blocked statuses).
+
+Postconditions:
+Success Guarantee:
+A loan record exists linking Member, item copy, and due date.  
+The item copy status is updated to “on loan” to the Member.  
+Member receives confirmation showing due date and any relevant policies.
+
+Minimal Guarantee:
+If the loan is not created, the item copy status remains unchanged.  
+The system logs unsuccessful borrow attempts that are relevant for operations or security, per policy.
+
+Main Flow (numbered):
+1. Member identifies themselves to the system.  
+2. System verifies Member status and borrowing eligibility.  
+3. Member presents the item copy to borrow.  
+4. System identifies the item copy and retrieves its availability status.  
+5. System checks borrowing constraints (loan limit, outstanding blocks, membership validity).  
+6. System creates a loan record with a due date according to policy.  
+7. System updates the item copy status to “on loan”.  
+8. System confirms the loan to Member and displays or sends the due date.
+
+Alternative Flows (branch from a numbered step):
+A1 (from step 2, member not eligible, expired membership):
+  A1.1 System informs Member that membership is not eligible for borrowing.  
+  A1.2 Member may renew membership through a separate process, or cancel.  
+  A1.3 End use case with Minimal Guarantee.
+
+A2 (from step 5, borrowing blocked due to unpaid fines):
+  A2.1 System informs Member that borrowing is blocked due to outstanding fines.  
+  A2.2 System offers fine payment, if supported.  
+  A2.3 If Member pays successfully, resume at step 5.  
+  A2.4 If Member declines or payment fails, end use case with Minimal Guarantee.
+
+A3 (from step 4, item copy not available):
+  A3.1 System informs Member that the item is not available for borrowing.  
+  A3.2 System offers to place a hold if supported.  
+  A3.3 If Member places a hold, system records the hold and ends with Minimal Guarantee.  
+  A3.4 If Member cancels, end with Minimal Guarantee.
+
+A4 (from step 6, system cannot create loan due to an error):
+  A4.1 System informs Member of a temporary issue.  
+  A4.2 System records the error for staff resolution.  
+  A4.3 End use case with Minimal Guarantee.
+
+Extensions or Notes (optional):
+Member authentication is commonly treated as «include», and optional “Place Hold” can be treated as «extend» to the borrowing context, depending on modeling style and whether “Place Hold” is a separate user goal in the model. citeturn2view3turn3view3
+
+## Quality Checklist and Common Pitfalls
+
+Checklist for good use case writing (10 items max):
+1) The use case name is a goal as a short active verb phrase. citeturn24view0  
+2) The primary actor is a role external to the subject, not a UI element or an internal component. citeturn7view0  
+3) Scope (subject) is explicit, especially when multiple systems exist. citeturn20view4turn6view2  
+4) Preconditions state what must already be true, not steps that belong in the flow. citeturn24view0  
+5) Main flow is short, numbered, and written in present tense, active voice.  
+6) Alternative flows reference the main step where they branch, and include both condition and outcome. citeturn24view0  
+7) Postconditions include both a success guarantee and a minimal guarantee. citeturn24view0turn2view0  
+8) The text stays UI free and implementation free, focusing on externally observable responsibilities. citeturn25view0turn2view0  
+9) «include» and «extend» are used only when their semantics fit (reuse mandatory common parts, add optional conditional behavior). citeturn2view3turn3view3  
+10) The use case yields an observable result of value, and is not a fragment. citeturn19view0turn2view0
+
+Common mistakes and practical tips (mistake, remedy):
+Mistake: Writing UI click streams (screens, buttons, field names).  
+Remedy: Rewrite each step as intent plus responsibility, “Actor requests X”, “System validates Y”, “System records Z”, and capture UI details elsewhere. citeturn25view0
+
+Mistake: Use cases that are too small (one step functions) or too technical (internal functions).  
+Remedy: Reframe around user goals and externally visible services, and split only when there are distinct goals or distinct stakeholders. citeturn25view0turn19view0
+
+Mistake: Overusing «include» for optional behavior.  
+Remedy: If the added behavior is optional or conditional and the base use case is meaningful without it, prefer «extend». citeturn3view3turn20view3
+
+Mistake: Overusing «extend» to model normal mandatory steps.  
+Remedy: If the base use case depends on the behavior to be complete and the behavior is a shared common part, use «include» or keep it inline. citeturn2view3turn20view2
+
+Mistake: Missing minimal guarantees, leading to uncertain recovery and disputes.  
+Remedy: Always state what remains true even on failure, focusing on data integrity and auditability. citeturn24view0turn2view0
+
+Mistake: Treating the system boundary as an ownership statement.  
+Remedy: Use the boundary as a scoping frame, and remember that the UML notation indicates applicability to the subject, not necessarily ownership. citeturn6view2turn20view4
+
+TABLE: Decision table, Include vs Extend
+
+Decision question                                                                 | If yes, choose | If no, choose | Why (summary)
+---------------------------------------------------------------------------------|----------------|---------------|--------------
+Is the behavior mandatory for the base use case to be complete and meaningful     | «include»      | consider «extend» or inline steps | include supports reuse of common mandatory parts, base often depends on included parts citeturn2view3turn20view2
+Is the base use case meaningful independently of the additional behavior          | «extend»       | consider «include»               | extend is for additional behavior added to an independently meaningful base citeturn3view3turn22view0
+Is the additional behavior conditional, triggered only under a guard condition    | «extend»       | «include» or inline steps        | extend supports conditions and extension points via notes citeturn3view0turn3view3
+Is the primary goal to remove duplicated common text across multiple use cases    | «include»      | «extend» or keep separate use cases | include is intended for reuse of common parts citeturn2view3turn20view2
+Do you want to keep the main success scenario short and push optional clutter out | «extend»       | N/A                              | extend keeps optional behavior out of the main flow while preserving base meaning citeturn3view3turn25view0
+
+Mermaid flowchart: steps to write a use case (scope to validation)
+
+```mermaid
+flowchart TD
+  A[Define scope and subject, system boundary] --> B[Identify external actors as roles]
+  B --> C[List actor goals, draft candidate use case names]
+  C --> D[Select one use case, confirm goal, level, stakeholders]
+  D --> E[Write trigger and preconditions]
+  E --> F[Write main success scenario, numbered steps, intent and responsibility]
+  F --> G[Add alternative flows, reference main step numbers, include conditions]
+  G --> H[Write postconditions, success guarantee and minimal guarantee]
+  H --> I[Consider relationships, include for mandatory reuse, extend for optional behavior]
+  I --> J[Review for clarity, testability, UI free language, update diagram index]
+```
+
+## References
+
+OMG (Object Management Group). OMG Unified Modeling Language (OMG UML), Version 2.5, OMG Document Number formal/2015-03-01, March 2015. citeturn17view0turn19view0
+
+ISO/IEC. ISO/IEC 19505-2:2012, Information technology, Object Management Group Unified Modeling Language (OMG UML), Part 2: Superstructure, April 2012 (publication month per ISO record). citeturn0search1turn26search2
+
+Cockburn, Alistair. Basic Use Case Template, Humans and Technology Technical Report TR.96.03a, Version 2, October 26, 1998. citeturn24view0
+
+Larman, Craig. Applying UML and Patterns, Chapter on Use Cases (excerpt), emphasizing that use cases are text and advocating essential, UI free writing style (excerpt dated 2004 in the document). citeturn25view0

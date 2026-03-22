@@ -1,0 +1,130 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor black
+  ArrowColor black
+}
+
+skinparam Arrow {
+  Thickness 1
+}
+
+'======================
+' Actors
+'======================
+actor "Client / Driver" as Client
+actor "Administrator" as Admin
+actor "Gate Sensor (GS)" as GS
+actor "Conveyors Controller (CC)" as CC
+actor "Integrated Rate Service (IRS)" as IRS
+actor "Payment Gateway (PG)" as PG
+
+
+'======================
+' System Boundary
+'======================
+rectangle "ParkWise Lots System" {
+
+  ' Arrival & Identification
+  usecase UC_DetectArrival        as "Detect Vehicle Arrival"
+  usecase UC_SearchVehicle        as "Search Vehicle in DB\n\nExtension Points:\n - VehicleNotFound"
+  usecase UC_PromptManualEntry    as "Manual Entry\n(client data + photos)"
+  usecase UC_ExtractFromPhotos    as "Extract Vehicle Details"
+  usecase UC_UpdateAssociations   as "Update Client–Vehicle Association"
+  usecase UC_OpenBarrier          as "Open Barrier"
+
+  ' Parking Session
+  usecase UC_StartSession         as "Store Parking Start Session"
+  usecase UC_CheckForFreeSession  as "Check Free First Session\n(if club member)"
+  usecase UC_RunOptimization      as "Optimize Parking Space"
+  usecase UC_UpdateParkingStatus  as "Update Vehicle Location"
+  usecase UC_SendSMS              as "Send Parking Details SMS"
+
+  ' End Parking
+  usecase UC_EndParkingRequest    as "Request End Parking"
+  usecase UC_AssignReturnConveyor as "Assign Conveyor for Return"
+  usecase UC_CalculatePayment     as "Calculate Payment\n\nExtension Points:\n - ApplyClubDiscount"
+  usecase UC_ApplyClubDiscount    as "Apply Club Discount\n(only for club members)"
+  usecase UC_SendPaymentRequest   as "Send Payment Request to PG"
+  usecase UC_OpenExitGate         as "Open Exit Gate"
+  usecase UC_IssueReceipt         as "Issue Receipt\n\nExtension Points:\n - ClientRequestsReceipt"
+
+  ' Customer Club
+  usecase UC_RegisterClub         as "Register to Client Club\n(lifetime)\n\nExtension Points:\n - AfterRegistration"
+  usecase UC_ManageClub           as "Manage Club Membership\n\nExtension Points:\n - UpdatePreferences"
+  usecase UC_SelectPreferredLots  as "Select Preferred Parking Lots"
+
+  ' Administration
+  usecase UC_ManageLots           as "Manage Parking Lot Details"
+  usecase UC_AnnualReport         as "Generate Annual Summary Report"
+  usecase UC_ClubGrowthReport     as "Generate Customer Club Growth Report"
+}
+
+
+'======================
+' Associations
+'======================
+
+Client -- UC_PromptManualEntry
+Client -- UC_EndParkingRequest
+Client -- UC_RegisterClub
+Client -- UC_ManageClub
+Client -- UC_IssueReceipt
+
+GS -- UC_DetectArrival
+GS -- UC_OpenBarrier
+GS -- UC_OpenExitGate
+
+CC -- UC_RunOptimization
+CC -- UC_UpdateParkingStatus
+CC -- UC_AssignReturnConveyor
+
+Admin -- UC_ManageLots
+Admin -- UC_AnnualReport
+Admin -- UC_ClubGrowthReport
+
+IRS -- UC_CalculatePayment
+PG  -- UC_SendPaymentRequest
+
+
+'======================
+' Include / Extend (dashed)
+'======================
+
+' Arrival flow
+UC_DetectArrival -[dashed]-> UC_SearchVehicle : <<include>>
+UC_SearchVehicle -[dashed]-> UC_OpenBarrier   : <<include>>
+UC_SearchVehicle -[dashed]-> UC_PromptManualEntry : <<extend>>
+
+UC_PromptManualEntry -[dashed]-> UC_ExtractFromPhotos : <<include>>
+UC_ExtractFromPhotos -[dashed]-> UC_UpdateAssociations : <<include>>
+UC_UpdateAssociations -[dashed]-> UC_OpenBarrier : <<include>>
+
+' Parking session
+UC_OpenBarrier -[dashed]-> UC_StartSession : <<include>>
+UC_StartSession -[dashed]-> UC_CheckForFreeSession : <<include>>
+UC_StartSession -[dashed]-> UC_SendSMS : <<include>>
+
+' Optimization
+UC_RunOptimization -[dashed]-> UC_UpdateParkingStatus : <<include>>
+
+' End parking flow
+UC_EndParkingRequest -[dashed]-> UC_AssignReturnConveyor : <<include>>
+UC_AssignReturnConveyor -[dashed]-> UC_CalculatePayment  : <<include>>
+
+' Payment logic
+UC_CalculatePayment -[dashed]-> UC_SendPaymentRequest    : <<include>>
+UC_CalculatePayment -[dashed]-> UC_ApplyClubDiscount     : <<extend>>
+UC_CalculatePayment -[dashed]-> UC_CheckForFreeSession   : <<include>>
+
+UC_SendPaymentRequest -[dashed]-> UC_OpenExitGate        : <<include>>
+UC_SendPaymentRequest -[dashed]-> UC_IssueReceipt        : <<extend>>
+
+' Club membership
+UC_RegisterClub -[dashed]-> UC_SelectPreferredLots : <<extend>>
+UC_ManageClub   -[dashed]-> UC_SelectPreferredLots : <<extend>>
+
+@enduml

@@ -1,0 +1,167 @@
+@startuml
+' Define Enumerations
+enum OrderStatus {
+  in_process
+  dispatched
+  delivered
+  paid
+  suspended
+  canceled
+}
+
+enum SweetnessLevel {
+  dry
+  semi_dry
+  semi_sweet
+  sweet
+}
+
+enum LocationType {
+  INDOOR
+  OUTDOOR
+}
+
+' Person and its subclasses
+class Person {
+    - personNumber: int
+    - fName: string
+    - lName: string
+    - phone: string
+    - address: string
+    - email: string
+}
+
+class Customer {
+    - deliveryAddress: string
+    - firstContactDate: date
+}
+
+Person <|-- Customer : {complete, overlapping}
+
+class Employee {
+    - officeAddress: string
+    - employmentStartDate: date
+    + viewWineInformation()
+}
+
+Person <|-- Employee : {complete, overlapping}
+
+class SalesEmployee {
+    + placeOrder()
+    + manageCustomerInformation(customer: Customer): void
+    + generateUnproductiveEmployeesReport(): Report
+    + generateWineRecommendationReportForCustomers(): Report
+    + processUrgentOrder(order: UrgentOrder): void
+    + processJointOrder(order: JointOrder): void
+}
+
+class MarketingEmployee {
+    + manageInventory()
+    + updateWineInformation(wine: Wines): void
+    + updateTypeWineInformation(wineType: WineType): void
+    + linkWinesToTypes(wine: Wines, wineType: WineType): void
+}
+
+Employee <|-- SalesEmployee : {incomplete, disjoint}
+Employee <|-- MarketingEmployee : {incomplete, disjoint}
+
+' Order and its subclasses
+class Order {
+    - orderNumber: int
+    - orderDate: Date
+    - status: OrderStatus
+    - shipmentDate: Date
+    + notifyGalGalimDispatch(): void
+}
+
+class UrgentOrder {
+    - priorityLevel: int {1..5}
+    - expectedDeliveryTime: datetime
+    + setPriorityLevel(level: int): void
+    + calculateExpectedDeliveryTime(): datetime
+}
+
+class JointOrder {
+    + chooseMainCustomer(): Customer
+}
+
+Order <|-- JointOrder : {incomplete, disjoint}
+Order <|-- UrgentOrder : {incomplete, disjoint}
+
+' Other classes
+class OrderItem {
+    - quantity: int
+}
+
+class Wines {
+    - catalogNumber: int  
+    - wineName: string
+    - description: string
+    - productionYear: int
+    - pricePerBottle: double
+    - sweetnessLevel: SweetnessLevel
+    - productImage: string
+}
+
+class WineType {
+    - serialNumber: int
+    - wineTypeName: string
+    - description: string
+}
+
+class Occasion {
+    - occasionsNumber: int
+    - description: string
+    - season: string
+    - location: LocationType
+}
+
+class Manufacturer {
+    - manufacturerNumber: int 
+    - manufacturerName: string
+    - phone: string
+    - address: string
+    - email: string
+}
+
+class Dish {
+   - dishNumber: int
+   - dishName: string
+}
+
+class Recipe {
+   - linkURL: string
+}
+
+class Location {
+  - locationNumber: int
+  - locationName: string
+}
+
+class WinesLocation {
+  - quantity: int
+}
+
+class System { 
+  - export_JSON_WineReport(): Report
+  + import_XML_wine_Data(): void
+}
+
+' Relationships
+Wines --* "1..*" WinesLocation
+Location --* "1..*" WinesLocation
+Order --* "1..*" OrderItem
+OrderItem "0..*" -- "1" Wines
+
+Wines "0..*" -- "1" WineType
+WineType "0..*" -- "0..*" Occasion
+WineType "0..*" -- "0..*" Dish
+
+Manufacturer "1" -- "1..*" Wines
+
+Order "0..*" --* "1" Customer
+JointOrder "0..*" --* "1..*" Customer : part of
+Order "0..*" -- "1" SalesEmployee : responsible for
+
+Dish "1" -- "0..5" Recipe
+@enduml

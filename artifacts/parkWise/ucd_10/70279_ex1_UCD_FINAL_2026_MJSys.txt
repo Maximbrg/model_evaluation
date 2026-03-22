@@ -1,0 +1,110 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecaseBorderColor Black
+skinparam usecaseBackgroundColor White
+
+actor "Client" as Client
+actor "Club Member" as ClubMember
+actor "Administrator" as Admin
+actor "Gate Sensor\n(GS)" as GS
+actor "Conveyors\nController (CC)" as CC
+actor "Integrated Rate\nService (IRS)" as IRS
+actor "Payment\nGateway (PG)" as PG
+
+rectangle "ParkWise System" {
+
+  usecase "Manage Parking Lot\nDetails" as UC_ManageLot
+
+  usecase "Process Vehicle Arrival" as UC_ProcessArrival
+  usecase "Handle Barrier\nFailure" as UC_HandleBarrierFailure
+
+  usecase "Client Registration &\nData Input" as UC_ClientDataInput
+  usecase "Extract Vehicle Details\nFrom Photos" as UC_ExtractFromPhotos
+  usecase "Update Vehicle–Client\nAssociation" as UC_UpdateAssociation
+
+  usecase "Create Parking Session" as UC_CreateSession
+
+  usecase "Assign Conveyor" as UC_AssignConveyor
+  usecase "Update Parking\nCompletion" as UC_UpdateParkingCompletion
+
+  usecase "Provide Parking Details\nvia UI" as UC_ProvideDetailsUI
+
+  usecase "End Parking Session" as UC_EndParking
+  usecase "Request Payment\nvia UI" as UC_RequestPaymentUI
+  usecase "Calculate Parking Fee" as UC_CalcFee
+  usecase "Maintain Price Lists\nper Parking Lot" as UC_MaintainPriceLists
+  usecase "Send Payment Request\nto Payment Gateway" as UC_SendPGRequest
+  usecase "Open Gate After\nPayment Approval" as UC_OpenGateAfterPayment
+  usecase "Issue Receipt" as UC_IssueReceipt
+
+  usecase "Register to\nClient Club" as UC_RegisterClub
+  usecase "Manage Preferred\nParking Lots" as UC_ManagePreferredLots
+  usecase "Apply Free First Parking\nSession Benefit" as UC_ApplyFreeFirst
+  usecase "Apply Club Discount" as UC_ApplyClubDiscount
+
+  usecase "Generate Annual\nSummary Report" as UC_AnnualReport
+  usecase "Generate Customer Club\nGrowth Report" as UC_ClubGrowthReport
+}
+
+Admin --> UC_ManageLot
+Admin --> UC_MaintainPriceLists
+Admin --> UC_AnnualReport
+Admin --> UC_ClubGrowthReport
+
+Client --> UC_ProcessArrival
+Client --> UC_HandleBarrierFailure
+Client --> UC_ClientDataInput
+Client --> UC_ProvideDetailsUI
+Client --> UC_EndParking
+Client --> UC_RequestPaymentUI
+Client --> UC_IssueReceipt
+Client --> UC_RegisterClub
+
+ClubMember --> UC_EndParking
+ClubMember --> UC_ManagePreferredLots
+
+GS --> UC_ProcessArrival
+GS --> UC_OpenGateAfterPayment
+
+CC --> UC_AssignConveyor
+CC --> UC_UpdateParkingCompletion
+
+IRS --> UC_MaintainPriceLists
+
+PG --> UC_SendPGRequest
+PG --> UC_OpenGateAfterPayment
+
+UC_HandleBarrierFailure ..> UC_ClientDataInput : <<include>>
+
+UC_ClientDataInput ..> UC_ExtractFromPhotos : <<include>>
+UC_ClientDataInput ..> UC_UpdateAssociation : <<include>>
+
+UC_AssignConveyor ..> UC_UpdateParkingCompletion : <<include>>
+
+UC_EndParking ..> UC_AssignConveyor : <<include>>
+UC_EndParking ..> UC_RequestPaymentUI : <<include>>
+
+UC_RequestPaymentUI ..> UC_CalcFee : <<include>>
+UC_RequestPaymentUI ..> UC_SendPGRequest : <<include>>
+
+UC_CalcFee ..> UC_MaintainPriceLists : <<include>>
+
+UC_RegisterClub ..> UC_ManagePreferredLots : <<include>>
+
+UC_AnnualReport ..> UC_MaintainPriceLists : <<include>>
+UC_ClubGrowthReport ..> UC_RegisterClub : <<include>>
+
+UC_HandleBarrierFailure ..> UC_ProcessArrival : <<extend>>
+
+UC_CreateSession ..> UC_ProcessArrival : <<extend>>
+
+UC_ProvideDetailsUI ..> UC_CreateSession : <<extend>>
+
+UC_ApplyFreeFirst ..> UC_CalcFee : <<extend>>
+UC_ApplyClubDiscount ..> UC_CalcFee : <<extend>>
+
+UC_OpenGateAfterPayment ..> UC_SendPGRequest : <<extend>>
+
+UC_IssueReceipt ..> UC_RequestPaymentUI : <<extend>>
+@enduml

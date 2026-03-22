@@ -1,0 +1,48 @@
+openai:
+  api_key: "YOUR_OPENAI_API_KEY"
+  model: "o4-mini"
+
+inputs:
+  # Agent 1 (Language Advisor) Inputs /Users/maximbragilovski/model_evalution/artifacts/metamodel_ucd.txt
+  language_name: "Use Case Diagram"
+  language_reference_manual_path: ""
+  language_formal_definition_path: "grammar"
+  current_language_question: ""
+
+  # Agent 2 (Reference Builder) Inputs
+  domain_identifier: "cheers"
+  domain_description_path: "/Users/maximbragilovski/model_evalution/artifacts/parkWise/ParkWise-Description.txt"
+  questions_answers: ""
+  current_domain_question: ""
+  external_guidelines_path: ""
+
+
+  # Agent 3 (Compliance Evaluator) Inputs
+  # Provide EITHER a 'cases' list OR a 'cases_dir' directory
+  cases_dir: "/Users/maximbragilovski/model_evalution/artifacts/parkWise/ucd_2"
+
+execution:
+  # Path to the specific prompts configuration file to use
+  prompts_file: "../../artifacts/prompts/prompts_9.yaml"
+  
+  # Execution mode options:
+  # 1: Start from the beginning (Agent 1)
+  # 2: Start from Agent 2 Develop Guidelines (requires language_template_path)
+  # 3: Start from Agent 3 Evaluate Compliance (requires reference_guidelines_path)
+  mode: 2
+  stop_after_stage: null # 1 to stop after Stage 1, 2 to stop after Stage 2
+  
+  phase2_inputs:
+    language_template_path: "/Users/maximbragilovski/model_evalution/artifacts/stable_output_stage_1/stable_ucd_lang_temp.json"
+    
+  phase3_inputs:
+    language_template_path: ""
+    reference_guidelines_path: ""
+
+
+  max_stage2_refinement_iterations: 3
+  max_stage3_discovery_agent1_iterations: 3
+  max_stage3_discovery_agent2_iterations: 3
+  max_stage3_additional_agent1_iterations: 3
+  max_stage3_additional_agent2_iterations: 3
+  max_case_iterations: 10 # Retained for future node-level retries

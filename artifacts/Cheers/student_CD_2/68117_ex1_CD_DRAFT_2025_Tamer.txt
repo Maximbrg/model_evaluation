@@ -1,0 +1,127 @@
+@startuml
+!define CLASS_ENTITY #E2E2E2
+!define ENUM_ENTITY #CCCCFF
+
+class "Employee" as employee << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - name: String
+  - phoneNumber: String
+  - officeAddress: String
+  - email: String
+  - employmentStartDate: Date
+}
+
+class "Customer" as customer << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - name: String
+  - phoneNumber: String
+  - deliveryAddress: String
+  - email: String
+  - firstContactDate: Date
+}
+
+class "Order" as order << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - orderDate: Date
+  - status: OrderStatus
+  - shipmentDate: Date
+  - assignedEmployee: Employee
+  - wines: List<WineOrder>
+}
+
+class "WineOrder" as wineOrder << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - wine: Wine
+  - quantity: Integer
+}
+
+class "Wine" as wine << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - name: String
+  - description: String
+  - productionYear: Integer
+  - pricePerBottle: Double
+  - sweetnessLevel: SweetnessLevel
+  - productImage: String
+  - wineType: WineType
+  - manufacturer: Manufacturer
+}
+
+class "WineType" as wineType << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - name: String
+  - serialNumber: String
+  - foodPairings: List<FoodPairing>
+  - recommendedOccasions: List<RecommendedOccasion>
+}
+
+class "FoodPairing" as foodPairing << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - dishName: String
+  - recipeUrls: List<String>
+}
+
+class "RecommendedOccasion" as recommendedOccasion << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - occasion: String
+  - season: Season
+  - location: Location
+}
+
+class "Manufacturer" as manufacturer << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - fullName: String
+  - contactPhoneNumber: String
+  - address: String
+  - email: String
+}
+
+class "StorageLocation" as storageLocation << (C,#E2E2E2) >>
+{
+  - id: Integer
+  - name: String
+  - wines: List<Wine>
+}
+
+enum "OrderStatus" as orderStatus << (E,#CCCCFF) >>
+{
+  IN_PROCESS
+  DISPATCHED
+  DELIVERED
+  PAID
+  SUSPENDED
+  CANCELED
+}
+
+enum "SweetnessLevel" as sweetnessLevel << (E,#CCCCFF) >>
+{
+  DRY
+  SEMI_DRY
+  SEMI_SWEET
+  SWEET
+}
+
+enum "Season" as season << (E,#CCCCFF) >>
+{
+  SPRING
+  SUMMER
+  AUTUMN
+  WINTER
+}
+
+enum "Location" as location << (E,#CCCCFF) >>
+{
+  INDOOR
+  OUTDOOR
+}
+
+@enduml

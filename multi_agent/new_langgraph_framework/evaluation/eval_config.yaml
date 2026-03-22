@@ -1,0 +1,10 @@
+# You can EITHER map an entire directory containing multiple language_template.json files:
+template_dir: "/Users/maximbragilovski/model_evalution/artifacts/ucd/cheers"
+
+# OR you can map specific files one by one:
+# template_files:
+#   - "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of Copy of language_template_1.json"
+#   - "/Users/maximbragilovski/model_evalution/artifacts/stage1/Copy of language_template_2.json"
+
+# Output destination for the semantic overlaps analysis
+output: "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/evaluation/semantic_overlap.json"

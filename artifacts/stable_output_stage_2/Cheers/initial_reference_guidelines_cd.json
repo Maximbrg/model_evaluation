@@ -1,0 +1,486 @@
+{
+  "reference_guidelines": [
+    {
+      "id": "G1",
+      "fragment_name": "Customer",
+      "fragment_type": "element",
+      "description": "Customer classifier must have properties id, name, phoneNumber, deliveryAddress, email, firstContactDate",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“For each customer included in an order, the system records their ID, name, phone number, delivery address, email, and the date of first contact with the company.”"
+    },
+    {
+      "id": "G2",
+      "fragment_name": "Employee",
+      "fragment_type": "element",
+      "description": "Employee classifier must have properties id, name, phoneNumber, officeAddress, email, employmentStartDate",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“each order being assigned to a specific employee's information (ID, name, phone number, office address, email, and employment start date)”"
+    },
+    {
+      "id": "G3",
+      "fragment_name": "Order",
+      "fragment_type": "element",
+      "description": "Order classifier must have properties orderNumber, orderDate, currentStatus, shipmentDate",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“Orders can be categorized as either regular or urgent and include the following details: order number, order date, current status (in process, dispatched, delivered, paid, suspended, or canceled), shipment date…”"
+    },
+    {
+      "id": "G4",
+      "fragment_name": "OrderStatus",
+      "fragment_type": "element",
+      "description": "Enumeration OrderStatus with literals IN_PROCESS, DISPATCHED, DELIVERED, PAID, SUSPENDED, CANCELED",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T3"
+      ],
+      "citation": "“current status (in process, dispatched, delivered, paid, suspended, or canceled)”"
+    },
+    {
+      "id": "G5",
+      "fragment_name": "Order--Employee",
+      "fragment_type": "relation",
+      "description": "Association between Order and Employee: each Order is assigned to exactly one Employee",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“each order being assigned to a specific employee”"
+    },
+    {
+      "id": "G6",
+      "fragment_name": "RegularOrder--Customer",
+      "fragment_type": "relation",
+      "description": "Association between RegularOrder and Customer: a RegularOrder may involve multiple Customers and one main Customer responsible",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“Regular orders…allow multiple customers to combine their wine selections into a single order…main customer who is responsible for the entire order”"
+    },
+    {
+      "id": "G7",
+      "fragment_name": "Generalization_Order",
+      "fragment_type": "combination",
+      "description": "Generalization: Order specialized into RegularOrder and UrgentOrder subclasses",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T12"
+      ],
+      "citation": "“Orders can be categorized as either regular or urgent”"
+    },
+    {
+      "id": "G8",
+      "fragment_name": "UrgentOrder",
+      "fragment_type": "element",
+      "description": "UrgentOrder classifier must have properties priorityLevel and expectedDeliveryTime",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“When placing an urgent order, the priority level (a number between 1 and 5) and the expected delivery time must be specified.”"
+    },
+    {
+      "id": "G9",
+      "fragment_name": "Constraint_UrgentOrderPriority",
+      "fragment_type": "relation",
+      "description": "Constraint: UrgentOrder.priorityLevel ∈ [1..5]",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“priority level (a number between 1 and 5)”"
+    },
+    {
+      "id": "G10",
+      "fragment_name": "Constraint_UrgentOrderSingleCustomer",
+      "fragment_type": "relation",
+      "description": "Constraint: UrgentOrder must be placed by exactly one Customer",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“Urgent orders…must be placed by a single customer to ensure prompt delivery.”"
+    },
+    {
+      "id": "G11",
+      "fragment_name": "OrderLine",
+      "fragment_type": "combination",
+      "description": "AssociationClass OrderLine between Order and Wine capturing quantity and a reference to the specific Customer who ordered that wine",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T15"
+      ],
+      "citation": "“Orders may consist of multiple wines in different quantities…system must track which wines and quantities have been ordered by each customer.”"
+    },
+    {
+      "id": "G12",
+      "fragment_name": "Wine",
+      "fragment_type": "element",
+      "description": "Wine classifier must have properties name, description, productionYear, pricePerBottle, productImage",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“For each wine, the system will capture the name, description, production year, price per bottle, sweetness level…, and product image.”"
+    },
+    {
+      "id": "G13",
+      "fragment_name": "SweetnessLevel",
+      "fragment_type": "element",
+      "description": "Enumeration SweetnessLevel with literals DRY, SEMI_DRY, SEMI_SWEET, SWEET",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T3"
+      ],
+      "citation": "“sweetness level (dry, semi-dry, semi-sweet, sweet)”"
+    },
+    {
+      "id": "G14",
+      "fragment_name": "Manufacturer",
+      "fragment_type": "element",
+      "description": "Manufacturer classifier must have properties id, fullName, contactPhoneNumber, address, email",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“For each manufacturer, the system will store the full name, contact phone number, address, and email. A unique automatic identifier is assigned to each new manufacturer.”"
+    },
+    {
+      "id": "G15",
+      "fragment_name": "Manufacturer--Wine",
+      "fragment_type": "relation",
+      "description": "Association between Manufacturer (1) and Wine (many)",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“each wine is produced by a single manufacturer”"
+    },
+    {
+      "id": "G16",
+      "fragment_name": "StorageLocation",
+      "fragment_type": "element",
+      "description": "StorageLocation classifier must have properties id and name",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“Each storage location has a unique number and name.”"
+    },
+    {
+      "id": "G17",
+      "fragment_name": "Wine--StorageLocation",
+      "fragment_type": "relation",
+      "description": "Association between Wine and StorageLocation with multiplicity *..* on both ends",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“wines may be stored in multiple locations and a single location may store multiple wines.”"
+    },
+    {
+      "id": "G18",
+      "fragment_name": "Inventory",
+      "fragment_type": "combination",
+      "description": "AssociationClass Inventory between Wine and StorageLocation capturing numberOfBottles",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T15"
+      ],
+      "citation": "“system tracks the number of bottles of each wine at each storage location”"
+    },
+    {
+      "id": "G19",
+      "fragment_name": "Delivery",
+      "fragment_type": "element",
+      "description": "Delivery classifier must have properties id, city, bottleCount, status",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“notification is sent to the 'GalGalim' company with the delivery address and the quantity of bottles in the order…orders will not be sent if they fall below the minimum, and an order cannot be included in a delivery if it exceeds the maximum”"
+    },
+    {
+      "id": "G20",
+      "fragment_name": "Order--Delivery",
+      "fragment_type": "relation",
+      "description": "Association between Order and Delivery: one Delivery may include many Orders",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“if there is an existing delivery scheduled for that city that can accommodate the order, the order is added to that delivery.”"
+    },
+    {
+      "id": "G21",
+      "fragment_name": "Constraint_DeliveryBottleLimits",
+      "fragment_type": "relation",
+      "description": "Constraint: Delivery.bottleCount ≥ minLimit and ≤ maxLimit per shipment",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“'GalGalim' operates under minimum and maximum bottle limits for shipments — orders will not be sent if they fall below the minimum, and an order cannot be included in a delivery if it exceeds the maximum.”"
+    },
+    {
+      "id": "G22",
+      "fragment_name": "Constraint_DeliveryDispatchConditions",
+      "fragment_type": "relation",
+      "description": "Constraint: Delivery dispatches when bottleCount ≥ minLimit or on explicit request",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“A delivery is dispatched when the bottle count exceeds the minimum, or at the explicit request of a 'GalGalim' employee.”"
+    },
+    {
+      "id": "G23",
+      "fragment_name": "OrderOperations",
+      "fragment_type": "element",
+      "description": "Order classifier must define operations suspend(), resume(), cancel()",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“At any point, a customer can suspend their order…If the customer decides to resume the order…the customer can cancel the order”"
+    },
+    {
+      "id": "G24",
+      "fragment_name": "Employee.generateUnproductiveEmployeesReport",
+      "fragment_type": "element",
+      "description": "Employee classifier has operation generateUnproductiveEmployeesReport(period: TimePeriod): Report",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“Unproductive Employees Report: Generated by a sales employee, this report takes a time period as a parameter and displays…”"
+    },
+    {
+      "id": "G25",
+      "fragment_name": "generateUnproductiveEmployeesReport.period",
+      "fragment_type": "element",
+      "description": "The parameter period of generateUnproductiveEmployeesReport is of DataType TimePeriod",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T4"
+      ],
+      "citation": "“takes a time period as a parameter”"
+    },
+    {
+      "id": "G26",
+      "fragment_name": "System.generateCurrentInventoryReport",
+      "fragment_type": "element",
+      "description": "System or designated class has operation generateCurrentInventoryReport(): JSON",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“Current Inventory Report by Wine…is sent to the Gefen system in JSON format every weekend”"
+    },
+    {
+      "id": "G27",
+      "fragment_name": "Employee.generateWineRecommendationReport",
+      "fragment_type": "element",
+      "description": "Employee classifier has operation generateWineRecommendationReport(food: String, occasion: Occasion, wineType: WineType): List<Wine>",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“Wine Recommendation Report for Customers…returns a list of available wines that match the customer's preferences based on food, occasion, and wine type.”"
+    },
+    {
+      "id": "G28",
+      "fragment_name": "Constraint_ClarificationStatus",
+      "fragment_type": "relation",
+      "description": "Constraint: If an Order is not delivered within 5 days of orderDate then status = CLARIFICATION",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“If a delivery for a particular order is not made within five days of the order being placed, the order enters a 'clarification' status…”"
+    },
+    {
+      "id": "G29",
+      "fragment_name": "Constraint_RefundOnFailure",
+      "fragment_type": "relation",
+      "description": "Constraint: If Delivery fails after payment then a refund must be issued",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“If the delivery fails to arrive and the customer has already paid, a refund must be issued.”"
+    },
+    {
+      "id": "G30",
+      "fragment_name": "OrderType",
+      "fragment_type": "element",
+      "description": "Enumeration OrderType with literals REGULAR, URGENT",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T3"
+      ],
+      "citation": "“Orders can be categorized as either regular or urgent”"
+    },
+    {
+      "id": "G31",
+      "fragment_name": "WineType",
+      "fragment_type": "element",
+      "description": "WineType classifier must have properties name, serialNumber and recipeLinks: String[0..5]",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“Each type of wine is identified by its name and serial number…up to 5 links (URLs) to possible recipes will be kept.”"
+    },
+    {
+      "id": "G32",
+      "fragment_name": "Wine--WineType",
+      "fragment_type": "relation",
+      "description": "Association between Wine and WineType (many-to-1)",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“Marketing staff will link wines to their types”"
+    },
+    {
+      "id": "G33",
+      "fragment_name": "Occasion",
+      "fragment_type": "element",
+      "description": "Occasion classifier must have properties description, season, location",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“Marketing employees can also recommend occasions suitable for drinking each wine type…along with the season and location (indoor/outdoor).”"
+    },
+    {
+      "id": "G34",
+      "fragment_name": "WineType--Occasion",
+      "fragment_type": "relation",
+      "description": "Association between WineType and Occasion (many-to-many)",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T7"
+      ],
+      "citation": "“Marketing employees can also recommend occasions suitable for drinking each wine type…”"
+    },
+    {
+      "id": "G35",
+      "fragment_name": "Employee.department",
+      "fragment_type": "element",
+      "description": "Employee classifier must have property department (e.g., MARKETING, SALES)",
+      "alternative_description": "Could be modeled as a separate Department enumeration or as a simple String",
+      "related_template_ids": [
+        "T1"
+      ],
+      "citation": "“Only employees in the marketing department are authorized to update wine information and types. All other employees will have view-only access.”"
+    },
+    {
+      "id": "G36",
+      "fragment_name": "Constraint_EmployeeUpdateWine",
+      "fragment_type": "relation",
+      "description": "Constraint: Only Employees with department = MARKETING may invoke operations that modify Wine or WineType",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“Only employees in the marketing department are authorized to update wine information and types.”"
+    },
+    {
+      "id": "G37",
+      "fragment_name": "Constraint_OrderSingleCustomer",
+      "fragment_type": "relation",
+      "description": "Constraint: Every Order must be placed by exactly one Customer",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“…leading to the decision that an order will be placed for a single customer…”"
+    },
+    {
+      "id": "G38",
+      "fragment_name": "Order.pay",
+      "fragment_type": "element",
+      "description": "Order classifier must define operation pay(): void to record payment before delivery completion",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“After an order is dispatched for delivery but before it reaches the customer, payment must be made.”"
+    },
+    {
+      "id": "G39",
+      "fragment_name": "Order.refund",
+      "fragment_type": "element",
+      "description": "Order classifier must define operation refund(): void to issue a refund when delivery fails after payment",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "“If the delivery fails to arrive and the customer has already paid, a refund must be issued.”"
+    },
+    {
+      "id": "G40",
+      "fragment_name": "Constraint_UrgentDeliveryImmediate",
+      "fragment_type": "relation",
+      "description": "Constraint: For UrgentOrder, delivery must be initiated immediately without delay",
+      "alternative_description": null,
+      "related_template_ids": [
+        "T16"
+      ],
+      "citation": "“For \"urgent\" orders, delivery is initiated immediately without delay.”"
+    }
+  ],
+  "agent2_capabilities": [
+    {
+      "category": "Order and Customer Structure",
+      "description": "Questions about modeling orders, their types, and associations with customers and employees",
+      "example_questions": [
+        "How do I enforce that each Order has exactly one Customer in a class diagram?",
+        "What is the best way to model the specialization of Order into RegularOrder and UrgentOrder?"
+      ]
+    },
+    {
+      "category": "Employee Roles and Access Control",
+      "description": "Questions about representing employee attributes for department roles and constraining their operations",
+      "example_questions": [
+        "How can I model that only marketing employees can update Wine data?",
+        "Should 'department' be an attribute or an enumeration in the Employee class?"
+      ]
+    },
+    {
+      "category": "Wine and Inventory Management",
+      "description": "Questions about structuring wine types, sweetness levels, and tracking inventory across locations",
+      "example_questions": [
+        "How do I represent the many-to-many relationship between Wine and StorageLocation with quantity?",
+        "Where should I capture the sweetness level and product image of a Wine?"
+      ]
+    },
+    {
+      "category": "Delivery and Business Rules",
+      "description": "Questions about modeling Delivery class, its constraints on bottle counts, dispatch conditions, and urgent delivery rules",
+      "example_questions": [
+        "How do I model the minimum and maximum bottle constraints on a Delivery?",
+        "What constraint enforces immediate dispatch for urgent orders?"
+      ]
+    },
+    {
+      "category": "Operations and Reports",
+      "description": "Questions about defining operations such as pay, refund, and report generation with appropriate parameters",
+      "example_questions": [
+        "How do I define the generateUnproductiveEmployeesReport operation with a TimePeriod parameter?",
+        "Should refund() be modeled as an operation on Order or on Delivery?"
+      ]
+    }
+  ]
+}
