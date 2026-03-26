@@ -1,2 +1,3 @@
 models_dir: "/Users/maximbragilovski/model_evalution/artifacts/parkWise/ucd_10"
 guidelines_dir: "/Users/maximbragilovski/model_evalution/multi_agent/new_langgraph_framework/outputs/2026-03-20_20-52-44/stage3_agent3_compliance"
+aggregate_dir: "/Users/maximbragilovski/model_evalution/artifacts/vizualize"
