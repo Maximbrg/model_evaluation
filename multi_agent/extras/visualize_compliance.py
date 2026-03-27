@@ -35,6 +35,9 @@ class ComplianceVisualizer:
         self.original_pill_image = None
         self.zoom_level = 1.0
         self.raw_json_data = {}      # full JSON for metadata panel
+        self.reference_guidelines_map = {} # map of guideline ID -> reference details
+
+        self._load_all_reference_guidelines()
 
         self.setup_ui()
         self.refresh_file_lists()
@@ -48,6 +51,34 @@ class ComplianceVisualizer:
             if base in self.aggregate_combo['values']:
                 self.aggregate_combo.set(base)
                 self.on_aggregate_selected()
+
+    def _load_all_reference_guidelines(self):
+        """Pre-load all reference guidelines from guidelines_dir (or a specific file)."""
+        self.reference_guidelines_map.clear()
+        if not self.guidelines_dir or not os.path.exists(self.guidelines_dir):
+            return
+
+        def _load_file(filepath):
+            try:
+                with open(filepath, 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+                    if "reference_guidelines" in data:
+                        for rg in data["reference_guidelines"]:
+                            gid = rg.get("id")
+                            if gid:
+                                self.reference_guidelines_map[gid] = rg
+            except Exception:
+                pass
+
+        if os.path.isfile(self.guidelines_dir):
+            if self.guidelines_dir.endswith('.json'):
+                _load_file(self.guidelines_dir)
+            return
+
+        for root, _, files in os.walk(self.guidelines_dir):
+            for f in files:
+                if f.endswith('.json'):
+                    _load_file(os.path.join(root, f))
 
     # ──────────────────────────────────────────────
     # UI CONSTRUCTION
@@ -73,6 +104,7 @@ class ComplianceVisualizer:
         ttk.Button(top_frame, text="Refresh",          command=self.refresh_file_lists).pack(side=tk.LEFT, padx=(10,2))
         ttk.Button(top_frame, text="Browse Models…",   command=self.browse_models).pack(side=tk.LEFT, padx=2)
         ttk.Button(top_frame, text="Browse Vectors…",  command=self.browse_vectors).pack(side=tk.LEFT, padx=2)
+        ttk.Button(top_frame, text="Browse Guide(s)…", command=self.browse_guidelines_dir).pack(side=tk.LEFT, padx=2)
 
         self.status_label = ttk.Label(top_frame, text="Ready.", font=("Arial", 12))
         self.status_label.pack(side=tk.LEFT, padx=10)
@@ -133,16 +165,19 @@ class ComplianceVisualizer:
 
         list_frame = ttk.LabelFrame(right_pw, text="Compliance Vector")
         right_pw.add(list_frame, weight=1)
-        cols = ("id", "status", "description")
+        cols = ("id", "status", "guideline", "evidence")
         self.tree = ttk.Treeview(list_frame, columns=cols, show="headings", style="Custom.Treeview")
         style = ttk.Style()
         style.configure("Custom.Treeview", font=("Arial", 12), rowheight=26)
         style.configure("Custom.Treeview.Heading", font=("Arial", 13, "bold"))
         self.tree.heading("id",          text="ID")
         self.tree.heading("status",      text="Status")
-        self.tree.heading("description", text="Description / Evidence")
-        self.tree.column("id",     width=65,  stretch=False)
-        self.tree.column("status", width=150, stretch=False)
+        self.tree.heading("guideline",   text="Guideline Desc")
+        self.tree.heading("evidence",    text="Evidence / Fragment")
+        self.tree.column("id",        width=65,  stretch=False)
+        self.tree.column("status",    width=150, stretch=False)
+        self.tree.column("guideline", width=250, stretch=True)
+        self.tree.column("evidence",  width=250, stretch=True)
         ts = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.tree.yview)
         ts.pack(side=tk.RIGHT, fill=tk.Y)
         self.tree.config(yscrollcommand=ts.set)
@@ -251,6 +286,21 @@ class ComplianceVisualizer:
             return
         self.aggregate_dir = folder
         self.refresh_file_lists()
+
+    def browse_guidelines_dir(self):
+        """Pick a JSON file or folder containing reference guidelines."""
+        path = filedialog.askopenfilename(title="Select Reference Guidelines File (JSON)", filetypes=[("JSON Files", "*.json"), ("All Files", "*.*")])
+        if not path:
+            return
+        self.guidelines_dir = path
+        self._load_all_reference_guidelines()
+        
+        msg = f"Loaded {len(self.reference_guidelines_map)} guidelines from {os.path.basename(self.guidelines_dir)}."
+        self.status_label.config(text=msg)
+        
+        # Refresh tree to display newly loaded guideline descriptions
+        self._populate_tree()
+        self.on_select_item()
 
     def open_files(self):
         """Legacy: pick individual files via file dialog."""
@@ -457,13 +507,17 @@ class ComplianceVisualizer:
 
         # Section: guidelines / compliance
         self.tree.insert("", tk.END, iid="h_g",
-                         values=("---", "COMPLIANCE", "GUIDELINES ---"), tags=("Header",))
+                         values=("---", "COMPLIANCE", "GUIDELINES ---", ""), tags=("Header",))
         for idx, g in enumerate(self.compliance_data):
             gid    = g.get("guideline_id", "")
             status = g.get("label", g.get("compliance_status", ""))
-            desc   = (g.get("evidence") or g.get("description", ""))[:90]
+            
+            ref = self.reference_guidelines_map.get(gid, {})
+            guide_desc = (ref.get("description") or ref.get("guideline_name") or "")[:120]
+            ev = (g.get("evidence") or g.get("notes") or g.get("description", ""))[:90]
+            
             self.tree.insert("", tk.END, iid=f"g_{idx}",
-                             values=(gid, status, desc), tags=(status,))
+                             values=(gid, status, guide_desc, ev), tags=(status,))
 
         # Section: uncovered fragments (shown below guidelines)
         if self.uncovered_data:
@@ -471,11 +525,11 @@ class ComplianceVisualizer:
                 lbl   = uf.get("label", "")
                 snip  = uf.get("fragment", "")[:80]
                 self.tree.insert("", tk.END, iid=f"u_{idx}",
-                                 values=("Frag", lbl, snip), tags=(lbl,))
+                                 values=("Frag", lbl, "", snip), tags=(lbl,))
 
         # Summary row always at the very bottom
         self.tree.insert("", tk.END, iid="h_summary",
-                         values=("📊", "SUMMARY", "Click to view case score & assessment"), tags=("Header",))
+                         values=("📊", "SUMMARY", "Click to view case score & assessment", ""), tags=("Header",))
 
     # ──────────────────────────────────────────────
     # DETAILS PANEL
@@ -512,6 +566,14 @@ class ComplianceVisualizer:
             item = self.compliance_data[int(iid.split("_")[1])]
             gid  = item.get("guideline_id", "???")
             d = f"GUIDELINE {gid}\n{'=' * (12 + len(gid))}\n\n"
+            
+            if gid in self.reference_guidelines_map:
+                ref = self.reference_guidelines_map[gid]
+                if ref.get("guideline_name"):
+                    d += f"NAME:\n{ref.get('guideline_name')}\n\n"
+                if ref.get("description"):
+                    d += f"DESCRIPTION:\n{ref.get('description')}\n\n"
+
             d += f"STATUS:\n{item.get('label', item.get('compliance_status', ''))}\n\n"
             ev = item.get("evidence", "")
             if ev:
